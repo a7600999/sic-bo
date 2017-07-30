@@ -14,7 +14,7 @@
         .diceWrap {
             position: relative;
             transform-style: preserve-3d;
-            animation: roll infinite 10s; 
+            /* animation: roll infinite 10s;  */
             width: 100px;
             height: 100px;
             left: 50%;
@@ -29,9 +29,11 @@
             background-color: black;
             box-shadow: #D2D2D2 0px 0px 10px 0px inset;
         }
+
         .dice.dice1 {
             transform: translateZ(50px);
         }
+
         .dice.dice1.inner {
             transform: translateZ(49px);
         }
@@ -39,6 +41,7 @@
         .dice.dice2 {
             transform: rotateX(-180deg) translateZ(50px);
         }
+
         .dice.dice2.inner {
             transform: rotateX(-180deg) translateZ(49px);
         }
@@ -46,6 +49,7 @@
         .dice.dice3 {
             transform: rotateX(90deg) translateZ(50px);
         }
+
         .dice.dice3.inner {
             transform: rotateX(90deg) translateZ(49px);
         }
@@ -53,6 +57,7 @@
         .dice.dice4 {
             transform: rotateX(-90deg) translateZ(50px);
         }
+
         .dice.dice4.inner {
             transform: rotateX(-90deg) translateZ(49px);
         }
@@ -60,6 +65,7 @@
         .dice.dice5 {
             transform: rotateY(90deg) translateZ(50px);
         }
+
         .dice.dice5.inner {
             transform: rotateY(90deg) translateZ(49px);
         }
@@ -67,6 +73,7 @@
         .dice.dice6 {
             transform: rotateY(-90deg) translateZ(50px);
         }
+
         .dice.dice6.inner {
             transform: rotateY(-90deg) translateZ(49px);
         }
@@ -211,21 +218,26 @@
             right: 5%;
             bottom: 5%;
         }
-        .diceWrap>.cover, .diceWrap>.inner {
-            background: rgb(65,65,65);
+
+        .diceWrap>.cover,
+        .diceWrap>.inner {
+            background: rgb(65, 65, 65);
             box-shadow: none;
         }
+
         .diceWrap>.cover {
             border-radius: 0;
             transform: translateZ(0px);
         }
+
         .diceWrap>.cover.x {
             transform: rotateY(90deg);
         }
+
         .diceWrap>.cover.z {
             transform: rotateX(90deg);
         }
-        @keyframes roll {
+        /* @keyframes roll {
             0% {
                 -webkit-transform: rotate3d(1, 1, 1, 0deg) rotateY(0deg) scale3d(0.5, 0.5, 0.5);
                 transform: rotate3d(1, 1, 1, 0deg) rotateY(0deg) scale3d(0.5, 0.5, 0.5);
@@ -238,7 +250,7 @@
                 -webkit-transform: rotate3d(1, 1, 1, 720deg) rotateY(720deg) scale3d(0.5, 0.5, 0.5);
                 transform: rotate3d(1, 1, 1, 720deg) rotateY(720deg) scale3d(0.5, 0.5, 0.5);
             }
-        } 
+        }  */
     </style>
 </head>
 
@@ -289,5 +301,59 @@
     </div>
 
 </body>
+<script>
+    /* js控制开奖结果思路，最后开奖结果由旋转角度确定，如开奖结果为2，那么最后的旋转角度transform: rotate3d(1, 1, 1, 0deg) rotateX(270deg) scale3d(1, 1, 1)，
+                           通过web-animation上js相关的改变旋转频率的方法旋转减小旋转速度，旋转到一定时间后移除旋转keyframe，换上最后结果为开奖结果的keyframe（通过class增减）;
+                           diceAnimate.cancel()->取消动画回到最初状态
+                           diceAnimate.playbackRate->旋转的速度，改变值可改变旋转速度
+                        */
+    //动画配置开始
+    let diceWrap = document.querySelector('.diceWrap');
+    let keyframes = [{
+        transform: 'rotate3d(1, 1, 1, 0deg) rotateY(0deg) scale3d(1, 1, 1)'
+    }, {
+        transform: 'rotate3d(1, 1, 1, 360deg) rotateY(360deg) scale3d(1, 1, 1)'
+    }];
+    let animationConfig = {
+        duration: 3000,
+        iterations: 1,
+        fill:'forwards',//当动画完成后，保持最后一个属性值（在最后一个关键帧中定义）
+    };
+    //开奖结果配置
+    let keyframesResult = [{
+        transform: 'rotate3d(1, 1, 1, 360deg) rotateY(360deg) scale3d(1, 1, 1)'
+    }, {
+        transform: 'rotate3d(1, 1, 1, 0deg) rotateX(270deg) scale3d(1, 1, 1)'
+    }];
+    let animationResultConfig = {
+        duration: 3000,
+        iterations: 1,
+        fill:'forwards',//当动画完成后，保持最后一个属性值（在最后一个关键帧中定义）
+    };
+    //动画配置结束
+
+    //启动动画
+    let diceAnimate = diceWrap.animate(
+        keyframes,
+        animationConfig
+    );
+    diceAnimate.onfinish = function () {
+        diceWrap.animate(
+            keyframesResult,
+            animationResultConfig
+        );
+    };
+    // diceAnimate.pause();
+    // diceAnimate.oncancel = function(){
+    //     diceWrap.style.transform = 'rotate3d(1, 1, 1, 0deg) rotateX(270deg) scale3d(1, 1, 1)';        
+    // };
+    // setInterval(function () {
+    //     if (diceAnimate.playbackRate === 0) {
+    //         diceAnimate.cancel();            
+    //         return;
+    //     }
+    //     diceAnimate.playbackRate--;
+    // }, 1000)
+</script>
 
 </html>

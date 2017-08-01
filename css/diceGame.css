@@ -1,0 +1,349 @@
+.wrap {
+    background-image: url(../images/desktop.jpg);
+    background-repeat: no-repeat;
+    background-position: -35px -104px;
+    background-size: 960px;
+    width: 882px;
+    height: 351px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+}
+
+.rowOne {
+    position: absolute;
+    left: 118px;
+    top: 30px;
+    width: 650px;
+    height: 100px;
+}
+
+.dxds_left {
+    position: absolute;
+    width: 18%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+.dxds_da {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background: yellow;
+    height: 55%;
+    border: 1px solid;
+    border-radius: 20px 5px 5px 5px;
+}
+
+.dxds_dan {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: yellow;
+    height: 40%;
+    border-radius: 5px;
+    border: 1px solid;
+}
+
+.th2_left {
+    left: 19%;
+    top: 0;
+    position: absolute;
+    height: 100%;
+    background: green;
+    width: 12%;
+}
+
+.th2_left_item {
+    width: 100%;
+    background: blue;
+    height: 30%;
+    border: 1px solid;
+    border-radius: 5px;
+}
+
+.th3 {
+    position: absolute;
+    top: 0;
+    left: 32%;
+    height: 100%;
+    width: 36%;
+}
+
+.th2_right {
+    right: 19%;
+    top: 0;
+    position: absolute;
+    height: 100%;
+    background: green;
+    width: 12%;
+}
+
+.dxds_right {
+    position: absolute;
+    width: 18%;
+    height: 100%;
+    right: 0;
+    top: 0;
+}
+
+.dxds_shuang {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: yellow;
+    height: 40%;
+    border-radius: 5px;
+    border: 1px solid;
+}
+
+.dxds_xiao {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background: yellow;
+    height: 55%;
+    border: 1px solid;
+    border-radius: 5px 20px 5px 5px;
+}
+
+.th2_right_item {
+    width: 100%;
+    background: blue;
+    height: 30%;
+    border: 1px solid;
+    border-radius: 5px;
+}
+
+.th3_dx {
+    position: absolute;
+    top: 0;
+    height: 47.5%;
+    background: red;
+    width: 100%;
+    border: 1px;
+    text-align: center;
+    font-size: 0;
+    border-radius: 5px;
+}
+
+.th3_tx {
+    position: absolute;
+    bottom: 0;
+    height: 47.5%;
+    background: red;
+    width: 100%;
+    border: 1px solid;
+    border-radius: 5px;
+}
+
+.th3_dx_item {
+    width: 15%;
+    border-radius: 5px;
+    background: yellow;
+    height: 100%;
+    display: inline-block;
+    margin: 0 1.5px;
+}
+
+.rowTwo.hz {
+    position: absolute;
+    left: 118px;
+    top: 132px;
+    width: 650px;
+    height: 42px;
+    font-size: 0;
+    text-align: center;
+    border: 1px solid;
+    border-radius: 5px;
+}
+
+.hz_item {
+    width: 6.5%;
+    background: green;
+    height: 100%;
+    display: inline-block;
+    margin: 0 2px;
+    border-radius: 5px;
+}
+
+.rowThree.bth2 {
+    position: absolute;
+    left: 118px;
+    top: 178px;
+    width: 650px;
+    height: 70px;
+    font-size: 0;
+    text-align: center;
+    border: 1px solid;
+    border-radius: 5px;
+}
+
+.bth2_item {
+    width: 5%;
+    background: green;
+    height: 100%;
+    display: inline-block;
+    margin: 0 2px;
+    border-radius: 5px;
+}
+
+.cygh {
+    width: 50%;
+    height: 70%;
+    position: absolute;
+    top: 15%;
+    text-align: center;
+    font-size: 0;
+}
+
+.rowFour {
+    position: absolute;
+    left: 118px;
+    top: 252px;
+    width: 650px;
+    height: 70px;
+    font-size: 0;
+    text-align: center;
+    border: 1px solid;
+    border-radius: 5px;
+}
+
+.lh3 {
+    width: 50%;
+    height: 80%;
+    position: absolute;
+    top: 10%;
+    text-align: center;
+    right: 0;
+    font-size: 0;
+}
+
+.cygh_item {
+    width: 10%;
+    background: #3c3535;
+    height: 100%;
+    display: inline-block;
+    margin: 0 2px;
+    border-radius: 5px;
+}
+
+.lh3_item {
+    width: 15%;
+    background: #3c3535;
+    height: 100%;
+    display: inline-block;
+    margin: 0 5px;
+    border-radius: 5px;
+}
+
+.bottomBar {
+    bottom: 0;
+    position: absolute;
+    height: 30px;
+    width: 100%;
+}
+
+.userName {
+    position: absolute;
+    left: 15%;
+    font-size: 0;
+    height: 100%;
+}
+
+.name {
+    font-size: 18px;
+    display: inline-block;
+    height: 100%;
+    width: 100px;
+    text-align: center;
+    border: 1px solid;
+    border-top-right-radius: 10px 15px;
+    border-top-left-radius: 10px 15px;
+    border-bottom-left-radius: 10px 15px;
+    border-bottom-right-radius: 10px 15px;
+}
+
+.nameLogo {
+    display: inline-block;
+    height: 100%;
+    width: 30px;
+    vertical-align: middle;
+    background: orange;
+    font-size: 18px;
+}
+
+.balance {
+    position: absolute;
+    left: 32%;
+    font-size: 0;
+    width: 22%;
+    height: 100%;
+    background: green;
+}
+
+.balanceLogo {
+    display: inline-block;
+    height: 100%;
+    width: 30px;
+    vertical-align: middle;
+    background: orange;
+    font-size: 18px;
+}
+
+.balanceDetail {
+    font-size: 18px;
+    display: inline-block;
+    height: 100%;
+    width: 160px;
+    text-align: center;
+    border: 1px solid;
+    border-top-right-radius: 20px 15px;
+    border-top-left-radius: 20px 15px;
+    border-bottom-left-radius: 20px 15px;
+    border-bottom-right-radius: 20px 15px;
+}
+
+.chips {
+    position: absolute;
+    left: 54%;
+    font-size: 0;
+    width: 22%;
+    height: 100%;
+    background: pink;
+}
+
+.betMoney {
+    position: absolute;
+    right: 0%;
+    font-size: 0;
+    height: 100%;
+    background: palegreen;
+    width: 25%;
+}
+
+.betMoneyLogo {
+    display: inline-block;
+    height: 100%;
+    width: 30px;
+    vertical-align: middle;
+    background: orange;
+    font-size: 18px;
+}
+
+.betMoneyDetail {
+    font-size: 18px;
+    display: inline-block;
+    height: 100%;
+    width: 160px;
+    text-align: center;
+    border: 1px solid;
+    border-top-right-radius: 20px 15px;
+    border-top-left-radius: 20px 15px;
+    border-bottom-left-radius: 20px 15px;
+    border-bottom-right-radius: 20px 15px;
+}

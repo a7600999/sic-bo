@@ -6,8 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="./css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="./css/diceGame.css">
     <title>dice-game</title>
+    <script>
+        let link = document.createElement('link');
+        link.rel = "stylesheet";
+        link.type = "text/css";
+        link.href = `./css/diceGame.css?t=${new Date().getTime()}`;
+        document.head.appendChild(link);
+    </script>
 </head>
 <body>
     <div class="wrap">
@@ -17,12 +23,21 @@
                 <div class="dxds_dan" value="dan"></div>
             </div>
             <div class="th2_left">
+                <div class="th2_left_top">
+                    <span class="explain">?</span>
+                    <span class="peilv">1:10</span>
+                </div>
                 <div class="th2_left_item" value="66"></div>
                 <div class="th2_left_item" value="55"></div>
                 <div class="th2_left_item" value="44"></div>
             </div>
             <div class="th3">
+
                 <div class="th3_dx">
+                    <div class="th3_dx_top">
+                        <span class="explain">?</span>
+                        <span class="peilv">1:180</span>
+                    </div>
                     <div class="th3_dx_item" value="666"></div>
                     <div class="th3_dx_item" value="555"></div>
                     <div class="th3_dx_item" value="444"></div>
@@ -30,12 +45,24 @@
                     <div class="th3_dx_item" value="222"></div>
                     <div class="th3_dx_item" value="111"></div>
                 </div>
-                <div class="th3_tx" value="111|222|333|444|555|666"></div>
+                <div class="th3_tx">
+                    <div class="th3_tx_top">
+                        <span class="explain">?</span>
+                        <span class="peilv">1:30</span>
+                    </div>
+                    <div class="th3_tx_item" value="111|222|333|444|555|666">
+
+                    </div>
+                </div>
             </div>
             <div class="th2_right">
-                <div class="th2_right_value" value="33"></div>
-                <div class="th2_right_value" value="22"></div>
-                <div class="th2_right_value" value="11"></div>
+                <div class="th2_right_top">
+                    <span class="explain">?</span>
+                    <span class="peilv">1:10</span>
+                </div>
+                <div class="th2_right_item" value="33"></div>
+                <div class="th2_right_item" value="22"></div>
+                <div class="th2_right_item" value="11"></div>
             </div>
             <div class="dxds_right">
                 <div class="dxds_xiao" value="xiao"></div>
@@ -43,40 +70,121 @@
             </div>
         </div>
         <div class="rowTwo hz">
-            <div class="hz_item" value="17"></div>
-            <div class="hz_item" value="16"></div>
-            <div class="hz_item" value="15"></div>
-            <div class="hz_item" value="14"></div>
-            <div class="hz_item" value="13"></div>
-            <div class="hz_item" value="12"></div>
-            <div class="hz_item" value="11"></div>
-            <div class="hz_item" value="10"></div>
-            <div class="hz_item" value="9"></div>
-            <div class="hz_item" value="8"></div>
-            <div class="hz_item" value="7"></div>
-            <div class="hz_item" value="6"></div>
-            <div class="hz_item" value="5"></div>
-            <div class="hz_item" value="4"></div>
+            <div class="hz_item" value="17">
+                <div class="explain">?</div>
+                <div class="num">17</div>
+                <div class="peilv">1:60</div>
+            </div>
+            <div class="hz_item" value="16">
+                <div class="num">17</div>
+                <div class="peilv">1:60</div>
+            </div>
+            <div class="hz_item" value="15">
+                <div class="num">17</div>
+                <div class="peilv">1:60</div>
+            </div>
+            <div class="hz_item" value="14">
+                <div class="num">17</div>
+                <div class="peilv">1:60</div>
+            </div>
+            <div class="hz_item" value="13">
+                <div class="num">17</div>
+                <div class="peilv">1:60</div>
+            </div>
+            <div class="hz_item" value="12">
+                <div class="num">17</div>
+                <div class="peilv">1:60</div>
+            </div>
+            <div class="hz_item" value="11">
+                <div class="num">17</div>
+                <div class="peilv">1:60</div>
+            </div>
+            <div class="hz_item" value="10">
+                <div class="num">17</div>
+                <div class="peilv">1:60</div>
+            </div>
+            <div class="hz_item" value="9">
+                <div class="num">17</div>
+                <div class="peilv">1:60</div>
+            </div>
+            <div class="hz_item" value="8">
+                <div class="num">17</div>
+                <div class="peilv">1:60</div>
+            </div>
+            <div class="hz_item" value="7">
+                <div class="num">17</div>
+                <div class="peilv">1:60</div>
+            </div>
+            <div class="hz_item" value="6">
+                <div class="num">17</div>
+                <div class="peilv">1:60</div>
+            </div>
+            <div class="hz_item" value="5">
+                <div class="num">17</div>
+                <div class="peilv">1:60</div>
+            </div>
+            <div class="hz_item" value="4">
+                <div class="num">17</div>
+                <div class="peilv">1:60</div>
+            </div>
         </div>
         <div class="rowThree bth2">
-            <div class="bth2_item" value="56"></div>
-            <div class="bth2_item" value="46"></div>
-            <div class="bth2_item" value="45"></div>
-            <div class="bth2_item" value="36"></div>
-            <div class="bth2_item" value="35"></div>
-            <div class="bth2_item" value="34"></div>
-            <div class="bth2_item" value="26"></div>
-            <div class="bth2_item" value="25"></div>
-            <div class="bth2_item" value="24"></div>
-            <div class="bth2_item" value="23"></div>
-            <div class="bth2_item" value="16"></div>
-            <div class="bth2_item" value="15"></div>
-            <div class="bth2_item" value="14"></div>
-            <div class="bth2_item" value="13"></div>
-            <div class="bth2_item" value="12"></div>
+            <div class="bth2_peilv">
+                <span class="explain">?</span>
+                <span class="peilv">1:5</span>
+            </div>
+            <div class="bth2_item" value="56">
+
+            </div>
+            <div class="bth2_item" value="46">
+
+            </div>
+            <div class="bth2_item" value="45">
+
+            </div>
+            <div class="bth2_item" value="36">
+
+            </div>
+            <div class="bth2_item" value="35">
+
+            </div>
+            <div class="bth2_item" value="34">
+
+            </div>
+            <div class="bth2_item" value="26">
+
+            </div>
+            <div class="bth2_item" value="25">
+
+            </div>
+            <div class="bth2_item" value="24">
+
+            </div>
+            <div class="bth2_item" value="23">
+
+            </div>
+            <div class="bth2_item" value="16">
+
+            </div>
+            <div class="bth2_item" value="15">
+
+            </div>
+            <div class="bth2_item" value="14">
+
+            </div>
+            <div class="bth2_item" value="13">
+
+            </div>
+            <div class="bth2_item" value="12">
+
+            </div>
         </div>
         <div class="rowFour">
             <div class="cygh">
+                <div class="cygh_peilv">
+                    <span class="explain">?</span>
+                    <span class="peilv">1:5</span>
+                </div>
                 <div class="cygh_item" value="1"></div>
                 <div class="cygh_item" value="2"></div>
                 <div class="cygh_item" value="3"></div>
@@ -85,13 +193,17 @@
                 <div class="cygh_item" value="6"></div>
             </div>
             <div class="lh3">
+                <div class="lh3_peilv">
+                    <span class="explain">?</span>
+                    <span class="peilv">1:5</span>
+                </div>
                 <div class="lh3_item" value="123"></div>
                 <div class="lh3_item" value="234"></div>
                 <div class="lh3_item" value="345"></div>
                 <div class="lh3_item" value="456"></div>
             </div>
         </div>
-        <div class="bottomBar">
+        <!-- <div class="bottomBar">
             <div class="userName">
                 <div class="nameLogo"></div>
                 <div class="name">****war</div>
@@ -119,7 +231,7 @@
                     <span class="betMoneyAmount">0</span>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </body>
 

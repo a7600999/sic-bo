@@ -1,10 +1,11 @@
 .wrap {
-    background-image: url(../images/desktop.jpg);
+    /* background-image: url(../images/desktop.jpg);
     background-repeat: no-repeat;
     background-position: -35px -104px;
     background-size: 960px;
-    width: 882px;
-    height: 351px;
+    */
+    width: 1136px;
+    height: 476px;
     position: absolute;
     left: 0;
     right: 0;
@@ -13,18 +14,44 @@
     margin: auto;
 }
 
+.wrap,
+.wrap div {
+    box-sizing: border-box;
+}
+
+.explain{
+    top: 1%;
+    left: 5%;
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #144925;
+    font-size: 14px;
+    color: #fefefe;
+    cursor: pointer;
+    text-align: center;
+}
+
+.peilv {
+    color: #e1c022;
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+}
+
 .rowOne {
     position: absolute;
-    left: 118px;
-    top: 30px;
-    width: 650px;
-    height: 100px;
+    left: 0;
+    top: 0;
+    width: 1135px;
+    height: 180px;
 }
 
 .dxds_left {
     position: absolute;
-    width: 18%;
-    height: 100%;
+    width: 200px;
+    height: 180px;
     left: 0;
     top: 0;
 }
@@ -32,61 +59,77 @@
 .dxds_da {
     position: absolute;
     top: 0;
-    width: 100%;
+    width: 200px;
     background: yellow;
-    height: 55%;
-    border: 1px solid;
+    height: 115px;
+    border: 1px solid #5e992e;
     border-radius: 20px 5px 5px 5px;
 }
 
 .dxds_dan {
     position: absolute;
     bottom: 0;
-    width: 100%;
+    width: 200px;
     background: yellow;
-    height: 40%;
+    height: 52px;
     border-radius: 5px;
-    border: 1px solid;
+    border: 1px solid #5e992e;
 }
 
 .th2_left {
-    left: 19%;
+    left: 210px;
     top: 0;
     position: absolute;
-    height: 100%;
+    height: 180px;
     background: green;
-    width: 12%;
+    width: 130px;
+    border-radius: 5px;
+    border: 1px solid #5e992e;
+    padding: 0 5px 0px 5px;
+}
+
+.th2_left_top {
+    width: 100%;
+    height: 20px;
 }
 
 .th2_left_item {
     width: 100%;
     background: blue;
-    height: 30%;
-    border: 1px solid;
+    height: 48px;
+    border: 1px solid #5e992e;
     border-radius: 5px;
+    margin-bottom: 2px;
+    padding: 2px 13px 2px 13px;
 }
 
 .th3 {
     position: absolute;
     top: 0;
-    left: 32%;
-    height: 100%;
-    width: 36%;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    height: 180px;
+    width: 430px;
 }
 
 .th2_right {
-    right: 19%;
+    right: 210px;
     top: 0;
     position: absolute;
-    height: 100%;
+    height: 180px;
     background: green;
-    width: 12%;
+    width: 130px;
+    border-radius: 5px;
+    border: 1px solid #5e992e;
+    padding: 0 5px 0px 5px;
 }
 
 .dxds_right {
     position: absolute;
-    width: 18%;
-    height: 100%;
+    width: 200px;
+    height: 180px;
     right: 0;
     top: 0;
 }
@@ -94,153 +137,235 @@
 .dxds_shuang {
     position: absolute;
     bottom: 0;
-    width: 100%;
+    width: 200px;
     background: yellow;
-    height: 40%;
+    height: 52px;
     border-radius: 5px;
-    border: 1px solid;
+    border: 1px solid #5e992e;
 }
 
 .dxds_xiao {
     position: absolute;
     top: 0;
-    width: 100%;
+    width: 200px;
     background: yellow;
-    height: 55%;
-    border: 1px solid;
+    height: 115px;
+    border: 1px solid #5e992e;
     border-radius: 5px 20px 5px 5px;
+}
+
+.th2_right_top {
+    width: 100%;
+    height: 20px;
 }
 
 .th2_right_item {
     width: 100%;
     background: blue;
-    height: 30%;
-    border: 1px solid;
+    height: 48px;
+    border: 1px solid #5e992e;
     border-radius: 5px;
+    margin-bottom: 2px;
+    padding: 2px 13px 2px 13px;
+}
+
+.th3_dx_top {
+    height: 20px;
+    font-size: 16px;
 }
 
 .th3_dx {
-    position: absolute;
-    top: 0;
     height: 47.5%;
     background: red;
     width: 100%;
-    border: 1px;
+    border: 1px solid #5e992e;
     text-align: center;
     font-size: 0;
     border-radius: 5px;
+    padding: 0 10px 5px 10px;
 }
 
 .th3_tx {
-    position: absolute;
-    bottom: 0;
     height: 47.5%;
     background: red;
     width: 100%;
-    border: 1px solid;
+    border: 1px solid #5e992e;
     border-radius: 5px;
+    margin-top: 8px;
+    padding: 0 10px 5px 10px;
+}
+
+.th3_tx_top {
+    height: 20px;
 }
 
 .th3_dx_item {
-    width: 15%;
+    width: 60px;
+    border: 1px solid #5e992e;
     border-radius: 5px;
     background: yellow;
-    height: 100%;
+    height: 60px;
+    display: inline-block;
+    margin: 0 4px;
+}
+
+.th3_tx_item {
+    width: 100%;
+    border: 1px solid #5e992e;
+    border-radius: 5px;
+    background: yellow;
+    height: 63px;
     display: inline-block;
     margin: 0 1.5px;
 }
 
 .rowTwo.hz {
     position: absolute;
-    left: 118px;
-    top: 132px;
-    width: 650px;
-    height: 42px;
+    left: 0px;
+    top: 185px;
+    width: 1136px;
+    height: 72px;
     font-size: 0;
     text-align: center;
-    border: 1px solid;
-    border-radius: 5px;
 }
 
 .hz_item {
-    width: 6.5%;
+    width: 72px;
     background: green;
-    height: 100%;
+    height: 72px;
     display: inline-block;
-    margin: 0 2px;
+    margin-right: 9.8px;
+    border: 1px solid #5e992e;
     border-radius: 5px;
+    position: relative;
+    text-align: center;
 }
+
+.hz_item:last-child {
+    margin-right: 0!important;
+}
+
+.hz_item>.num {
+    height: 70%;
+    font-size: 30px;
+    line-height: 58px;
+    color: #fefefe;
+    font-weight: 500;
+}
+
+.hz_item>.peilv {
+    height: 30%;
+    font-size: 14px;
+}
+
 
 .rowThree.bth2 {
     position: absolute;
-    left: 118px;
-    top: 178px;
-    width: 650px;
-    height: 70px;
+    left: 0px;
+    top: 262px;
+    width: 1136px;
+    height: 112px;
     font-size: 0;
     text-align: center;
-    border: 1px solid;
+    border: 1px solid #5e992e;
     border-radius: 5px;
+    padding: 6px 80px;
 }
-
-.bth2_item {
-    width: 5%;
-    background: green;
-    height: 100%;
-    display: inline-block;
-    margin: 0 2px;
-    border-radius: 5px;
-}
-
-.cygh {
-    width: 50%;
-    height: 70%;
+.rowThree.bth2>.bth2_peilv{
     position: absolute;
-    top: 15%;
-    text-align: center;
-    font-size: 0;
+    top: 6%;
+    left: 1%;
+    width: 75px;
+    font-size: 14px;
+}
+.bth2_item {
+    width: 55px;
+    background: green;
+    height: 100px;
+    display: inline-block;
+    margin-right: 10px;
+    border: 1px solid #5e992e;
+    border-radius: 5px;
+    padding: 6px 5px;
+}
+.bth2_item:last-child{
+    margin-right: 0;
 }
 
 .rowFour {
     position: absolute;
-    left: 118px;
-    top: 252px;
-    width: 650px;
-    height: 70px;
+    left: 0px;
+    bottom: 0px;
+    width: 1136px;
+    height: 92px;
     font-size: 0;
     text-align: center;
-    border: 1px solid;
+}
+
+
+.cygh {
+    width: 49%;
+    height: 92px;
+    position: absolute;
+    left: 0;
+    text-align: center;
+    font-size: 0;
+    border: 1px solid #5e992e;
+    border-radius: 5px 5px 5px 20px;    
+    padding: 15px 0px 15px 80px;
+}
+.cygh>.cygh_peilv{
+    position: absolute;
+    top: 20px;
+    left: 15px;
+    font-size: 14px;
+    width: 80px;
+}
+.cygh_item {
+    background: #3c3535;
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    margin-right: 15px;
+    border: 1px solid #5e992e;
     border-radius: 5px;
+}
+
+.cygh_item:last-child{
+    margin-right: 0;
 }
 
 .lh3 {
-    width: 50%;
-    height: 80%;
+    width: 49%;
+    height: 92px;
     position: absolute;
-    top: 10%;
+    top: 0;
     text-align: center;
     right: 0;
     font-size: 0;
+    border: 1px solid #5e992e;
+    border-radius: 5px 5px 20px 5px;    
+    padding: 8px 80px 8px 80px;
 }
-
-.cygh_item {
-    width: 10%;
-    background: #3c3535;
-    height: 100%;
-    display: inline-block;
-    margin: 0 2px;
-    border-radius: 5px;
+.lh3>.lh3_peilv{
+    position: absolute;
+    top: 20px;
+    left: 15px;
+    width: 80px;
+    font-size: 14px;
 }
-
 .lh3_item {
-    width: 15%;
+    width: 76px;
     background: #3c3535;
-    height: 100%;
+    height: 76px;
     display: inline-block;
-    margin: 0 5px;
+    margin-right: 20px;
+    border: 1px solid #5e992e;
     border-radius: 5px;
 }
-
+.lh3_item:last-child{
+    margin-right: 0;
+}
 .bottomBar {
     bottom: 0;
     position: absolute;

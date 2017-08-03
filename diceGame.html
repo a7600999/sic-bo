@@ -15,6 +15,7 @@
         link.href = `./css/diceGame.css?t=${new Date().getTime()}`; //防止缓存
         document.head.appendChild(link);
     </script>
+    <script src="./js/vender/jquery.min.js"></script>
 </head>
 
 <body>
@@ -39,7 +40,7 @@
                         <span class="explain">?</span>
                         <span class="peilv">1:10</span>
                     </div>
-                    <div class="th2_left_item" value="66">
+                    <div class="th2_left_item" value="66" method="th2_th2fx_fx" odds="" point="">
                         <div class="dice_rect">
                             <div class="dot dice_six1"></div>
                             <div class="dot dice_six2"></div>
@@ -57,7 +58,7 @@
                             <div class="dot dice_six6"></div>
                         </div>
                     </div>
-                    <div class="th2_left_item" value="55">
+                    <div class="th2_left_item" value="55" method="th2_th2fx_fx" odds="" point="">
                         <div class="dice_rect">
                             <div class="dot dice_five1"></div>
                             <div class="dot dice_five2"></div>
@@ -73,7 +74,7 @@
                             <div class="dot dice_five5"></div>
                         </div>
                     </div>
-                    <div class="th2_left_item" value="44">
+                    <div class="th2_left_item" value="44" method="th2_th2fx_fx" odds="" point="">
                         <div class="dice_rect">
                             <div class="dot dice_four1"></div>
                             <div class="dot dice_four2"></div>
@@ -94,7 +95,7 @@
                             <span class="explain">?</span>
                             <span class="peilv">1:180</span>
                         </div>
-                        <div class="th3_dx_item" value="666">
+                        <div class="th3_dx_item" value="666" method="th3_th3_th3dx" odds="" point="">
                             <div class="smallDiceWrap">
                                 <div class="dice_rect_small">
                                     <div class="dot_small dice_six1"></div>
@@ -126,7 +127,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="th3_dx_item" value="555">
+                        <div class="th3_dx_item" value="555" method="th3_th3_th3dx" odds="" point="">
                             <div class="smallDiceWrap">
                                 <div class="dice_rect_small">
                                     <div class="dot_small dice_five1"></div>
@@ -155,7 +156,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="th3_dx_item" value="444">
+                        <div class="th3_dx_item" value="444" method="th3_th3_th3dx" odds="" point="">
                             <div class="smallDiceWrap">
                                 <div class="dice_rect_small">
                                     <div class="dot_small dice_four1"></div>
@@ -181,7 +182,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="th3_dx_item" value="333">
+                        <div class="th3_dx_item" value="333" method="th3_th3_th3dx" odds="" point="">
                             <div class="smallDiceWrap">
                                 <div class="dice_rect_small">
                                     <div class="dot_small dice_three1"></div>
@@ -204,7 +205,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="th3_dx_item" value="222">
+                        <div class="th3_dx_item" value="222" method="th3_th3_th3dx" odds="" point="">
                             <div class="smallDiceWrap">
                                 <div class="dice_rect_small">
                                     <div class="dot_small dice_two1"></div>
@@ -224,7 +225,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="th3_dx_item" value="111">
+                        <div class="th3_dx_item" value="111" method="th3_th3_th3dx" odds="" point="">
                             <div class="smallDiceWrap">
                                 <div class="dice_rect_small">
                                     <div class="dot_small dice_one"></div>
@@ -242,7 +243,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="th3_tx" value="666|555|444|333|222|111">
+                    <div class="th3_tx" value="666|555|444|333|222|111" method="th3_th3_th3tx" odds="" point="">
                         <div class="th3_tx_top">
                             <span class="explain">?</span>
                             <span class="peilv">1:30</span>
@@ -401,7 +402,7 @@
                         <span class="explain">?</span>
                         <span class="peilv">1:10</span>
                     </div>
-                    <div class="th2_right_item" value="33">
+                    <div class="th2_right_item" value="33" method="th2_th2fx_fx" odds="" point="">
                         <div class="dice_rect">
                             <div class="dot dice_three1"></div>
                             <div class="dot dice_three2"></div>
@@ -413,7 +414,7 @@
                             <div class="dot dice_three3"></div>
                         </div>
                     </div>
-                    <div class="th2_right_item" value="22">
+                    <div class="th2_right_item" value="22" method="th2_th2fx_fx" odds="" point="">
                         <div class="dice_rect">
                             <div class="dot dice_two1"></div>
                             <div class="dot dice_two2"></div>
@@ -423,7 +424,7 @@
                             <div class="dot dice_two2"></div>
                         </div>
                     </div>
-                    <div class="th2_right_item" value="11">
+                    <div class="th2_right_item" value="11" method="th2_th2fx_fx" odds="" point="">
                         <div class="dice_rect">
                             <div class="dot dice_one"></div>
                             <div class="dot dice_one"></div>
@@ -435,13 +436,13 @@
                     </div>
                 </div>
                 <div class="dxds_right">
-                    <div class="dxds_xiao" value="xiao" method="dxds_dxds_dxds">
+                    <div class="dxds_xiao" value="xiao" method="dxds_dxds_dxds" odds="" point="">
                         <div class="explain">?</div>
                         <div class="peilv">1:1</div>
                         <div class="smallNumber">SMALL 4~10</div>
                         <div class="smallChinese">小</div>
                     </div>
-                    <div class="dxds_shuang" value="shuang" method="dxds_dxds_dxds">
+                    <div class="dxds_shuang" value="shuang" method="dxds_dxds_dxds" odds="" point="">
                         <div class="explain">?</div>
                         <div class="peilv">1:1</div>
                         <div class="shuangChinese">双</div>
@@ -449,61 +450,61 @@
                 </div>
             </div>
             <div class="rowTwo hz">
-                <div class="hz_item" value="17">
+                <div class="hz_item" value="17" method="hz_hz_hz" odds="" point="">
                     <div class="explain">?</div>
                     <div class="num">17</div>
                     <div class="peilv">1:60</div>
                 </div>
-                <div class="hz_item" value="16">
-                    <div class="num">17</div>
+                <div class="hz_item" value="16" method="hz_hz_hz" odds="" point="">
+                    <div class="num">16</div>
                     <div class="peilv">1:60</div>
                 </div>
-                <div class="hz_item" value="15">
-                    <div class="num">17</div>
+                <div class="hz_item" value="15" method="hz_hz_hz" odds="" point="">
+                    <div class="num">15</div>
                     <div class="peilv">1:60</div>
                 </div>
-                <div class="hz_item" value="14">
-                    <div class="num">17</div>
+                <div class="hz_item" value="14" method="hz_hz_hz" odds="" point="">
+                    <div class="num">14</div>
                     <div class="peilv">1:60</div>
                 </div>
-                <div class="hz_item" value="13">
-                    <div class="num">17</div>
+                <div class="hz_item" value="13" method="hz_hz_hz" odds="" point="">
+                    <div class="num">13</div>
                     <div class="peilv">1:60</div>
                 </div>
-                <div class="hz_item" value="12">
-                    <div class="num">17</div>
+                <div class="hz_item" value="12" method="hz_hz_hz" odds="" point="">
+                    <div class="num">12</div>
                     <div class="peilv">1:60</div>
                 </div>
-                <div class="hz_item" value="11">
-                    <div class="num">17</div>
+                <div class="hz_item" value="11" method="hz_hz_hz" odds="" point="">
+                    <div class="num">11</div>
                     <div class="peilv">1:60</div>
                 </div>
-                <div class="hz_item" value="10">
-                    <div class="num">17</div>
+                <div class="hz_item" value="10" method="hz_hz_hz" odds="" point="">
+                    <div class="num">10</div>
                     <div class="peilv">1:60</div>
                 </div>
-                <div class="hz_item" value="9">
-                    <div class="num">17</div>
+                <div class="hz_item" value="9" method="hz_hz_hz" odds="" point="">
+                    <div class="num">09</div>
                     <div class="peilv">1:60</div>
                 </div>
-                <div class="hz_item" value="8">
-                    <div class="num">17</div>
+                <div class="hz_item" value="8" method="hz_hz_hz" odds="" point="">
+                    <div class="num">08</div>
                     <div class="peilv">1:60</div>
                 </div>
-                <div class="hz_item" value="7">
-                    <div class="num">17</div>
+                <div class="hz_item" value="7" method="hz_hz_hz" odds="" point="">
+                    <div class="num">07</div>
                     <div class="peilv">1:60</div>
                 </div>
-                <div class="hz_item" value="6">
-                    <div class="num">17</div>
+                <div class="hz_item" value="6" method="hz_hz_hz" odds="" point="">
+                    <div class="num">06</div>
                     <div class="peilv">1:60</div>
                 </div>
-                <div class="hz_item" value="5">
-                    <div class="num">17</div>
+                <div class="hz_item" value="5" method="hz_hz_hz" odds="" point="">
+                    <div class="num">05</div>
                     <div class="peilv">1:60</div>
                 </div>
-                <div class="hz_item" value="4">
-                    <div class="num">17</div>
+                <div class="hz_item" value="4" method="hz_hz_hz" odds="" point="">
+                    <div class="num">04</div>
                     <div class="peilv">1:60</div>
                 </div>
             </div>
@@ -512,7 +513,7 @@
                     <span class="explain">?</span>
                     <span class="peilv">1:5</span>
                 </div>
-                <div class="bth2_item" value="56">
+                <div class="bth2_item" value="56" method="bth2_bth2_ds" odds="" point="">
                     <div class="dice_rect">
                         <div class="dot dice_five1"></div>
                         <div class="dot dice_five2"></div>
@@ -529,7 +530,7 @@
                         <div class="dot dice_six6"></div>
                     </div>
                 </div>
-                <div class="bth2_item" value="46">
+                <div class="bth2_item" value="46" method="bth2_bth2_ds" odds="" point="">
                     <div class="dice_rect">
                         <div class="dot dice_four1"></div>
                         <div class="dot dice_four2"></div>
@@ -545,7 +546,7 @@
                         <div class="dot dice_six6"></div>
                     </div>
                 </div>
-                <div class="bth2_item" value="45">
+                <div class="bth2_item" value="45" method="bth2_bth2_ds" odds="" point="">
                     <div class="dice_rect">
                         <div class="dot dice_four1"></div>
                         <div class="dot dice_four2"></div>
@@ -560,7 +561,7 @@
                         <div class="dot dice_five5"></div>
                     </div>
                 </div>
-                <div class="bth2_item" value="36">
+                <div class="bth2_item" value="36" method="bth2_bth2_ds" odds="" point="">
                     <div class="dice_rect">
                         <div class="dot dice_three1"></div>
                         <div class="dot dice_three2"></div>
@@ -575,7 +576,7 @@
                         <div class="dot dice_six6"></div>
                     </div>
                 </div>
-                <div class="bth2_item" value="35">
+                <div class="bth2_item" value="35" method="bth2_bth2_ds" odds="" point="">
                     <div class="dice_rect">
                         <div class="dot dice_three1"></div>
                         <div class="dot dice_three2"></div>
@@ -589,7 +590,7 @@
                         <div class="dot dice_five5"></div>
                     </div>
                 </div>
-                <div class="bth2_item" value="34">
+                <div class="bth2_item" value="34" method="bth2_bth2_ds" odds="" point="">
                     <div class="dice_rect">
                         <div class="dot dice_three1"></div>
                         <div class="dot dice_three2"></div>
@@ -602,7 +603,7 @@
                         <div class="dot dice_four4"></div>
                     </div>
                 </div>
-                <div class="bth2_item" value="26">
+                <div class="bth2_item" value="26" method="bth2_bth2_ds" odds="" point="">
                     <div class="dice_rect">
                         <div class="dot dice_two1"></div>
                         <div class="dot dice_two2"></div>
@@ -616,7 +617,7 @@
                         <div class="dot dice_six6"></div>
                     </div>
                 </div>
-                <div class="bth2_item" value="25">
+                <div class="bth2_item" value="25" method="bth2_bth2_ds" odds="" point="">
                     <div class="dice_rect">
                         <div class="dot dice_two1"></div>
                         <div class="dot dice_two2"></div>
@@ -629,7 +630,7 @@
                         <div class="dot dice_five5"></div>
                     </div>
                 </div>
-                <div class="bth2_item" value="24">
+                <div class="bth2_item" value="24" method="bth2_bth2_ds" odds="" point="">
                     <div class="dice_rect">
                         <div class="dot dice_two1"></div>
                         <div class="dot dice_two2"></div>
@@ -641,7 +642,7 @@
                         <div class="dot dice_four4"></div>
                     </div>
                 </div>
-                <div class="bth2_item" value="23">
+                <div class="bth2_item" value="23" method="bth2_bth2_ds" odds="" point="">
                     <div class="dice_rect">
                         <div class="dot dice_two1"></div>
                         <div class="dot dice_two2"></div>
@@ -652,7 +653,7 @@
                         <div class="dot dice_three3"></div>
                     </div>
                 </div>
-                <div class="bth2_item" value="16">
+                <div class="bth2_item" value="16" method="bth2_bth2_ds" odds="" point="">
                     <div class="dice_rect">
                         <div class="dot dice_one"></div>
                     </div>
@@ -665,7 +666,7 @@
                         <div class="dot dice_six6"></div>
                     </div>
                 </div>
-                <div class="bth2_item" value="15">
+                <div class="bth2_item" value="15" method="bth2_bth2_ds" odds="" point="">
                     <div class="dice_rect">
                         <div class="dot dice_one"></div>
                     </div>
@@ -677,7 +678,7 @@
                         <div class="dot dice_five5"></div>
                     </div>
                 </div>
-                <div class="bth2_item" value="14">
+                <div class="bth2_item" value="14" method="bth2_bth2_ds" odds="" point="">
                     <div class="dice_rect">
                         <div class="dot dice_one"></div>
                     </div>
@@ -688,7 +689,7 @@
                         <div class="dot dice_four4"></div>
                     </div>
                 </div>
-                <div class="bth2_item" value="13">
+                <div class="bth2_item" value="13" method="bth2_bth2_ds" odds="" point="">
                     <div class="dice_rect">
                         <div class="dot dice_one"></div>
                     </div>
@@ -698,7 +699,7 @@
                         <div class="dot dice_three3"></div>
                     </div>
                 </div>
-                <div class="bth2_item" value="12">
+                <div class="bth2_item" value="12" method="bth2_bth2_ds" odds="" point="">
                     <div class="dice_rect">
                         <div class="dot dice_one"></div>
                     </div>
@@ -714,25 +715,25 @@
                         <span class="explain">?</span>
                         <span class="peilv">1:5</span>
                     </div>
-                    <div class="cygh_item" value="1">
+                    <div class="cygh_item" value="1" method="cygh_cygh_cygh" odds="" point="">
                         <div class="dice_rect_big">
                             <div class="dot_big dice_one"></div>
                         </div>
                     </div>
-                    <div class="cygh_item" value="2">
+                    <div class="cygh_item" value="2" method="cygh_cygh_cygh" odds="" point="">
                         <div class="dice_rect_big">
                             <div class="dot_big dice_two1"></div>
                             <div class="dot_big dice_two2"></div>
                         </div>
                     </div>
-                    <div class="cygh_item" value="3">
+                    <div class="cygh_item" value="3" method="cygh_cygh_cygh" odds="" point="">
                         <div class="dice_rect_big">
                             <div class="dot_big dice_three1"></div>
                             <div class="dot_big dice_three2"></div>
                             <div class="dot_big dice_three3"></div>
                         </div>
                     </div>
-                    <div class="cygh_item" value="4">
+                    <div class="cygh_item" value="4" method="cygh_cygh_cygh" odds="" point="">
                         <div class="dice_rect_big">
                             <div class="dot_big dice_four1"></div>
                             <div class="dot_big dice_four2"></div>
@@ -740,7 +741,7 @@
                             <div class="dot_big dice_four4"></div>
                         </div>
                     </div>
-                    <div class="cygh_item" value="5">
+                    <div class="cygh_item" value="5" method="cygh_cygh_cygh" odds="" point="">
                         <div class="dice_rect_big">
                             <div class="dot_big dice_five1"></div>
                             <div class="dot_big dice_five2"></div>
@@ -749,7 +750,7 @@
                             <div class="dot_big dice_five5"></div>
                         </div>
                     </div>
-                    <div class="cygh_item" value="6">
+                    <div class="cygh_item" value="6" method="cygh_cygh_cygh" odds="" point="">
                         <div class="dice_rect_big">
                             <div class="dot_big dice_six1"></div>
                             <div class="dot_big dice_six2"></div>
@@ -765,80 +766,103 @@
                         <span class="explain">?</span>
                         <span class="peilv">1:5</span>
                     </div>
-                    <div class="lh3_item" value="123"><div class="small2DiceWrap">
-                        <div class="dice_rect_small2">
-                            <div class="dot_small2 dice_one"></div>
-                        </div></div><div class="small2DiceWrap">
-                        <div class="dice_rect_small2">
-                            <div class="dot_small2 dice_two1"></div>
-                            <div class="dot_small2 dice_two2"></div>
-                        </div></div><div class="small2DiceWrap">
-                        <div class="dice_rect_small2">
-                            <div class="dot_small2 dice_three1"></div>
-                            <div class="dot_small2 dice_three2"></div>
-                            <div class="dot_small2 dice_three3"></div>
-                        </div></div>
-                    </div>
-                    <div class="lh3_item" value="234"><div class="small2DiceWrap">
-                        <div class="dice_rect_small2">
-                            <div class="dot_small2 dice_two1"></div>
-                            <div class="dot_small2 dice_two2"></div>
-                        </div></div><div class="small2DiceWrap">
-                        <div class="dice_rect_small2">
-                            <div class="dot_small2 dice_three1"></div>
-                            <div class="dot_small2 dice_three2"></div>
-                            <div class="dot_small2 dice_three3"></div>
-                        </div></div><div class="small2DiceWrap">
-                        <div class="dice_rect_small2">
-                            <div class="dot_small2 dice_four1"></div>
-                            <div class="dot_small2 dice_four2"></div>
-                            <div class="dot_small2 dice_four3"></div>
-                            <div class="dot_small2 dice_four4"></div>
-                        </div></div>
-                    </div>
-                    <div class="lh3_item" value="345"><div class="small2DiceWrap">
-                        <div class="dice_rect_small2">
-                            <div class="dot_small2 dice_three1"></div>
-                            <div class="dot_small2 dice_three2"></div>
-                            <div class="dot_small2 dice_three3"></div>
-                        </div></div><div class="small2DiceWrap">
-                        <div class="dice_rect_small2">
-                            <div class="dot_small2 dice_four1"></div>
-                            <div class="dot_small2 dice_four2"></div>
-                            <div class="dot_small2 dice_four3"></div>
-                            <div class="dot_small2 dice_four4"></div>
-                        </div></div><div class="small2DiceWrap">
-                        <div class="dice_rect_small2">
-                            <div class="dot_small2 dice_five1"></div>
-                            <div class="dot_small2 dice_five2"></div>
-                            <div class="dot_small2 dice_five3"></div>
-                            <div class="dot_small2 dice_five4"></div>
-                            <div class="dot_small2 dice_five5"></div>
-                        </div></div>
-                    </div>
-                    <div class="lh3_item" value="456">
+                    <div class="lh3_item" value="123" method="bth3_lh3_dx" odds="" point="">
                         <div class="small2DiceWrap">
-                        <div class="dice_rect_small2">
-                            <div class="dot_small2 dice_four1"></div>
-                            <div class="dot_small2 dice_four2"></div>
-                            <div class="dot_small2 dice_four3"></div>
-                            <div class="dot_small2 dice_four4"></div>
-                        </div></div><div class="small2DiceWrap">
-                        <div class="dice_rect_small2">
-                            <div class="dot_small2 dice_five1"></div>
-                            <div class="dot_small2 dice_five2"></div>
-                            <div class="dot_small2 dice_five3"></div>
-                            <div class="dot_small2 dice_five4"></div>
-                            <div class="dot_small2 dice_five5"></div>
-                        </div></div><div class="small2DiceWrap">
-                        <div class="dice_rect_small2">
-                            <div class="dot_small2 dice_six1"></div>
-                            <div class="dot_small2 dice_six2"></div>
-                            <div class="dot_small2 dice_six3"></div>
-                            <div class="dot_small2 dice_six4"></div>
-                            <div class="dot_small2 dice_six5"></div>
-                            <div class="dot_small2 dice_six6"></div>
-                        </div></div>
+                            <div class="dice_rect_small2">
+                                <div class="dot_small2 dice_one"></div>
+                            </div>
+                        </div>
+                        <div class="small2DiceWrap">
+                            <div class="dice_rect_small2">
+                                <div class="dot_small2 dice_two1"></div>
+                                <div class="dot_small2 dice_two2"></div>
+                            </div>
+                        </div>
+                        <div class="small2DiceWrap">
+                            <div class="dice_rect_small2">
+                                <div class="dot_small2 dice_three1"></div>
+                                <div class="dot_small2 dice_three2"></div>
+                                <div class="dot_small2 dice_three3"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lh3_item" value="234" method="bth3_lh3_dx" odds="" point="">
+                        <div class="small2DiceWrap">
+                            <div class="dice_rect_small2">
+                                <div class="dot_small2 dice_two1"></div>
+                                <div class="dot_small2 dice_two2"></div>
+                            </div>
+                        </div>
+                        <div class="small2DiceWrap">
+                            <div class="dice_rect_small2">
+                                <div class="dot_small2 dice_three1"></div>
+                                <div class="dot_small2 dice_three2"></div>
+                                <div class="dot_small2 dice_three3"></div>
+                            </div>
+                        </div>
+                        <div class="small2DiceWrap">
+                            <div class="dice_rect_small2">
+                                <div class="dot_small2 dice_four1"></div>
+                                <div class="dot_small2 dice_four2"></div>
+                                <div class="dot_small2 dice_four3"></div>
+                                <div class="dot_small2 dice_four4"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lh3_item" value="345" method="bth3_lh3_dx" odds="" point="">
+                        <div class="small2DiceWrap">
+                            <div class="dice_rect_small2">
+                                <div class="dot_small2 dice_three1"></div>
+                                <div class="dot_small2 dice_three2"></div>
+                                <div class="dot_small2 dice_three3"></div>
+                            </div>
+                        </div>
+                        <div class="small2DiceWrap">
+                            <div class="dice_rect_small2">
+                                <div class="dot_small2 dice_four1"></div>
+                                <div class="dot_small2 dice_four2"></div>
+                                <div class="dot_small2 dice_four3"></div>
+                                <div class="dot_small2 dice_four4"></div>
+                            </div>
+                        </div>
+                        <div class="small2DiceWrap">
+                            <div class="dice_rect_small2">
+                                <div class="dot_small2 dice_five1"></div>
+                                <div class="dot_small2 dice_five2"></div>
+                                <div class="dot_small2 dice_five3"></div>
+                                <div class="dot_small2 dice_five4"></div>
+                                <div class="dot_small2 dice_five5"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lh3_item" value="456" method="bth3_lh3_dx" odds="" point="">
+                        <div class="small2DiceWrap">
+                            <div class="dice_rect_small2">
+                                <div class="dot_small2 dice_four1"></div>
+                                <div class="dot_small2 dice_four2"></div>
+                                <div class="dot_small2 dice_four3"></div>
+                                <div class="dot_small2 dice_four4"></div>
+                            </div>
+                        </div>
+                        <div class="small2DiceWrap">
+                            <div class="dice_rect_small2">
+                                <div class="dot_small2 dice_five1"></div>
+                                <div class="dot_small2 dice_five2"></div>
+                                <div class="dot_small2 dice_five3"></div>
+                                <div class="dot_small2 dice_five4"></div>
+                                <div class="dot_small2 dice_five5"></div>
+                            </div>
+                        </div>
+                        <div class="small2DiceWrap">
+                            <div class="dice_rect_small2">
+                                <div class="dot_small2 dice_six1"></div>
+                                <div class="dot_small2 dice_six2"></div>
+                                <div class="dot_small2 dice_six3"></div>
+                                <div class="dot_small2 dice_six4"></div>
+                                <div class="dot_small2 dice_six5"></div>
+                                <div class="dot_small2 dice_six6"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -879,5 +903,5 @@
         </div>
     </div>
 </body>
-
+<script src="./js/dice.js"></script>
 </html>

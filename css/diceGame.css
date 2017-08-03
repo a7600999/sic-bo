@@ -739,5 +739,66 @@
     font-size: 16px;
     text-align: center;
     border-radius: 50%;
-    background-color: blue
+    background-color: blue;
+    pointer-events:none
+}
+.flyChip5{
+    width: 56px;
+    height: 56px;
+    line-height: 56px;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: orange;
+    pointer-events:none
+}
+.flyChip10{
+    width: 56px;
+    height: 56px;
+    line-height: 56px;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: yellowgreen;
+    pointer-events:none
+}
+.flyChip50{
+    width: 56px;
+    height: 56px;
+    line-height: 56px;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: seashell;
+    pointer-events:none;
+}
+.flyChip100{
+    width: 56px;
+    height: 56px;
+    line-height: 56px;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: purple;
+    pointer-events:none;
+}
+.flyChip1000{
+    width: 56px;
+    height: 56px;
+    line-height: 56px;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: palegoldenrod;
+    pointer-events:none;
+}
+.flyChip5000{
+    width: 56px;
+    height: 56px;
+    line-height: 56px;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: tan;
+    pointer-events:none;
 }

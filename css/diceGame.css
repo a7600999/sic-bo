@@ -1,3 +1,13 @@
+.outerWrap {
+    width: 1136px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+}
+
 .wrap {
     /* background-image: url(../images/desktop.jpg);
     background-repeat: no-repeat;
@@ -7,15 +17,11 @@
     width: 1136px;
     height: 476px;
     position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
     top: 0;
-    margin: auto;
 }
 
-.wrap,
-.wrap div {
+.outerWrap,
+.outerWrap div {
     box-sizing: border-box;
 }
 
@@ -382,26 +388,31 @@
 }
 
 .bottomBar {
-    bottom: 0;
     position: absolute;
-    height: 30px;
-    width: 100%;
+    top: 476px;
+    height: 60px;
+    width: 1360px;
 }
 
 .userName {
     position: absolute;
-    left: 15%;
+    left: 0;
     font-size: 0;
     height: 100%;
+    width: 190px;
 }
 
 .name {
     font-size: 18px;
     display: inline-block;
-    height: 100%;
-    width: 100px;
+    position: absolute;
+    bottom: 5px;
+    height: 30px;
+    line-height: 30px;
+    width: 100%;
     text-align: center;
-    border: 1px solid;
+    border: 1px solid #605c64;
+    background-color: #3f3847;
     border-top-right-radius: 10px 15px;
     border-top-left-radius: 10px 15px;
     border-bottom-left-radius: 10px 15px;
@@ -410,38 +421,45 @@
 
 .nameLogo {
     display: inline-block;
-    height: 100%;
-    width: 30px;
+    position: absolute;
+    height: 56px;
+    width: 56px;
+    bottom: 0;
     vertical-align: middle;
     background: orange;
-    font-size: 18px;
+    z-index: 1;
 }
 
 .balance {
     position: absolute;
-    left: 32%;
+    left: 205px;
     font-size: 0;
-    width: 22%;
-    height: 100%;
-    background: green;
+    width: 242px;
+    height: 60px;
 }
 
 .balanceLogo {
+    position: absolute;
+    bottom: 6px;
+    left: 0;
     display: inline-block;
-    height: 100%;
-    width: 30px;
-    vertical-align: middle;
+    height: 36px;
+    width: 36px;
     background: orange;
-    font-size: 18px;
+    z-index: 1;
 }
 
 .balanceDetail {
+    position: absolute;
+    bottom: 5px;
     font-size: 18px;
     display: inline-block;
-    height: 100%;
-    width: 160px;
+    height: 30px;
+    line-height: 30px;
+    width: 222px;
     text-align: center;
-    border: 1px solid;
+    border: 1px solid #605c64;
+    background-color: #3f3847;
     border-top-right-radius: 20px 15px;
     border-top-left-radius: 20px 15px;
     border-bottom-left-radius: 20px 15px;
@@ -450,38 +468,56 @@
 
 .chips {
     position: absolute;
-    left: 54%;
+    left: 445px;
+    bottom: 0;
     font-size: 0;
-    width: 22%;
+    width: 392px;
     height: 100%;
     background: pink;
+    padding-top: 4px;
+}
+
+.chips .chip {
+    float: left;
+    width: 56px;
+    height: 56px;
+    line-height: 56px;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: blue
 }
 
 .betMoney {
     position: absolute;
-    right: 0%;
+    right: 276px;
     font-size: 0;
-    height: 100%;
-    background: palegreen;
-    width: 25%;
+    width: 242px;
+    height: 60px;
 }
 
 .betMoneyLogo {
+    position: absolute;
+    bottom: 6px;
+    left: 0;
     display: inline-block;
-    height: 100%;
-    width: 30px;
-    vertical-align: middle;
+    height: 36px;
+    width: 36px;
     background: orange;
-    font-size: 18px;
+    z-index: 1;
 }
 
 .betMoneyDetail {
+    position: absolute;
+    bottom: 5px;
     font-size: 18px;
     display: inline-block;
-    height: 100%;
-    width: 160px;
+    height: 30px;
+    line-height: 30px;
+    width: 222px;
     text-align: center;
-    border: 1px solid;
+    border: 1px solid #605c64;
+    background-color: #3f3847;
     border-top-right-radius: 20px 15px;
     border-top-left-radius: 20px 15px;
     border-bottom-left-radius: 20px 15px;
@@ -528,6 +564,7 @@
 .dxds_xiao>.explain {
     top: 10%;
     right: 5%;
+    left: inherit;
 }
 
 .dxds_xiao>.peilv {
@@ -579,6 +616,7 @@
     margin-top: 17px;
     position: absolute;
     right: 5%;
+    left: inherit;
 }
 
 .shuangChinese {
@@ -642,4 +680,53 @@
 
 .lh3_item>.small2DiceWrap:first-child {
     margin: 0 10px;
+}
+.outerWrap .betBar {
+    width: 587px;
+    height: 72px;
+    position: absolute;
+    top: 550px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-color: #164d59;
+}
+.betBar>.button {
+    position: absolute;
+    text-align: center;
+    font-weight: 500;
+    
+}
+.betBar>.button.cancelButton{
+    left: 10px;
+    bottom: 10px;
+    width: 148px;
+    height: 40px;
+    line-height: 40px;
+    color: #fcfcfc;
+    background-color: #318d56;
+    font-size: 18px;
+}
+.betBar>.button.pieceButtoon{
+    right: 10px;
+    bottom: 10px;
+    width: 148px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 18px;
+    color: #fcfcfc;
+    background-color: #8f8f8f;
+}
+.betBar>.button.betButton{
+    font-size: 24px;
+    height: 54px;
+    line-height: 54px;
+    width: 208px;
+    margin: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    color: #fcfcfc;
+    background-color: #602fd9;
 }

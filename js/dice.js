@@ -11,6 +11,8 @@ let params = {
 };
  */
 //投注算投注内容的时候就看桌子上放的筹码
+let balanceAmount = $('.balanceAmount');
+let betMoneyAmount = $('.betMoneyAmount');
 let common_param = {
     "method": null,
     "code": null,
@@ -68,7 +70,7 @@ $('.wrap div').each(function(index,item){//获取所有的value值存到数组
     allValues.push($(item).attr('value'));
   }
 });
-allValues.forEach((item,index)=>{
+allValues.forEach((item,index)=>{//每个value值对应提交对象
     params[item] = JSON.parse(JSON.stringify(param));//浅复制，消除引用影响
 });
 let priceNum = null; //筹码,未选择时为null
@@ -78,12 +80,32 @@ $('.chips>.chip').off('click').on('click', function (e) {
     priceNum = +$(this).attr('value');
 });
 //投注
+let flyChip = null;//点击筹码飞过去的元素
+function createFlyChip(num){
+    let ele = document.createElement('div');
+    $(ele).addClass(`flyChip${num}`);
+    $(ele).text(num);
+    return $(ele);
+}
 let allMethods = ['[method="dxds_dxds_dxds"]','[method="th2_th2fx_fx"]','[method="th3_th3_th3dx"]','[method="th3_th3_th3tx"]','[method="hz_hz_hz"]'
 ,'[method="bth2_bth2_ds"]','[method="cygh_cygh_cygh"]','[method="bth3_lh3_dx"]'];
 $(String(allMethods)).off('click').on('click', function (e) {
     if (!priceNum) { //如果没有选定筹码，不能下注
         return;
     }
+    flyChip = createFlyChip(priceNum);//筹码飞出去
+    flyChip.css({
+        position:'absolute',
+        left: $(`.chips>.chip${priceNum}`).offset().left,
+        top: $(`.chips>.chip${priceNum}`).offset().top,
+        transition:'all 1s ease'
+    });
+    console.log(flyChip);
+    $('body').append(flyChip);
+    flyChip.css({
+        left: $(this).offset().left,
+        top: $(this).offset().top,
+    });
     let method = $(this).attr('method');
     let value = $(this).attr('value');//code
     console.log(value)

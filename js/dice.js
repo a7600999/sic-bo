@@ -464,3 +464,8 @@ $(String(allMethods)).off('click').on('click', function (e) {
 cancelButton.off('click').on('click', function (e) {
     letChipFlyBack(Elements_forBet,Elements_change);
 });
+/* 计算筹码图标，各种面额硬币并非实体，只有1分这个计量单位。
+然后每次投钱或者去掉钱，自动把分换算成相应图标。 */
+function calculateIcon(count) {//count 1分钱的个数
+    
+}

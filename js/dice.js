@@ -28,43 +28,49 @@ let common_param = {
 let params = {};
 let param = { //不同筹码提交的时候算不同的obj
     1: jQuery.extend({
-        "nums": 0,
+        "nums": 1,
         "piece": 0,
         "price": 1,
         "amount": null
     }, common_param),
     5: jQuery.extend({
-        "nums": 0,
+        "nums": 1,
         "piece": 0,
         "price": 5,
         "amount": null
     }, common_param),
     10: jQuery.extend({
-        "nums": 0,
+        "nums": 1,
         "piece": 0,
         "price": 10,
         "amount": null
     }, common_param),
+    20: jQuery.extend({
+        "nums": 1,
+        "piece": 0,
+        "price": 20,
+        "amount": null
+    }, common_param),
     50: jQuery.extend({
-        "nums": 0,
+        "nums": 1,
         "piece": 0,
         "price": 50,
         "amount": null
     }, common_param),
     100: jQuery.extend({
-        "nums": 0,
+        "nums": 1,
         "piece": 0,
         "price": 100,
         "amount": null
     }, common_param),
     1000: jQuery.extend({
-        "nums": 0,
+        "nums": 1,
         "piece": 0,
         "price": 1000,
         "amount": null
     }, common_param),
     5000: jQuery.extend({
-        "nums": 0,
+        "nums": 1,
         "piece": 0,
         "price": 5000,
         "amount": null
@@ -79,7 +85,7 @@ $('.wrap div').each(function (index, item) { //获取所有的value值存到数�
 });
 allValues.forEach((item, index) => { //每个value值对应提交对象
     params[item] = JSON.parse(JSON.stringify(param)); //浅复制，消除引用影响
-    totalCount[item] = 0; //初始每个选号筹码个数为0，投的金额为0
+    totalCount[item] = 0; //初始每个选号投的筹码个数为0，投的金额为0
 });
 let priceNum = null; //筹码,未选择时为null
 //确定所用筹码
@@ -89,17 +95,18 @@ $('.chips>.chip').off('click').on('click', function (e) {
 });
 //投注
 let flyChip = null; //点击筹码飞过去的元素
-function createFlyChip(num) { //创建飞出去的筹码
+function createFlyChip(num,value) { //创建飞出去的筹码
     let ele = document.createElement('div');
-    $(ele).addClass(`flyChip${+num}`).addClass('flyChip');
+    $(ele).addClass(`flyChip${+num}`).attr('rel','betChip');
     $(ele).text(num);
     return $(ele);
 }
 
 function letChipFly(priceNum, element, Elements_forBet) { //筹码飞出去方法
-    flyingChip = createFlyChip(priceNum);
-    flyingChip.addClass(`flyingChip${priceNum}`);
-    
+    let value = element.attr('value');
+    flyingChip = createFlyChip(priceNum,value);    
+    flyingChip.attr('flyTo',`${value}_${priceNum}`);
+
     flyingChip.css({
         "position": 'absolute',
         "left": $(`.chips>.chip${priceNum}`).offset().left,
@@ -111,13 +118,13 @@ function letChipFly(priceNum, element, Elements_forBet) { //筹码飞出去方�
         "left": element.offset().left,
         "top": element.offset().top,
     });
-    Elements_forBet.push({//存储飞出去的筹码，用在取消投注的时候用
+    Elements_forBet.push({ //存储飞出去的筹码，用在取消投注的时候用
         "chip": flyingChip,
         "value": element.attr('value'),
         "context": element
     });
     setTimeout(() => {
-        $(`.flyingChip${priceNum}`).remove();
+        $(`[flyTo="${value}_${priceNum}"]`).remove();
     }, 300);
 }
 
@@ -143,20 +150,14 @@ function letChipFlyBack(Elements_forBet) { //取消投注让筹码飞回来
     backElement.css({
         "left": $(`.chips>.chip${price}`).offset().left,
         "top": $(`.chips>.chip${price}`).offset().top,
-    });
-    setTimeout( () => {
+    }).attr('flyBack',`${value}_${price}`);
+    setTimeout(() => {
+        $(`[flyBack="${value}_${price}"]`).remove();
         renderIcon(calculateIcon(totalCount[value]), context);
     }, 250);
 }
 
 
-function removeChip(numDelete, numCount) { //5个筹码1换1个筹码5此种类似场合筹码切换方法，删除5个1筹码类似
-    if (numCount) {
-        $(`.flyChip${numDelete}:lt(${numCount})`).remove();
-    } else {
-        $(`.flyChip${numDelete}`).remove();
-    }
-}
 
 let allMethods = ['[method="dxds_dxds_dxds"]', '[method="th2_th2fx_fx"]', '[method="th3_th3_th3dx"]', '[method="th3_th3_th3tx"]', '[method="hz_hz_hz"]', '[method="bth2_bth2_ds"]', '[method="cygh_cygh_cygh"]', '[method="bth3_lh3_dx"]'];
 
@@ -173,37 +174,58 @@ $(String(allMethods)).off('click').on('click', function (e) {
     }, 250);
     params[value][priceNum].method = method;
     params[value][priceNum].code = value;
+    params[value][priceNum].piece = calculateIcon(totalCount[value])[priceNum];
 });
 
-//取消投注
-cancelButton.off('click').on('click', function (e) {
-    letChipFlyBack(Elements_forBet);
-});
+
 /* 计算筹码图标，各种面额硬币并非实体，只有1分这个计量单位。
 然后每次投钱或者去掉钱，自动把分换算成相应图标。 */
-function calculateIcon(count) { //count 1分钱的个数,chipTypes = [1,5,10,50,100,1000,5000]
+function calculateIcon(count) { //count 1分钱的个数,chipTypes = [1,5,10,20,50,100,1000,5000]
     //5k筹码的个数
     let result = {};
     result[5000] = Math.floor(count / 5000);
     result[1000] = Math.floor((count - result[5000] * 5000) / 1000);
     result[100] = Math.floor((count - result[5000] * 5000 - result[1000] * 1000) / 100);
     result[50] = Math.floor((count - result[5000] * 5000 - result[1000] * 1000 - result[100] * 100) / 50);
-    result[10] = Math.floor((count - result[5000] * 5000 - result[1000] * 1000 - result[100] * 100 - result[50] * 50) / 10);
-    result[5] = Math.floor((count - result[5000] * 5000 - result[1000] * 1000 - result[100] * 100 - result[50] * 50 - result[10] * 10) / 5);
-    result[1] = Math.floor(count - result[5000] * 5000 - result[1000] * 1000 - result[100] * 100 - result[50] * 50 - result[10] * 10 - result[5] * 5);
+    result[20] = Math.floor((count - result[5000] * 5000 - result[1000] * 1000 - result[100] * 100 - result[50] * 50) / 20);
+    result[10] = Math.floor((count - result[5000] * 5000 - result[1000] * 1000 - result[100] * 100 - result[50] * 50 - result[20] * 20) / 10);
+    result[5] = Math.floor((count - result[5000] * 5000 - result[1000] * 1000 - result[100] * 100 - result[50] * 50 - result[20] * 20 - result[10] * 10) / 5);
+    result[1] = Math.floor(count - result[5000] * 5000 - result[1000] * 1000 - result[100] * 100 - result[50] * 50 - result[20] * 20 - result[10] * 10 - result[5] * 5);
     return result;
 }
 //根据calculateIcon出的钱种个数生成对应图标
 function renderIcon(iconObj, clickedElem) {
+    let value = clickedElem.attr('value');
+    $(`[address_value="${value}"]`).remove();    
     for (let key in iconObj) {
-        $(`.flyChip${+key}`).remove();
         if (iconObj[key]) {
-            let elem = createFlyChip(key).css({
+            let elem = createFlyChip(key,value).css({
                 "position": 'absolute',
                 "left": clickedElem.offset().left,
                 "top": clickedElem.offset().top,
-            });
+            }).attr('address_value',value);
             addChip(elem[0].outerHTML, iconObj[key]);
         }
     }
 }
+//计算倍数，投注了的为1倍
+let piece = 1;
+function calculatePiece() {
+    piece *= 2;
+}
+//生成订单，根据桌面上筹码生成订单数据
+function createOrder() {
+
+}
+//取消投注
+cancelButton.off('click').on('click', function (e) {
+    letChipFlyBack(Elements_forBet);
+});
+//翻倍投注
+pieceButtoon.off('click').on('click', function (e) {
+
+});
+//确认投注
+betButton.off('click').on('click', function (e) {
+
+});

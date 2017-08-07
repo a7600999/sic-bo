@@ -10,18 +10,9 @@ let params = {
     "amount": 1, //总金额price*nums    
 };
  */
-let chipRefectObj = { //飞出去的和底盘的筹码className关联关系
-    'flyChip1': 'chip1',
-    'flyChip5': 'chip5',
-    'flyChip10': 'chip10',
-    'flyChip50': 'chip50',
-    'flyChip100': 'chip100',
-    'flyChip1000': 'chip1000',
-    'flyChip5000': 'chip5000'
-};
+
 let Elements_forBet = []; //建立一个投注的筹码数组存放这些将要投注的筹码,可以取消投注
 let Elements_betted = []; //建立一个投注了的筹码数组存放这些已经投注的筹码,不能取消投注
-let Elements_change = []; //建议一个数组存放累加事改变的元素，比如5个1筹码变成的1个数字是5的筹码
 //投注算投注内容的时候就看桌子上放的筹码
 let balanceAmount = $('.balanceAmount');
 let betMoneyAmount = $('.betMoneyAmount');
@@ -108,10 +99,7 @@ function createFlyChip(num) { //创建飞出去的筹码
 function letChipFly(priceNum, element, Elements_forBet) { //筹码飞出去方法
     flyingChip = createFlyChip(priceNum);
     flyingChip.addClass(`flyingChip${priceNum}`);
-    Elements_forBet.push({
-        "chip": flyingChip,
-        "value": element.attr('value')
-    });
+    
     flyingChip.css({
         "position": 'absolute',
         "left": $(`.chips>.chip${priceNum}`).offset().left,
@@ -122,6 +110,11 @@ function letChipFly(priceNum, element, Elements_forBet) { //筹码飞出去方�
     flyingChip.css({
         "left": element.offset().left,
         "top": element.offset().top,
+    });
+    Elements_forBet.push({//存储飞出去的筹码，用在取消投注的时候用
+        "chip": flyingChip,
+        "value": element.attr('value'),
+        "context": element
     });
     setTimeout(() => {
         $(`.flyingChip${priceNum}`).remove();
@@ -134,36 +127,28 @@ function addChip(ele, count) {
     }
 }
 
-function letChipFlyBack(Elements_forBet, Elements_change) { //取消投注让筹码飞回来
+function letChipFlyBack(Elements_forBet) { //取消投注让筹码飞回来
     if (Elements_forBet.length === 0) {
         return;
     }
-
-
-    let backElement = Elements_forBet.splice(Elements_forBet.length - 1, 1)[0]['chip'];
-    let value = Elements_forBet.splice(Elements_forBet.length - 1, 1)[0]['value'];
+    let lastFlyObj = Elements_forBet.splice(Elements_forBet.length - 1, 1)[0];
+    let backElement = lastFlyObj['chip'];
+    let value = lastFlyObj['value'];
+    let context = lastFlyObj['context'];
     $('body').append(backElement);
     let className = backElement.attr('class');
-    let price = +className.match(/\d+$/)[0];
+    let price = +className.match(/flyChip(\d+)/)[1];
+    totalCount[value] -= price;
 
     backElement.css({
-        "left": $(`.chips>.${chipRefectObj[className]}`).offset().left,
-        "top": $(`.chips>.${chipRefectObj[className]}`).offset().top,
+        "left": $(`.chips>.chip${price}`).offset().left,
+        "top": $(`.chips>.chip${price}`).offset().top,
     });
-    setTimeout(function () {
-        backElement.remove();
-    }, 500);
+    setTimeout( () => {
+        renderIcon(calculateIcon(totalCount[value]), context);
+    }, 250);
 }
 
-function chipChange(num, element) { //5个筹码1换1个筹码5此种类似场合筹码切换方法
-    let changeElement = createFlyChip(num).css({
-        "position": "absolute",
-        "left": element.offset().left,
-        "top": element.offset().top,
-    });
-    $('body').append(changeElement);
-    Elements_change.push(changeElement);
-}
 
 function removeChip(numDelete, numCount) { //5个筹码1换1个筹码5此种类似场合筹码切换方法，删除5个1筹码类似
     if (numCount) {
@@ -192,7 +177,7 @@ $(String(allMethods)).off('click').on('click', function (e) {
 
 //取消投注
 cancelButton.off('click').on('click', function (e) {
-    letChipFlyBack(Elements_forBet, Elements_change);
+    letChipFlyBack(Elements_forBet);
 });
 /* 计算筹码图标，各种面额硬币并非实体，只有1分这个计量单位。
 然后每次投钱或者去掉钱，自动把分换算成相应图标。 */

@@ -14,11 +14,20 @@ let params = {
 let Elements_forBet = []; //建立一个投注的筹码数组存放这些将要投注的筹码,可以取消投注
 let Elements_betted = []; //建立一个投注了的筹码数组存放这些已经投注的筹码,不能取消投注
 //投注算投注内容的时候就看桌子上放的筹码
+let diceGameContent = $('.diceGameContent');
 let balanceAmount = $('.balanceAmount');
 let betMoneyAmount = $('.betMoneyAmount');
 let cancelButton = $('.cancelButton');
 let betButton = $('.betButton');
 let pieceButtoon = $('.pieceButtoon');
+
+//屏幕自适应
+(function(){
+    let scale = window.innerWidth / 1920;
+    diceGameContent.css({
+        'zoom': scale,
+    });
+})();
 let common_param = {
     "method": null,
     "code": null,
@@ -98,7 +107,6 @@ let flyChip = null; //点击筹码飞过去的元素
 function createFlyChip(num,value) { //创建飞出去的筹码
     let ele = document.createElement('div');
     $(ele).addClass(`flyChip${+num}`).attr('rel','betChip');
-    $(ele).text(num);
     return $(ele);
 }
 

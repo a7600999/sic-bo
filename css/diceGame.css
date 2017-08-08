@@ -39,8 +39,8 @@
     margin: auto;
 }
 
-.outerWrap,
-.outerWrap div {
+.diceGameContent,
+.diceGameContent div {
     box-sizing: border-box;
 }
 
@@ -995,3 +995,230 @@
 
 
 /* 底盘筹码结束 */
+
+.diceGameContent .diceGameTopArea {
+    width: 1200px;
+    height: 130px;
+    filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#525252', endColorStr='#242424', gradientType='0');
+    background: -webkit-linear-gradient(top, #525252, #242424);
+    background: -moz-linear-gradient(top, #525252, #242424);
+    position: absolute;
+    background-repeat: no-repeat;
+    margin: auto;
+    left: 0;
+    top: 0;
+    right: 0;
+}
+
+.diceGameTopArea .diceLogo {
+    background-image: url('../images/diceLogo.png');
+    background-repeat: no-repeat;
+    position: absolute;
+    height: 120px;
+    line-height: 120px;
+    width: 300px;
+    bottom: 0;
+    left: 20px;
+}
+
+.diceGameTopArea .diceIssue {
+    position: absolute;
+    left: 320px;
+    width: 208px;
+    height: 130px;
+}
+
+.diceIssue .diceIssueTop {
+    position: absolute;
+    top: 5px;
+    height: 24px;
+    line-height: 24px;
+}
+
+.diceIssue .diceIssueCountDown {
+    position: absolute;
+    bottom: 10px;
+    width: 208px;
+    height: 96px;
+    background-size: 208px 96px;
+    background-image: url(../images/diceCountDown.png);
+    background-position: -5px 0;
+    background-repeat: no-repeat;
+}
+
+.diceGameTopArea .diceResult {
+    position: absolute;
+    left: 560px;
+    width: 196px;
+    height: 130px;
+}
+
+.diceResult .diceResultTop {
+    position: absolute;
+    top: 5px;
+    height: 24px;
+    line-height: 24px;
+}
+
+.diceResult .diceResultDetail {
+    position: absolute;
+    bottom: 10px;
+    width: 188px;
+    height: 96px;
+    background-size: 196px 96px;
+    background-image: url(../images/diceResultDetail.png);
+    background-position: -5px 0;
+    background-repeat: no-repeat;
+}
+.diceResult_1 {
+    background-image: url('../images/dice.svg');
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: 32px;
+}
+.diceResult_2 {
+    background-image: url('../images/dice.svg');
+    background-repeat: no-repeat;
+    background-position: 0 -40px;
+    background-size: 32px;
+}
+.diceResult_3 {
+    background-image: url('../images/dice.svg');
+    background-repeat: no-repeat;
+    background-position: 0 -80px;
+    background-size: 32px;
+}
+.diceResult_4 {
+    background-image: url('../images/dice.svg');
+    background-repeat: no-repeat;
+    background-position: 0 -128px;
+    background-size: 32px;
+}
+.diceResult_5 {
+    background-image: url('../images/dice.svg');
+    background-repeat: no-repeat;
+    background-position: 0 -174px;
+    background-size: 32px;
+}
+.diceResult_6 {
+    background-image: url('../images/dice.svg');
+    background-repeat: no-repeat;
+    background-position: 0 -220px;
+    background-size: 32px;
+}
+.diceResult .diceResultDetail .diceResultDetailFirst {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 20%;
+    margin: auto;
+    width: 32px;
+    height: 32px;
+}
+
+.diceResult .diceResultDetail .diceResultDetailSecond {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 32px;
+    height: 32px;
+}
+.diceResult .diceResultDetail .diceResultDetailThird {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 20%;
+    margin: auto;
+    width: 32px;
+    height: 32px;
+}
+
+.diceGameTopArea .diceRecent {
+    position: absolute;
+    left: 780px;
+    width: 250px;
+    height: 130px;
+}
+
+.diceRecent .diceRecentTop {
+    position: absolute;
+    top: 5px;
+    height: 24px;
+    line-height: 24px;
+}
+
+.diceRecent .diceRecentDetail {
+    position: absolute;
+    bottom: 10px;
+    width: 250px;
+    height: 96px;
+    background-size: 250px 96px;
+    background-image: url(../images/diceResultDetail.png);
+    background-position: -5px 0;
+    background-repeat: no-repeat;
+    padding: 8px;
+}
+
+.diceIssueTop,
+.diceResultTop,
+.diceRecentTop,
+.diceRecentDetail {
+    color: #bed3f1;
+    text-align: left;
+    font-size: 14px;
+} 
+.diceRecent .diceRecentDetail ul {
+    overflow-y: scroll;
+    height: 74px;
+    position: absolute;
+    width: 250px;
+}
+.diceRecent .diceRecentDetail .scrollWrap {
+    overflow: hidden;
+    position: relative;
+    height: 74px;
+    width: 232px;
+}
+.diceRecent .diceRecentDetail ul>li{
+    height: 14px;
+    margin: 14px 0;
+    padding: 0 20px;
+}
+.diceRecent .diceRecentDetail ul>li .diceRD_left,
+.diceRecent .diceRecentDetail ul>li .diceRD_center,
+.diceRecent .diceRecentDetail ul>li .diceRD_right {
+    float: left;
+    height: 14px;
+    line-height: 14px;
+}
+.diceRecent .diceRecentDetail ul>li .diceRD_left {
+    width: 24%;
+}
+.diceRecent .diceRecentDetail ul>li .diceRD_center {
+    width: 32%;
+}
+.diceRecent .diceRecentDetail ul>li .diceRD_right {
+    width: 44%;
+    position: relative;
+}
+.diceRecent .diceRecentDetail ul>li .diceRD_right>.diceRD_xt_r{
+    position: absolute;
+    left: 5px;
+}
+.diceRecent .diceRecentDetail ul>li .diceRD_right>.diceRD_xt_m{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 14px;
+    height: 14px;
+}
+.diceRecent .diceRecentDetail ul>li .diceRD_right>.diceRD_xt_l{
+    position: absolute;
+    right: 5px;
+}

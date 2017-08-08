@@ -23,9 +23,12 @@ let pieceButtoon = $('.pieceButtoon');
 
 //屏幕自适应
 (function(){
-    let scale = window.innerWidth / 1920;
+    /* let scale = document.body.clientWidth / 1920;
     diceGameContent.css({
         'zoom': scale,
+    }); */
+    diceGameContent.css({
+        'width':document.body.clientWidth,
     });
 })();
 let common_param = {

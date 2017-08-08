@@ -674,7 +674,7 @@
     right: 15%;
     color: #fefefe;
     font-size: 36px;
-    line-height: 52px;
+    line-height: 48px;
 }
 
 .dxds_shuang>.peilv {
@@ -696,7 +696,7 @@
     left: 15%;
     color: #fefefe;
     font-size: 36px;
-    line-height: 52px;
+    line-height: 48px;
 }
 
 .th2_left_item>.dice_rect:nth-child(1) {
@@ -786,7 +786,7 @@
 
 .betBar>.button.pieceButtoon {
     margin: auto;
-    left: 392px;
+    left: 395px;
     right: 0;
     bottom: 0;
     top: 0;
@@ -803,7 +803,7 @@
 
 .betBar>.button.betButton {
     margin: auto;
-    left: 266px;
+    left: 273px;
     right: 0;
     bottom: 0;
     top: 0;

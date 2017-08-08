@@ -54,8 +54,8 @@
 .dot_big {
     position: absolute;
     border-radius: 50%;
-    width: 12px;
-    height: 12px;
+    width: 11px;
+    height: 11px;
 }
 
 .dice_one {

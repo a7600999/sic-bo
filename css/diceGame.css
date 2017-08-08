@@ -109,19 +109,19 @@
 
 @-webkit-keyframes bgBlink {
     100% {
-        background-color: #578956;
+        background: #578956;
     }
 }
 
 @-moz-keyframes bgBlink {
     100% {
-        background-color: #578956;
+        background: #578956;
     }
 }
 
 @keyframes bgBlink {
     100% {
-        background-color: #578956;
+        background: #578956;
     }
 }
 
@@ -203,7 +203,7 @@
     position: absolute;
     bottom: 0;
     width: 200px;
-    background: #135335;
+    background: #116641;
     height: 52px;
     border-radius: 5px;
     border: 1.5px solid #bbd484;
@@ -213,7 +213,7 @@
     position: absolute;
     top: 0;
     width: 200px;
-    background: #135335;
+    background: ##116641;
     height: 115px;
     border: 1.5px solid #bbd484;
     border-radius: 5px 20px 5px 5px;
@@ -384,7 +384,8 @@
     border: 1.5px solid #bbd484;
     border-radius: 5px 5px 5px 20px;
     padding: 15px 0px 15px 80px;
-    background-color: #114e33;
+    background: linear-gradient(right,#155838,#0e3b27);
+    filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#0e3b27', endColorStr='#155838', gradientType='1');
 }
 
 .cygh>.cygh_peilv {
@@ -421,7 +422,8 @@
     border: 1.5px solid #bbd484;
     border-radius: 5px 5px 20px 5px;
     padding: 8px 80px 8px 80px;
-    background-color: #196b47;
+    background: linear-gradient(left,#155838,#0e3b27);
+    filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#155838', endColorStr='#0e3b27', gradientType='1');
 }
 
 .lh3>.lh3_peilv {

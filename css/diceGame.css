@@ -85,20 +85,54 @@
     position: absolute;
     top: 0;
     width: 200px;
-    background: #1c7244;
+    background: #116641;
     height: 115px;
-    border: 1px solid #5e992e;
+    border: 1.5px solid #bbd484;
     border-radius: 20px 5px 5px 5px;
+}
+.dxds_da:hover,
+.dxds_dan:hover,
+.dxds_shuang:hover,
+.dxds_xiao:hover,
+.th2_left_item:hover,
+.th2_right_item:hover,
+.th3_dx_item:hover,
+.th3_tx:hover,
+.hz_item:hover,
+.bth2_item:hover,
+.cygh_item:hover,
+.lh3_item:hover{
+    background-color: #578956;
+}
+@-webkit-keyframes bgBlink {
+    100% {
+        background-color: #578956;
+    }
+}
+@-moz-keyframes bgBlink {
+    100% {
+        background-color: #578956;
+    }
+}
+@keyframes bgBlink {
+    100% {
+        background-color: #578956;
+    }
+}
+.diceBgBlink {
+    animation-duration: 1s;
+    animation-name: bgBlink;
+    animation-iteration-count: infinite;
 }
 
 .dxds_dan {
     position: absolute;
     bottom: 0;
     width: 200px;
-    background: #1c7244;
+    background: #116641;
     height: 52px;
     border-radius: 5px;
-    border: 1px solid #5e992e;
+    border: 1.5px solid #bbd484;
 }
 
 .th2_left {
@@ -106,10 +140,10 @@
     top: 0;
     position: absolute;
     height: 180px;
-    background: green;
+    background: #145a3b;
     width: 130px;
     border-radius: 5px;
-    border: 1px solid #5e992e;
+    border: 1.5px solid #bbd484;
     padding: 0 5px 0px 5px;
 }
 
@@ -120,9 +154,9 @@
 
 .th2_left_item {
     width: 100%;
-    background: green;
+    background: #145a3b;
     height: 48px;
-    border: 1px solid #5e992e;
+    border: 1.5px solid #bbd484;
     border-radius: 5px;
     margin-bottom: 2px;
     padding: 2px 13px 2px 13px;
@@ -144,10 +178,10 @@
     top: 0;
     position: absolute;
     height: 180px;
-    background: green;
+    background: #135335;
     width: 130px;
     border-radius: 5px;
-    border: 1px solid #5e992e;
+    border: 1.5px solid #bbd484;
     padding: 0 5px 0px 5px;
 }
 
@@ -163,19 +197,19 @@
     position: absolute;
     bottom: 0;
     width: 200px;
-    background: green;
+    background: #135335;
     height: 52px;
     border-radius: 5px;
-    border: 1px solid #5e992e;
+    border: 1.5px solid #bbd484;
 }
 
 .dxds_xiao {
     position: absolute;
     top: 0;
     width: 200px;
-    background: green;
+    background: #135335;
     height: 115px;
-    border: 1px solid #5e992e;
+    border: 1.5px solid #bbd484;
     border-radius: 5px 20px 5px 5px;
 }
 
@@ -186,9 +220,9 @@
 
 .th2_right_item {
     width: 100%;
-    background: green;
+    background: #15603f;
     height: 48px;
-    border: 1px solid #5e992e;
+    border: 1.5px solid #bbd484;
     border-radius: 5px;
     margin-bottom: 2px;
     padding: 2px 13px 2px 13px;
@@ -201,23 +235,23 @@
 
 .th3_dx {
     height: 47.5%;
-    background: green;
+    background: #176542;
     width: 100%;
-    border: 1px solid #5e992e;
+    border: 1.5px solid #bbd484;
     text-align: center;
     font-size: 0;
     border-radius: 5px;
-    padding: 0 10px 5px 10px;
+    padding: 0 5px 5px 5px;
 }
 
 .th3_tx {
     height: 47.5%;
-    background: green;
+    background: #1c8a59;
     width: 100%;
-    border: 1px solid #5e992e;
+    border: 1.5px solid #bbd484;
     border-radius: 5px;
     margin-top: 8px;
-    padding: 0 10px 5px 10px;
+    padding: 0 5px 5px 5px;
     position: absolute;
     font-size: 0;
 }
@@ -228,21 +262,21 @@
 }
 
 .th3_dx_item {
-    width: 60px;
-    border: 1px solid #5e992e;
+    width: 61px;
+    border: 1.5px solid #bbd484;
     border-radius: 5px;
-    background: green;
-    height: 60px;
+    background: #186a46;
+    height: 61px;
     display: inline-block;
     margin: 0 4px;
     text-align: center;
 }
 
 .th3_tx_item {
-    width: 60px;
+    width: 61px;
     border: 1px solid transparent;
     border-radius: 5px;
-    height: 60px;
+    height: 61px;
     display: inline-block;
     margin: 0 4px;
     text-align: center;
@@ -260,11 +294,11 @@
 
 .hz_item {
     width: 72px;
-    background: green;
+    background: #136a44;
     height: 72px;
     display: inline-block;
     margin-right: 9.8px;
-    border: 1px solid #5e992e;
+    border: 1.5px solid #bbd484;
     border-radius: 5px;
     position: relative;
     text-align: center;
@@ -295,10 +329,10 @@
     height: 112px;
     font-size: 0;
     text-align: center;
-    border: 1px solid #5e992e;
+    border: 1.5px solid #bbd484;
     border-radius: 5px;
     padding: 6px 80px;
-    background-color: #0f5027;
+    background-color: #125638;
 }
 
 .rowThree.bth2>.bth2_peilv {
@@ -311,11 +345,11 @@
 
 .bth2_item {
     width: 55px;
-    background: green;
+    background: #125638;
     height: 100px;
     display: inline-block;
     margin-right: 10px;
-    border: 1px solid #5e992e;
+    border: 1.5px solid #bbd484;
     border-radius: 5px;
     padding: 6px 5px;
 }
@@ -341,10 +375,10 @@
     left: 0;
     text-align: center;
     font-size: 0;
-    border: 1px solid #5e992e;
+    border: 1.5px solid #bbd484;
     border-radius: 5px 5px 5px 20px;
     padding: 15px 0px 15px 80px;
-    background-color: #0b441e;
+    background-color: #114e33;
 }
 
 .cygh>.cygh_peilv {
@@ -356,12 +390,12 @@
 }
 
 .cygh_item {
-    background: #0b441e;
+    background: #125438;
     display: inline-block;
     width: 60px;
     height: 60px;
     margin-right: 15px;
-    border: 1px solid #5e992e;
+    border: 1.5px solid #bbd484;
     border-radius: 5px;
     padding: 6px;
 }
@@ -378,10 +412,10 @@
     text-align: center;
     right: 0;
     font-size: 0;
-    border: 1px solid #5e992e;
+    border: 1.5px solid #bbd484;
     border-radius: 5px 5px 20px 5px;
     padding: 8px 80px 8px 80px;
-    background-color: #0b441e;
+    background-color: #196b47;
 }
 
 .lh3>.lh3_peilv {
@@ -394,11 +428,11 @@
 
 .lh3_item {
     width: 76px;
-    background: #0b441e;
+    background: #166241;
     height: 76px;
     display: inline-block;
     margin-right: 20px;
-    border: 1px solid #5e992e;
+    border: 1.5px solid #bbd484;
     border-radius: 5px;
 }
 

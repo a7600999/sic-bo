@@ -1478,178 +1478,203 @@
 
 .diceCup_animate {
     animation-name: diceCupBig, diceCupShake, diceCupSmall;
-    animation-delay: 0s, 2s, 10s;
+    animation-delay: 0s, 2s, 13s;
     animation-duration: 2s, 100ms, 2s;
     animation-fill-mode: forwards, forwards, forwards;
     animation-timing-function: linear, ease-in-out, linear;
     animation-iteration-count: 1, 100, 1;
 }
 
+.diceCup_animate .diceInCup_left {
+    animation-name: diceShake_left;
+    animation-delay: 2s;
+    animation-duration: 200ms;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 50;
+}
+
+.diceCup_animate .diceInCup_center {
+    animation-name: diceShake_center;
+    animation-delay: 2s;
+    animation-duration: 200ms;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 50;
+}
+
+.diceCup_animate .diceInCup_right {
+    animation-name: diceShake_right;
+    animation-delay: 2s;
+    animation-duration: 200ms;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 50;
+}
+
 @keyframes diceCupBig {
     100% {
-        top: 232px;
-        transform: scale(2);
+        transform: translate3d(0px, 250px, 100px);
     }
 }
 
 @keyframes diceCupShake {
     2% {
-        transform: scale(2) translate(-0.5px, -0.5px) rotate(0.5deg);
+        transform: translate3d(-0.5px, 249.5px, 100px) rotate(0.5deg);
     }
     4% {
-        transform: scale(2) translate(2.5px, -1.5px) rotate(-0.5deg);
+        transform: translate3d(2.5px, 248.5px, 100px) rotate(-0.5deg);
     }
     6% {
-        transform: scale(2) translate(2.5px, 0.5px) rotate(1.5deg);
+        transform: translate3d(2.5px, 250.5px, 100px) rotate(1.5deg);
     }
     8% {
-        transform: scale(2) translate(-0.5px, 2.5px) rotate(-0.5deg);
+        transform: translate3d(-0.5px, 252.5px, 100px) rotate(-0.5deg);
     }
     10% {
-        transform: scale(2) translate(1.5px, -0.5px) rotate(1.5deg);
+        transform: translate3d(1.5px, 249.5px, 100px) rotate(1.5deg);
     }
     12% {
-        transform: scale(2) translate(0.5px, -1.5px) rotate(-0.5deg);
+        transform: translate3d(0.5px, 248.5px, 100px) rotate(-0.5deg);
     }
     14% {
-        transform: scale(2) translate(0.5px, -1.5px) rotate(0.5deg);
+        transform: translate3d(0.5px, 247.5px, 100px) rotate(0.5deg);
     }
     16% {
-        transform: scale(2) translate(-0.5px, 0.5px) rotate(0.5deg);
+        transform: translate3d(-0.5px, 250.5px, 100px) rotate(0.5deg);
     }
     18% {
-        transform: scale(2) translate(-1.5px, 1.5px) rotate(0.5deg);
+        transform: translate3d(-1.5px, 251.5px, 100px) rotate(0.5deg);
     }
     20% {
-        transform: scale(2) translate(-0.5px, -1.5px) rotate(-0.5deg);
+        transform: translate3d(-0.5px, 248.5px, 100px) rotate(-0.5deg);
     }
     22% {
-        transform: scale(2) translate(1.5px, 1.5px) rotate(0.5deg);
+        transform: translate3d(1.5px, 251.5px, 100px) rotate(0.5deg);
     }
     24% {
-        transform: scale(2) translate(-1.5px, 2.5px) rotate(1.5deg);
+        transform: translate3d(-1.5px, 252.5px, 100px) rotate(1.5deg);
     }
     26% {
-        transform: scale(2) translate(-0.5px, 0.5px) rotate(0.5deg);
+        transform: translate3d(-0.5px, 250.5px, 100px) rotate(0.5deg);
     }
     28% {
-        transform: scale(2) translate(-1.5px, 1.5px) rotate(-0.5deg);
+        transform: translate3d(-1.5px, 251.5px, 100px) rotate(-0.5deg);
     }
     30% {
-        transform: scale(2) translate(1.5px, 0.5px) rotate(0.5deg);
+        transform: translate3d(1.5px, 250.5px, 100px) rotate(0.5deg);
     }
     32% {
-        transform: scale(2) translate(1.5px, -0.5px) rotate(0.5deg);
+        transform: translate3d(1.5px, 249.5px, 100px) rotate(0.5deg);
     }
     34% {
-        transform: scale(2) translate(2.5px, 1.5px) rotate(-0.5deg);
+        transform: translate3d(2.5px, 251.5px, 100px) rotate(-0.5deg);
     }
     36% {
-        transform: scale(2) translate(-1.5px, -0.5px) rotate(-0.5deg);
+        transform: translate3d(-1.5px, 249.5px, 100px) rotate(-0.5deg);
     }
     38% {
-        transform: scale(2) translate(1.5px, 2.5px) rotate(-0.5deg);
+        transform: translate3d(1.5px, 252.5px, 100px) rotate(-0.5deg);
     }
     40% {
-        transform: scale(2) translate(-0.5px, -1.5px) rotate(0.5deg);
+        transform: translate3d(-0.5px, 248.5px, 100px) rotate(0.5deg);
     }
     42% {
-        transform: scale(2) translate(0.5px, 0.5px) rotate(0.5deg);
+        transform: translate3d(0.5px, 250.5px, 100px) rotate(0.5deg);
     }
     44% {
-        transform: scale(2) translate(1.5px, 1.5px) rotate(-0.5deg);
+        transform: translate3d(1.5px, 251.5px, 100px) rotate(-0.5deg);
     }
     46% {
-        transform: scale(2) translate(-1.5px, 0.5px) rotate(-0.5deg);
+        transform: translate3d(-1.5px, 250.5px, 100px) rotate(-0.5deg);
     }
     48% {
-        transform: scale(2) translate(1.5px, 1.5px) rotate(1.5deg);
+        transform: translate3d(1.5px, 251.5px, 100px) rotate(1.5deg);
     }
     50% {
-        transform: scale(2) translate(0.5px, -0.5px) rotate(0.5deg);
+        transform: translate3d(0.5px, 249.5px, 100px) rotate(0.5deg);
     }
     52% {
-        transform: scale(2) translate(-0.5px, 0.5px) rotate(1.5deg);
+        transform: translate3d(-0.5px, 250.5px, 100px) rotate(1.5deg);
     }
     54% {
-        transform: scale(2) translate(1.5px, -1.5px) rotate(0.5deg);
+        transform: translate3d(1.5px, 248.5px, 100px) rotate(0.5deg);
     }
     56% {
-        transform: scale(2) translate(-0.5px, -1.5px) rotate(1.5deg);
+        transform: translate3d(-0.5px, 248.5px, 100px) rotate(1.5deg);
     }
     58% {
-        transform: scale(2) translate(2.5px, 1.5px) rotate(0.5deg);
+        transform: translate3d(2.5px, 251.5px, 100px) rotate(0.5deg);
     }
     60% {
-        transform: scale(2) translate(-0.5px, -0.5px) rotate(1.5deg);
+        transform: translate3d(-0.5px, 249.5px, 100px) rotate(1.5deg);
     }
     62% {
-        transform: scale(2) translate(1.5px, 2.5px) rotate(-0.5deg);
+        transform: translate3d(1.5px, 252.5px, 100px) rotate(-0.5deg);
     }
     64% {
-        transform: scale(2) translate(-1.5px, 0.5px) rotate(-0.5deg);
+        transform: translate3d(-1.5px, 250.5px, 100px) rotate(-0.5deg);
     }
     66% {
-        transform: scale(2) translate(2.5px, 1.5px) rotate(-0.5deg);
+        transform: translate3d(2.5px, 251.5px, 100px) rotate(-0.5deg);
     }
     68% {
-        transform: scale(2) translate(2.5px, 0.5px) rotate(1.5deg);
+        transform: translate3d(2.5px, 250.5px, 100px) rotate(1.5deg);
     }
     70% {
-        transform: scale(2) translate(-1.5px, -1.5px) rotate(0.5deg);
+        transform: translate3d(-1.5px, 248.5px, 100px) rotate(0.5deg);
     }
     72% {
-        transform: scale(2) translate(-1.5px, -0.5px) rotate(-0.5deg);
+        transform: translate3d(-1.5px, 249.5px, 100px) rotate(-0.5deg);
     }
     74% {
-        transform: scale(2) translate(-0.5px, -1.5px) rotate(1.5deg);
+        transform: translate3d(-0.5px, 248.5px, 100px) rotate(1.5deg);
     }
     76% {
-        transform: scale(2) translate(1.5px, 1.5px) rotate(0.5deg);
+        transform: translate3d(1.5px, 251.5px, 100px) rotate(0.5deg);
     }
     78% {
-        transform: scale(2) translate(1.5px, -0.5px) rotate(1.5deg);
+        transform: translate3d(1.5px, 249.5px, 100px) rotate(1.5deg);
     }
     80% {
-        transform: scale(2) translate(-0.5px, 1.5px) rotate(1.5deg);
+        transform: translate3d(-0.5px, 251.5px, 100px) rotate(1.5deg);
     }
     82% {
-        transform: scale(2) translate(2.5px, 2.5px) rotate(0.5deg);
+        transform: translate3d(2.5px, 252.5px, 100px) rotate(0.5deg);
     }
     84% {
-        transform: scale(2) translate(-0.5px, 0.5px) rotate(1.5deg);
+        transform: translate3d(-0.5px, 250.5px, 100px) rotate(1.5deg);
     }
     86% {
-        transform: scale(2) translate(1.5px, -0.5px) rotate(1.5deg);
+        transform: translate3d(1.5px, 249.5px, 100px) rotate(1.5deg);
     }
     88% {
-        transform: scale(2) translate(2.5px, -1.5px) rotate(0.5deg);
+        transform: translate3d(2.5px, 248.5px, 100px) rotate(0.5deg);
     }
     90% {
-        transform: scale(2) translate(0.5px, -1.5px) rotate(-0.5deg);
+        transform: translate3d(0.5px, 248.5px, 100px) rotate(-0.5deg);
     }
     92% {
-        transform: scale(2) translate(-0.5px, -1.5px) rotate(1.5deg);
+        transform: translate3d(-0.5px, 248.5px, 100px) rotate(1.5deg);
     }
     94% {
-        transform: scale(2) translate(2.5px, 0.5px) rotate(1.5deg);
+        transform: translate3d(2.5px, 250.5px, 100px) rotate(1.5deg);
     }
     96% {
-        transform: scale(2) translate(-0.5px, -1.5px) rotate(-0.5deg);
+        transform: translate3d(-0.5px, 248.5px, 100px) rotate(-0.5deg);
     }
     98% {
-        transform: scale(2) translate(-0.5px, -1.5px) rotate(0.5deg);
+        transform: translate3d(-0.5px, 248.5px, 100px) rotate(0.5deg);
     }
     0%,
     100% {
-        transform: scale(2) translate(0, 0) rotate(0);
+        transform: translate3d(0, 250px, 100px) rotate(0);
     }
 }
 
 @keyframes diceCupSmall {
     100% {
-        top: -15px;
-        transform: scale(1);
+        transform: translate3d(0, 0, 0);
     }
 }
 

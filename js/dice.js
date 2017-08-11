@@ -228,7 +228,7 @@ function renderIcon(iconObj, clickedElem) {
 }
 //计算倍数，投注了的为1倍
 
-function calculatePiece() {//翻倍
+function calculatePiece() { //翻倍
     for (let codeValue in params) {
         for (let chipNum in params[paramValue]) {
             if (params[paramValue][chipNum]['piece']) {
@@ -237,7 +237,8 @@ function calculatePiece() {//翻倍
         }
     }
 }
-function calculateTotalCount(){//计算总金额
+
+function calculateTotalCount() { //计算总金额
     let count = 0;
     for (let codeValue in totalCount) {
         if (totalCount[codeValue]) {
@@ -262,3 +263,40 @@ pieceButtoon.off('click').on('click', function (e) {
 betButton.off('click').on('click', function (e) {
 
 });
+
+function createDiceRollStyle() {
+    let style = document.createElement('style');
+    let styleStr_left = ``;
+    let styleStr_center = ``;
+    let styleStr_right = ``;
+    for (let i = 0; i < 99; i += 2) {
+        styleStr_left += `${i}%{transform: translate3d(${Math.random()*35}px, ${Math.random()*16-8}px, ${Math.random()*16}px) rotate(${Math.random()*5}deg);}`;
+        styleStr_center += `${i}%{transform: translate3d(${Math.random()*36-18}px, ${Math.random()*16-8}px, ${Math.random()*16}px) rotate(${Math.random()*5}deg);}`;
+        styleStr_right += `${i}%{transform: translate3d(${Math.random()*35-35}px, ${Math.random()*16-8}px, ${Math.random()*16}px) rotate(${Math.random()*5}deg);}`;
+    }
+    let results = [
+        ['transform: translate3d(4px,0px,0px)', 'transform: translate3d(4px,0px,4px)', 'transform: translate3d(0px,0px,0px)'],
+        ['transform: translate3d(4px,0px,0px)', 'transform: translate3d(10px,0px,3px)', 'transform: translate3d(-15px,0px,-6px)'],
+        ['transform: translate3d(30px,0px,0px)', 'transform: translate3d(-8px,0px,3px)', 'transform: translate3d(-16px,0px,-6px)'],
+        ['transform: translate3d(0px,0px,0px)', 'transform: translate3d(0px,0px,0px)', 'transform: translate3d(0px,0px,0px)'],
+    ];
+
+    let result = results[Math.floor(Math.random() * 4)];
+
+    styleStr_left += `100% {${result[0]}  rotate(0deg);}`; //最后的位置可以写个数组指定几个位置随机translate3d(-4px,0px,-4px)，translate3d(4px,0px,-4px)，translate3d(-4px,0px,4px)，translate3d(4px,0px,4px)
+    styleStr_center += `100% {${result[1]}  rotate(0deg);}`;
+    styleStr_right += `100% {${result[2]}  rotate(0deg);}`;
+    style.innerHTML = `
+        @keyframes diceShake_left {
+            ${styleStr_left}
+        }
+        @keyframes diceShake_center {
+            ${styleStr_center}
+        }
+        @keyframes diceShake_right {
+            ${styleStr_right}
+        }
+    `;
+    document.head.appendChild(style);
+}
+createDiceRollStyle();

@@ -6,6 +6,8 @@
     height: 912px;
     background-repeat: no-repeat;
     transform-style: preserve-3d;
+    perspective-origin: center;
+    perspective: 200px;
 }
 
 .diceGameBar {

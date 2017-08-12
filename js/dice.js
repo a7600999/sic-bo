@@ -275,9 +275,10 @@ function createDiceRollStyle() {
         styleStr_right += `${i}%{transform: translate3d(${Math.random()*35-35}px, ${Math.random()*16-8}px, ${Math.random()*16}px) rotate(${Math.random()*5}deg);}`;
     }
     let results = [
-        ['transform: translate3d(4px,0px,0px)', 'transform: translate3d(4px,0px,4px)', 'transform: translate3d(0px,0px,0px)'],
-        ['transform: translate3d(4px,0px,0px)', 'transform: translate3d(10px,0px,3px)', 'transform: translate3d(-15px,0px,-6px)'],
-        ['transform: translate3d(30px,0px,0px)', 'transform: translate3d(-8px,0px,3px)', 'transform: translate3d(-16px,0px,-6px)'],
+        ['transform: translate3d(4px,0px,0px)', 'transform: translate3d(4px,-8px,0px)', 'transform: translate3d(0px,0px,0px)'],
+        ['transform: translate3d(4px,0px,0px)', 'transform: translate3d(10px,4px,0px)', 'transform: translate3d(-15px,-8px,0px)'],
+        ['transform: translate3d(30px,0px,0px)', 'transform: translate3d(-16px,0px,0px)', 'transform: translate3d(-18px,6px,-6px)'],
+        ['transform: translate3d(30px,0px,0px)', 'transform: translate3d(-16px,0px,0px)', 'transform: translate3d(-18px,-6px,-6px)'],
         ['transform: translate3d(0px,0px,0px)', 'transform: translate3d(0px,0px,0px)', 'transform: translate3d(0px,0px,0px)'],
     ];
 

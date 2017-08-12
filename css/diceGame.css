@@ -1490,7 +1490,7 @@
     animation-delay: 2s;
     animation-duration: 200ms;
     animation-fill-mode: forwards;
-    animation-timing-function: ease-in-out;
+    animation-timing-function: step-start;
     animation-iteration-count: 50;
 }
 
@@ -1499,7 +1499,7 @@
     animation-delay: 2s;
     animation-duration: 200ms;
     animation-fill-mode: forwards;
-    animation-timing-function: ease-in-out;
+    animation-timing-function: step-start;
     animation-iteration-count: 50;
 }
 
@@ -1508,7 +1508,7 @@
     animation-delay: 2s;
     animation-duration: 200ms;
     animation-fill-mode: forwards;
-    animation-timing-function: ease-in-out;
+    animation-timing-function: step-start;
     animation-iteration-count: 50;
 }
 
@@ -1682,18 +1682,21 @@
     background-size: 60px;
     background-image: url('../images/saizi_1.png');
     background-position: 0 -17px;
+    transform-style: preserve-3d;
 }
 
 .diceCup>.diceInCup2 {
     background-size: 60px;
     background-image: url('../images/saizi_2.png');
     background-position: 0 -17px;
+    transform-style: preserve-3d;
 }
 
 .diceCup>.diceInCup3 {
     background-size: 60px;
     background-image: url('../images/saizi_3.png');
     background-position: 0 -17px;
+    transform-style: preserve-3d;
 }
 
 .diceCup>.diceInCup4 {

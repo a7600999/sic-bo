@@ -263,7 +263,7 @@ pieceButtoon.off('click').on('click', function (e) {
 betButton.off('click').on('click', function (e) {
 
 });
-
+//计算随机骰子随机旋转位置
 function createDiceRollStyle() {
     let style = document.createElement('style');
     let styleStr_left = ``;
@@ -301,3 +301,42 @@ function createDiceRollStyle() {
     document.head.appendChild(style);
 }
 createDiceRollStyle();
+//计算开奖后闪烁选好区域
+function blinkArea(openCode) {
+    let openCode_arr = openCode.split(','); //"1,2,3" => [1,2,3];
+    let openCodeValue_3w = openCode_arr.join(''); //[1,2,3] => 123
+    let openCodeValue_2w = choose(openCode_arr, 2).map(itemArr=>String(itemArr).split(',').join(''));//[1,2,3] =>[12,13,23]
+    let openCodeValue_1w = openCode_arr;
+    return [...openCodeValue_1w,...openCodeValue_2w,openCodeValue_3w];
+}
+
+//求数组组合的所有组合方式[1,2,3]->[1,2],[1,3],[2,3]
+function choose(arr, size) {
+    var allResult = [];
+
+    function _choose(arr, size, result) {
+        var arrLen = arr.length;
+        if (size > arrLen) {
+            return;
+        }
+        if (size == arrLen) {
+            allResult.push([].concat(result, arr))
+        } else {
+            for (var i = 0; i < arrLen; i++) {
+                var newResult = [].concat(result);
+                newResult.push(arr[i]);
+
+                if (size == 1) {
+                    allResult.push(newResult);
+                } else {
+                    var newArr = [].concat(arr);
+                    newArr.splice(0, i + 　1);
+                    _choose(newArr, size - 1, newResult);
+                }
+            }
+        }
+    }
+    _choose(arr, size, []);
+
+    return allResult;
+}

@@ -305,9 +305,9 @@ createDiceRollStyle();
 function blinkArea(openCode) {
     let openCode_arr = openCode.split(','); //"1,2,3" => [1,2,3];
     let openCodeValue_3w = openCode_arr.join(''); //[1,2,3] => 123
-    let openCodeValue_2w = choose(openCode_arr, 2).map(itemArr=>String(itemArr).split(',').join(''));//[1,2,3] =>[12,13,23]
+    let openCodeValue_2w = choose(openCode_arr, 2).map(itemArr => String(itemArr).split(',').join('')); //[1,2,3] =>[12,13,23]
     let openCodeValue_1w = openCode_arr;
-    return [...openCodeValue_1w,...openCodeValue_2w,openCodeValue_3w];
+    return [...openCodeValue_1w, ...openCodeValue_2w, openCodeValue_3w];
 }
 
 //求数组组合的所有组合方式[1,2,3]->[1,2],[1,3],[2,3]
@@ -339,4 +339,27 @@ function choose(arr, size) {
     _choose(arr, size, []);
 
     return allResult;
+}
+//合并method和code相同的对象 订单
+function mergeOrder(order) {
+    return order.reduce((a, b) => {
+
+        let flag = a.some((item, index) => {
+            return item.method === b.method && item.code === b.code;
+        });
+        if (flag) {
+            for (let item of a) {
+                if (item.method === b.method && item.code === b.code) {
+                    item.count += b.count;
+                }
+            }
+        } else {
+            a.push(b);
+        }
+        return a;
+    }, [{
+        method: '',
+        code: '',
+        count: 0
+    }]);
 }

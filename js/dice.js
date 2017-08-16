@@ -344,15 +344,11 @@ function choose(arr, size) {
 function mergeOrder(order) {
     return order.reduce((a, b) => {
 
-        let flag = a.some((item, index) => {
+        let flagIndex = a.findIndex((item, index) => {
             return item.method === b.method && item.code === b.code;
         });
-        if (flag) {
-            for (let item of a) {
-                if (item.method === b.method && item.code === b.code) {
-                    item.count += b.count;
-                }
-            }
+        if (flagIndex !== -1) {
+            a[flagIndex].piece += b.piece;
         } else {
             a.push(b);
         }

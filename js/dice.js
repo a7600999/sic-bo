@@ -90,7 +90,7 @@ let param = { //不同筹码提交的时候算不同的obj
 };
 let totalCount = {}; //总金额，函数calculateIcon要用到
 let allValues = [];
-$('.wrap div').each(function (index, item) { //获取所有的value值存到数组
+$('[rel="selectCode"]').each(function (index, item) { //获取所有的value值存到数组
     if ($(item).attr('value')) {
         allValues.push($(item).attr('value'));
     }
@@ -105,11 +105,16 @@ $('.chips>.chip').off('click').on('click', function (e) {
     $(this).addClass('on').siblings('.chip').removeClass('on');
     priceNum = +$(this).attr('value');
 });
+$('.chips>.chip1').trigger('click');
 //投注
 let flyChip = null; //点击筹码飞过去的元素
 function createFlyChip(num, value) { //创建飞出去的筹码
     let ele = document.createElement('div');
-    $(ele).addClass(`flyChip${+num}`).attr('rel', 'betChip');
+    $(ele).addClass(`flyChip${+num}`).attr({
+        'rel': 'betChip',
+        'price': +num,
+        'code': value,
+    });
     return $(ele);
 }
 
@@ -132,11 +137,11 @@ function letChipFly(priceNum, element, Elements_forBet) { //筹码飞出去方�
     Elements_forBet.push({ //存储飞出去的筹码，用在取消投注的时候用
         "chip": flyingChip,
         "value": element.attr('value'),
-        "context": element
+        "context": element,
     });
-    setTimeout(() => {
+    /* setTimeout(() => {
         $(`[flyTo="${value}_${priceNum}"]`).remove();
-    }, 300);
+    }, 300); */
 }
 
 function addChip(ele, count) {
@@ -144,7 +149,6 @@ function addChip(ele, count) {
         $(ele).appendTo($('body')).css({
             "transform": `translateY(-${i === 0?(5 * Math.random()):i * 5}px)`
         });
-        // $('body').append(ele);
     }
 }
 
@@ -173,22 +177,23 @@ function letChipFlyBack(Elements_forBet) { //取消投注让筹码飞回来
 
 
 
-let allMethods = ['[method="dxds_dxds_dxds"]', '[method="th2_th2fx_fx"]', '[method="th3_th3_th3dx"]', '[method="th3_th3_th3tx"]', '[method="hz_hz_hz"]', '[method="bth2_bth2_ds"]', '[method="cygh_cygh_cygh"]', '[method="bth3_lh3_dx"]'];
+//点击选号
+$('[rel="selectCode"]').off('click').on('click', function (e) {
 
-$(String(allMethods)).off('click').on('click', function (e) {
-    if (!priceNum) { //如果没有选定筹码，不能下注
-        return;
-    }
     letChipFly(priceNum, $(this), Elements_forBet);
+    setTimeout(() => {
+        renderIcon(calculateIcon(getEachCodeMoneyObj()[value]), $(this));
+    }, 250);
     let method = $(this).attr('method');
     let value = $(this).attr('value'); //code
-    totalCount[value] += priceNum;
-    setTimeout(() => {
+    // totalCount[value] += priceNum;
+    /* setTimeout(() => {
         renderIcon(calculateIcon(totalCount[value]), $(this));
-    }, 250);
-    params[value][priceNum].method = method;
-    params[value][priceNum].code = value;
-    params[value][priceNum].piece = calculateIcon(totalCount[value])[priceNum];
+    }, 250); */
+    /*  params[value][priceNum].method = method;
+     params[value][priceNum].code = value;
+     params[value][priceNum].piece = calculateIcon(totalCount[value])[priceNum]; */
+
 });
 
 
@@ -210,7 +215,7 @@ function calculateIcon(count) { //count 1分钱的个数,chipTypes = [1,5,10,20,
 //根据calculateIcon出的钱种个数生成对应图标
 function renderIcon(iconObj, clickedElem) {
     let value = clickedElem.attr('value');
-    $(`[address_value="${value}"]`).remove();
+    $(`[code="${value}"]`).remove();
     for (let key in iconObj) {
         if (iconObj[key]) {
             let elem = createFlyChip(key, value).css({
@@ -221,14 +226,14 @@ function renderIcon(iconObj, clickedElem) {
                 "top": function () {
                     return clickedElem.offset().top + clickedElem[0].offsetHeight / 2 - $('.chips>.chip').height() / 2; //21是飞盘一半的高度
                 }
-            }).attr('address_value', value);
+            });
             addChip(elem[0].outerHTML, iconObj[key]);
         }
     }
 }
 //计算倍数，投注了的为1倍
 
-function calculatePiece() { //翻倍
+/* function calculatePiece() { //翻倍
     for (let codeValue in params) {
         for (let chipNum in params[paramValue]) {
             if (params[paramValue][chipNum]['piece']) {
@@ -236,16 +241,23 @@ function calculatePiece() { //翻倍
             }
         }
     }
-}
+} */
 
-function calculateTotalCount() { //计算总金额
-    let count = 0;
-    for (let codeValue in totalCount) {
-        if (totalCount[codeValue]) {
-            count += totalCount[codeValue];
+function getEachCodeMoneyObj() { //计算每个选号上面投注总金额
+
+    let countObj = {};
+    allValues.forEach((value) => {
+        countObj[value] = 0;
+        if ($(`[code="${value}"]`).length > 0) {
+            $(`[code="${value}"]`).each(function (index, elem) {
+                if (!$(elem).hasClass('bettedChip')) {
+                    countObj[value] += Number($(elem).attr('price'));
+                }
+            });
         }
-    }
-    return count;
+    });
+
+    return countObj;
 }
 //生成订单，根据桌面上筹码生成订单数据
 function createOrder() {
@@ -253,15 +265,112 @@ function createOrder() {
 }
 //取消投注
 cancelButton.off('click').on('click', function (e) {
-    letChipFlyBack(Elements_forBet);
+    $('[rel="betChip"]').each(function (index, chip) {
+        if (!$(chip).hasClass('bettedChip')) {
+            let priceNum = $(chip).attr('price');
+            let to_Chip = $(`.chips .chip${priceNum}`);
+            let styleObj_to = {
+                'position': 'absolute',
+                'left': to_Chip.offset().left,
+                'top': to_Chip.offset().top,
+                'transform': to_Chip.css('transform'),
+                'transition': 'all 0.2s ease',
+            };
+            $(chip).css(styleObj_to);
+            setTimeout(() => {
+                $(chip).remove();
+            }, 250);
+        }
+    });
 });
-//翻倍投注
+//翻倍投注 
+
 pieceButtoon.off('click').on('click', function (e) {
-    calculatePiece();
+  /*   $('.bettedChip').each(function(index,chip){
+        let value = $(chip).attr('code');
+        let priceNum = +$(chip).attr('price');
+        letChipFly(priceNum, $(`[value=${value}][rel="selectCode"]`), Elements_forBet);
+    }) */
+    let bettedChips = [];
+    let oldLength = 0;
+    let newLength = 0;
+    let count = 1;
+    $('[rel="betChip"]').each(function (index, chip) {
+        let value = $(chip).attr('code');
+        /* let chipClone = $(chip).clone();
+        chipClone.hasClass('bettedChip') && chipClone.removeClass('bettedChip'); */
+        let priceNum = +$(chip).attr('price');
+        /* let fromChip = $(`.chips .chip${priceNum}`);
+        let styleObj_from = {
+            'position': 'absolute',
+            'left': fromChip.offset().left,
+            'top': fromChip.offset().top,
+            'transform': fromChip.css('transform'),
+            'transition': 'all 0.2s ease',
+        }; */
+        oldLength = newLength;
+        if ($(chip).hasClass('bettedChip')) {
+            newLength = bettedChips.push($(chip));
+            console.log(oldLength,newLength) 
+            letChipFly(priceNum, $(`[value=${value}][rel="selectCode"]`), Elements_forBet);
+            letChipFly(priceNum, $(`[value=${value}][rel="selectCode"]`), Elements_forBet);
+        } else {
+            letChipFly(priceNum, $(`[value=${value}][rel="selectCode"]`), Elements_forBet);
+        }
+        setTimeout(() => {
+            renderIcon(calculateIcon(getEachCodeMoneyObj()[value]), $(`[value=${value}][rel="selectCode"]`)); 
+            if(count<2){
+                if(newLength>0&&newLength === oldLength) {
+                    count ++;
+                    bettedChips.forEach((bChip)=>{
+                        $('body').append($(bChip));
+                    });
+                }     
+            }
+                 
+        }, 250);
+        /*  let styleObj_to = {
+             'position': 'absolute',
+             'left': chipClone.css('left'),
+             'top': chipClone.css('top'),
+             'transform': chipClone.css('transform'),
+         };
+         chipClone.css(styleObj_from);
+         new Promise(function (resolve, reject) {
+             if ($(chip).hasClass('bettedChip')) {
+                 let elemA = chipClone.appendTo($('body'));
+                 let elemB = chipClone.appendTo($('body'));
+                 setTimeout(function () {
+                     elemA.css(styleObj_to);
+                     elemB.css(styleObj_to);
+                     resolve();
+                 }, 200);
+
+             } else if (!$(chip).hasClass('bettedChip')) {
+                 let elem = chipClone.appendTo($('body'));
+                 setTimeout(function () {
+                     elem.css(styleObj_to);
+                     resolve();
+                 }, 200);
+             }
+         }).then(function () {
+             setTimeout(() => {
+                 console.log(getEachCodeMoneyObj())
+                 renderIcon(calculateIcon(getEachCodeMoneyObj()[value]), $(`[value=${value}][rel="selectCode"]`));
+             }, 250);
+         }); */
+
+    });
+   
 });
 //确认投注
 betButton.off('click').on('click', function (e) {
-
+    bettedFlag = {}; //投注过的只能翻倍一次
+    /* Elements_betted = Elements_forBet;
+    Elements_forBet.length = 0; */
+    $('[rel="betChip"]').each(function (index, chip) {
+        !$(chip).hasClass('bettedChip') && $(chip).addClass('bettedChip');
+    });
 });
 //计算随机骰子随机旋转位置
 function createDiceRollStyle() {

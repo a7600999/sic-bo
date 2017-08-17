@@ -1747,3 +1747,7 @@
     height: 60px;
     position: absolute;
 }
+
+[rel="betChip"].bettedChip {
+    border: 2px solid blueviolet;
+}

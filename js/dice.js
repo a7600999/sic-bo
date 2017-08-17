@@ -1,5 +1,3 @@
-let Elements_forBet = []; //建立一个投注的筹码数组存放这些将要投注的筹码,可以取消投注
-let Elements_betted = []; //建立一个投注了的筹码数组存放这些已经投注的筹码,不能取消投注
 //投注算投注内容的时候就看桌子上放的筹码
 let diceGameContent = $('.diceGameContent');
 let balanceAmount = $('.balanceAmount');
@@ -29,7 +27,6 @@ $('.chips>.chip').off('click').on('click', function (e) {
 });
 $('.chips>.chip1').trigger('click');
 //投注
-let flyChip = null; //点击筹码飞过去的元素
 function createFlyChip(priceNum, value, method, odds, point) { //创建飞出去的筹码
     let ele = document.createElement('div');
     $(ele).addClass(`flyChip${+priceNum}`).attr({
@@ -88,9 +85,9 @@ $('[rel="selectCode"]').off('click').on('click', function (e) {
 });
 
 
-/* 计算筹码图标，各种面额硬币并非实体，只有1分这个计量单位。
+/* 计算筹码图标，各种面额硬币并非实体，只有1元这个计量单位。
 然后每次投钱或者去掉钱，自动把分换算成相应图标。 */
-function calculateIcon(count) { //count 1分钱的个数,chipTypes = [1,5,10,20,50,100,1000,5000]
+function calculateIcon(count) { //count 1元钱的个数,chipTypes = [1,5,10,20,50,100,1000,5000]
     //5k筹码的个数
     let result = {};
     result[5000] = Math.floor(count / 5000);

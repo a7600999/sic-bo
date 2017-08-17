@@ -1,16 +1,3 @@
-/* 
-let params = {
-    "method": null, //玩法rxfs_rxfs_1z1
-    "code": null, //投注号码
-    "odds": null, //赔率3.96
-    "point": null, //返点    
-    "nums": 0, //投注的注数
-    "piece": 0, //投注的倍数
-    "price": 1, //筹码金额
-    "amount": 1, //总金额price*nums    
-};
- */
-
 let Elements_forBet = []; //建立一个投注的筹码数组存放这些将要投注的筹码,可以取消投注
 let Elements_betted = []; //建立一个投注了的筹码数组存放这些已经投注的筹码,不能取消投注
 //投注算投注内容的时候就看桌子上放的筹码
@@ -20,85 +7,20 @@ let betMoneyAmount = $('.betMoneyAmount');
 let cancelButton = $('.cancelButton');
 let betButton = $('.betButton');
 let pieceButtoon = $('.pieceButtoon');
+let pieceCount = 0;
 
 //屏幕自适应
-(function () {
-    /* let scale = document.body.clientWidth / 1920;
-    diceGameContent.css({
-        'zoom': scale,
-    }); */
-    diceGameContent.css({
-        'width': document.body.clientWidth,
-    });
-})();
-let common_param = {
-    "method": null,
-    "code": null,
-    "odds": null, //后台传过来的
-    "point": null //后台传过来的
-};
-let params = {};
-let param = { //不同筹码提交的时候算不同的obj
-    1: jQuery.extend({
-        "nums": 1,
-        "piece": 0,
-        "price": 1,
-        "amount": null
-    }, common_param),
-    5: jQuery.extend({
-        "nums": 1,
-        "piece": 0,
-        "price": 5,
-        "amount": null
-    }, common_param),
-    10: jQuery.extend({
-        "nums": 1,
-        "piece": 0,
-        "price": 10,
-        "amount": null
-    }, common_param),
-    20: jQuery.extend({
-        "nums": 1,
-        "piece": 0,
-        "price": 20,
-        "amount": null
-    }, common_param),
-    50: jQuery.extend({
-        "nums": 1,
-        "piece": 0,
-        "price": 50,
-        "amount": null
-    }, common_param),
-    100: jQuery.extend({
-        "nums": 1,
-        "piece": 0,
-        "price": 100,
-        "amount": null
-    }, common_param),
-    1000: jQuery.extend({
-        "nums": 1,
-        "piece": 0,
-        "price": 1000,
-        "amount": null
-    }, common_param),
-    5000: jQuery.extend({
-        "nums": 1,
-        "piece": 0,
-        "price": 5000,
-        "amount": null
-    }, common_param)
-};
-let totalCount = {}; //总金额，函数calculateIcon要用到
+diceGameContent.css({
+    'width': document.body.clientWidth,
+});
+
 let allValues = [];
 $('[rel="selectCode"]').each(function (index, item) { //获取所有的value值存到数组
     if ($(item).attr('value')) {
         allValues.push($(item).attr('value'));
     }
 });
-allValues.forEach((item, index) => { //每个value值对应提交对象
-    params[item] = JSON.parse(JSON.stringify(param)); //浅复制，消除引用影响
-    totalCount[item] = 0; //初始每个选号投的筹码个数为0，投的金额为0
-});
+
 let priceNum = null; //筹码,未选择时为null
 //确定所用筹码
 $('.chips>.chip').off('click').on('click', function (e) {
@@ -108,20 +30,26 @@ $('.chips>.chip').off('click').on('click', function (e) {
 $('.chips>.chip1').trigger('click');
 //投注
 let flyChip = null; //点击筹码飞过去的元素
-function createFlyChip(num, value) { //创建飞出去的筹码
+function createFlyChip(priceNum, value, method, odds, point) { //创建飞出去的筹码
     let ele = document.createElement('div');
-    $(ele).addClass(`flyChip${+num}`).attr({
+    $(ele).addClass(`flyChip${+priceNum}`).attr({
         'rel': 'betChip',
-        'price': +num,
+        'price': +priceNum,
         'code': value,
+        'nums': 1,
+        'method': method,
+        'odds': odds,
+        'point': point,
     });
     return $(ele);
 }
 
-function letChipFly(priceNum, element, Elements_forBet) { //筹码飞出去方法
+function letChipFly(priceNum, element) { //筹码飞出去方法
+    let method = element.attr('method');
+    let odds = element.attr('odds');
+    let point = element.attr('point');
     let value = element.attr('value');
-    flyingChip = createFlyChip(priceNum, value);
-    flyingChip.attr('flyTo', `${value}_${priceNum}`);
+    flyingChip = createFlyChip(priceNum, value, method, odds, point);
 
     flyingChip.css({
         "position": 'absolute',
@@ -134,66 +62,29 @@ function letChipFly(priceNum, element, Elements_forBet) { //筹码飞出去方�
         "left": element.offset().left + element[0].offsetWidth / 2 - $('.chips>.chip').width() / 2,
         "top": element.offset().top + element[0].offsetHeight / 2 - $('.chips>.chip').height() / 2,
     });
-    Elements_forBet.push({ //存储飞出去的筹码，用在取消投注的时候用
-        "chip": flyingChip,
-        "value": element.attr('value'),
-        "context": element,
-    });
-    /* setTimeout(() => {
-        $(`[flyTo="${value}_${priceNum}"]`).remove();
-    }, 300); */
 }
 
 function addChip(ele, count) {
     for (let i = 0; i < count; i++) {
         $(ele).appendTo($('body')).css({
-            "transform": `translateY(-${i === 0?(5 * Math.random()):i * 5}px)`
+            "transform": `translateY(-${i === 0?(5 * Math.random()):i * 5}px)`,
         });
     }
 }
 
-function letChipFlyBack(Elements_forBet) { //取消投注让筹码飞回来
-    if (Elements_forBet.length === 0) {
-        return;
-    }
-    let lastFlyObj = Elements_forBet.splice(Elements_forBet.length - 1, 1)[0];
-    let backElement = lastFlyObj['chip'];
-    let value = lastFlyObj['value'];
-    let context = lastFlyObj['context'];
-    $('body').append(backElement);
-    let className = backElement.attr('class');
-    let price = +className.match(/flyChip(\d+)/)[1];
-    totalCount[value] -= price;
-
-    backElement.css({
-        "left": $(`.chips>.chip${price}`).offset().left,
-        "top": $(`.chips>.chip${price}`).offset().top,
-    }).attr('flyBack', `${value}_${price}`);
-    setTimeout(() => {
-        $(`[flyBack="${value}_${price}"]`).remove();
-        renderIcon(calculateIcon(totalCount[value]), context);
-    }, 250);
-}
-
-
-
 //点击选号
 $('[rel="selectCode"]').off('click').on('click', function (e) {
+    let method = $(this).attr('method');
+    let odds = $(this).attr('odds');
+    let point = $(this).attr('point');
+    let value = $(this).attr('value');
 
-    letChipFly(priceNum, $(this), Elements_forBet);
+    letChipFly(priceNum, $(this));
+
     setTimeout(() => {
         renderIcon(calculateIcon(getEachCodeMoneyObj()[value]), $(this));
+        betMoneyAmount.text(calculateBetMoney(getEachCodeMoneyObj()));
     }, 250);
-    let method = $(this).attr('method');
-    let value = $(this).attr('value'); //code
-    // totalCount[value] += priceNum;
-    /* setTimeout(() => {
-        renderIcon(calculateIcon(totalCount[value]), $(this));
-    }, 250); */
-    /*  params[value][priceNum].method = method;
-     params[value][priceNum].code = value;
-     params[value][priceNum].piece = calculateIcon(totalCount[value])[priceNum]; */
-
 });
 
 
@@ -214,11 +105,20 @@ function calculateIcon(count) { //count 1分钱的个数,chipTypes = [1,5,10,20,
 }
 //根据calculateIcon出的钱种个数生成对应图标
 function renderIcon(iconObj, clickedElem) {
+    let method = clickedElem.attr('method');
+    let odds = clickedElem.attr('odds');
+    let point = clickedElem.attr('point');
     let value = clickedElem.attr('value');
-    $(`[code="${value}"]`).remove();
+    $(`[code="${value}"]`).each(function (index, chip) {
+        if ($(chip).hasClass('bettedChip')) {
+
+        } else {
+            $(chip).remove();
+        }
+    });
     for (let key in iconObj) {
         if (iconObj[key]) {
-            let elem = createFlyChip(key, value).css({
+            let elem = createFlyChip(key, value, method, odds, point).css({
                 "position": 'absolute',
                 "left": function () {
                     return clickedElem.offset().left + clickedElem[0].offsetWidth / 2 - $('.chips>.chip').width() / 2; //23是飞盘一半的宽度
@@ -232,16 +132,6 @@ function renderIcon(iconObj, clickedElem) {
     }
 }
 //计算倍数，投注了的为1倍
-
-/* function calculatePiece() { //翻倍
-    for (let codeValue in params) {
-        for (let chipNum in params[paramValue]) {
-            if (params[paramValue][chipNum]['piece']) {
-                params[paramValue][chipNum]['piece'] *= 2;
-            }
-        }
-    }
-} */
 
 function getEachCodeMoneyObj() { //计算每个选号上面投注总金额
 
@@ -259,9 +149,40 @@ function getEachCodeMoneyObj() { //计算每个选号上面投注总金额
 
     return countObj;
 }
-//生成订单，根据桌面上筹码生成订单数据
-function createOrder() {
 
+function calculateBetMoney(countObj) {
+    let result = 0;
+    for (let code in countObj) {
+        result += Number(countObj[code]);
+    }
+    return result;
+}
+//生成订单，根据桌面上未投注筹码生成订单数据
+function createOrder() {
+    let order = [];
+    $('[rel="betChip"]').each(function (index, chip) {
+        let method = $(chip).attr('method');
+        let code = $(chip).attr('code');
+        let odds = $(chip).attr('odds');
+        let point = $(chip).attr('point');
+        let nums = $(chip).attr('nums');
+        let price = +$(chip).attr('price');
+        if ($(chip).hasClass('bettedChip')) {
+            /* 投注过的就不加入订单了 */
+        } else {
+            order.push({
+                "method": method, //玩法rxfs_rxfs_1z1
+                "code": method.indexOf('hz_hz_hz') !== -1 ? code.slice(-2) : code, //投注号码,和值前面有'hz01'把字符'hz'去掉
+                "odds": odds, //赔率3.96
+                "point": point, //返点    
+                "nums": nums, //投注的注数
+                "piece": 1*price, //投注的倍数
+                "price": price/price, //筹码金额,全部转换成1元模式
+                "amount": price * 1, //总金额price*piece    
+            });
+        }
+    });
+    return mergeOrder(order);
 }
 //取消投注
 cancelButton.off('click').on('click', function (e) {
@@ -279,98 +200,71 @@ cancelButton.off('click').on('click', function (e) {
             $(chip).css(styleObj_to);
             setTimeout(() => {
                 $(chip).remove();
+                betMoneyAmount.text(calculateBetMoney(getEachCodeMoneyObj()));
             }, 250);
         }
     });
+    pieceCount = 0;
 });
 //翻倍投注 
-
 pieceButtoon.off('click').on('click', function (e) {
-  /*   $('.bettedChip').each(function(index,chip){
-        let value = $(chip).attr('code');
-        let priceNum = +$(chip).attr('price');
-        letChipFly(priceNum, $(`[value=${value}][rel="selectCode"]`), Elements_forBet);
-    }) */
-    let bettedChips = [];
-    let oldLength = 0;
-    let newLength = 0;
-    let count = 1;
     $('[rel="betChip"]').each(function (index, chip) {
+        let chipClone = $(chip).clone();
         let value = $(chip).attr('code');
-        /* let chipClone = $(chip).clone();
-        chipClone.hasClass('bettedChip') && chipClone.removeClass('bettedChip'); */
         let priceNum = +$(chip).attr('price');
-        /* let fromChip = $(`.chips .chip${priceNum}`);
+        let fromChip = $(`.chips .chip${priceNum}`);
         let styleObj_from = {
             'position': 'absolute',
             'left': fromChip.offset().left,
             'top': fromChip.offset().top,
             'transform': fromChip.css('transform'),
             'transition': 'all 0.2s ease',
-        }; */
-        oldLength = newLength;
-        if ($(chip).hasClass('bettedChip')) {
-            newLength = bettedChips.push($(chip));
-            console.log(oldLength,newLength) 
-            letChipFly(priceNum, $(`[value=${value}][rel="selectCode"]`), Elements_forBet);
-            letChipFly(priceNum, $(`[value=${value}][rel="selectCode"]`), Elements_forBet);
-        } else {
-            letChipFly(priceNum, $(`[value=${value}][rel="selectCode"]`), Elements_forBet);
-        }
-        setTimeout(() => {
-            renderIcon(calculateIcon(getEachCodeMoneyObj()[value]), $(`[value=${value}][rel="selectCode"]`)); 
-            if(count<2){
-                if(newLength>0&&newLength === oldLength) {
-                    count ++;
-                    bettedChips.forEach((bChip)=>{
-                        $('body').append($(bChip));
-                    });
-                }     
+        };
+        let styleObj_to = {
+            'position': 'absolute',
+            'left': chipClone.css('left'),
+            'top': chipClone.css('top'),
+            'transform': chipClone.css('transform'),
+        };
+        chipClone.css(styleObj_from);
+        new Promise(function (resolve, reject) {
+            if ($(chip).hasClass('bettedChip')) {
+                if (pieceCount < 1) {
+                    pieceCount++;
+                    let elemA = $(chipClone[0].outerHTML).appendTo($('body'));
+                    let elemB = $(chipClone[0].outerHTML).appendTo($('body'));
+                    elemA.hasClass('bettedChip') && elemA.removeClass('bettedChip');
+                    elemB.hasClass('bettedChip') && elemB.removeClass('bettedChip');
+                    setTimeout(function () {
+                        elemA.css(styleObj_to);
+                        elemB.css(styleObj_to);
+                        resolve();
+                    }, 200);
+                }
+            } else if (!$(chip).hasClass('bettedChip')) {
+                let elem = chipClone.appendTo($('body'));
+                setTimeout(function () {
+                    elem.css(styleObj_to);
+                    resolve();
+                }, 200);
             }
-                 
-        }, 250);
-        /*  let styleObj_to = {
-             'position': 'absolute',
-             'left': chipClone.css('left'),
-             'top': chipClone.css('top'),
-             'transform': chipClone.css('transform'),
-         };
-         chipClone.css(styleObj_from);
-         new Promise(function (resolve, reject) {
-             if ($(chip).hasClass('bettedChip')) {
-                 let elemA = chipClone.appendTo($('body'));
-                 let elemB = chipClone.appendTo($('body'));
-                 setTimeout(function () {
-                     elemA.css(styleObj_to);
-                     elemB.css(styleObj_to);
-                     resolve();
-                 }, 200);
-
-             } else if (!$(chip).hasClass('bettedChip')) {
-                 let elem = chipClone.appendTo($('body'));
-                 setTimeout(function () {
-                     elem.css(styleObj_to);
-                     resolve();
-                 }, 200);
-             }
-         }).then(function () {
-             setTimeout(() => {
-                 console.log(getEachCodeMoneyObj())
-                 renderIcon(calculateIcon(getEachCodeMoneyObj()[value]), $(`[value=${value}][rel="selectCode"]`));
-             }, 250);
-         }); */
+        }).then(function () {
+            setTimeout(() => {
+                renderIcon(calculateIcon(getEachCodeMoneyObj()[value]), $(`[value=${value}][rel="selectCode"]`));
+                betMoneyAmount.text(calculateBetMoney(getEachCodeMoneyObj()));
+            }, 250);
+        });
 
     });
-   
+
 });
 //确认投注
 betButton.off('click').on('click', function (e) {
-    bettedFlag = {}; //投注过的只能翻倍一次
-    /* Elements_betted = Elements_forBet;
-    Elements_forBet.length = 0; */
+    console.log(createOrder());    
     $('[rel="betChip"]').each(function (index, chip) {
         !$(chip).hasClass('bettedChip') && $(chip).addClass('bettedChip');
     });
+    pieceCount = 0;
 });
 //计算随机骰子随机旋转位置
 function createDiceRollStyle() {
@@ -452,12 +346,12 @@ function choose(arr, size) {
 //合并method和code相同的对象 订单
 function mergeOrder(order) {
     return order.reduce((a, b) => {
-
         let flagIndex = a.findIndex((item, index) => {
             return item.method === b.method && item.code === b.code;
         });
         if (flagIndex !== -1) {
             a[flagIndex].piece += b.piece;
+            a[flagIndex].amount += b.amount;
         } else {
             a.push(b);
         }
@@ -465,6 +359,5 @@ function mergeOrder(order) {
     }, [{
         method: '',
         code: '',
-        count: 0
-    }]);
+    }]).slice(1);
 }

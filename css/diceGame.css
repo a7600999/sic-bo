@@ -1,3 +1,24 @@
+#canvas_fly {
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:999;
+    pointer-events: none;
+}
+#canvas_stop {
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:1000;
+    pointer-events: none;
+}
+#canvas_betted {
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:998;
+    pointer-events: none;
+}
 .diceGameContent {
     background-image: url('../images/diceGameBg.png');
     background-size: cover;

@@ -18,6 +18,7 @@
   "homepage": "https://github.com/leeseean/css3-dice#readme",
   "dependencies": {
     "jquery": "^3.2.1",
-    "normalize.css": "^7.0.0"
+    "normalize.css": "^7.0.0",
+    "zrender": "^3.5.2"
   }
 }

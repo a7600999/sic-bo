@@ -172,8 +172,8 @@ function createOrder() {
                 "odds": odds, //赔率3.96
                 "point": point, //返点    
                 "nums": nums, //投注的注数
-                "piece": 1*price, //投注的倍数
-                "price": price/price, //筹码金额,全部转换成1元模式
+                "piece": 1 * price, //投注的倍数
+                "price": price / price, //筹码金额,全部转换成1元模式
                 "amount": price * 1, //总金额price*piece    
             });
         }
@@ -209,29 +209,30 @@ pieceButtoon.off('click').on('click', function (e) {
         let chipClone = $(chip).clone();
         let value = $(chip).attr('code');
         let priceNum = +$(chip).attr('price');
-     
-        bettedFlag[value] = bettedFlag[value] || 0;        
+
+        bettedFlag[value] = bettedFlag[value] || 0;
         if ($(chip).hasClass('bettedChip')) {
             bettedChips.push($(chip));
-            if(bettedFlag[value]<1){
-                bettedFlag[value]  ++;                
+            if (bettedFlag[value] < 1) {
+                bettedFlag[value]++;
                 letChipFly(priceNum, $(`[value=${value}][rel="selectCode"]`), Elements_forBet);
                 letChipFly(priceNum, $(`[value=${value}][rel="selectCode"]`), Elements_forBet);
             }
         } else {
             letChipFly(priceNum, $(`[value=${value}][rel="selectCode"]`), Elements_forBet);
         }
-                
+
         setTimeout(() => {
-            $('.bettedChip').remove();            
-            renderIcon(calculateIcon(getEachCodeMoneyObj()[value]), $(`[value=${value}][rel="selectCode"]`)); 
-            bettedChips.forEach((bChip)=>{
+            $('.bettedChip').remove();
+            renderIcon(calculateIcon(getEachCodeMoneyObj()[value]), $(`[value=${value}][rel="selectCode"]`));
+            bettedChips.forEach((bChip) => {
                 $('body').append($(bChip));
             });
-           
-        }, 250);
-     
 
+        }, 250);
+
+
+    })
 });
 //确认投注
 betButton.off('click').on('click', function (e) {

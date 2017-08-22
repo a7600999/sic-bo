@@ -128,7 +128,6 @@ function renderIcon(iconObj, clickedElem) {
         }
     }
 }
-//计算倍数，投注了的为1倍
 
 function getEachCodeMoneyObj() { //计算每个选号上面投注总金额
 
@@ -173,8 +172,8 @@ function createOrder() {
                 "odds": odds, //赔率3.96
                 "point": point, //返点    
                 "nums": nums, //投注的注数
-                "piece": 1*price, //投注的倍数
-                "price": price/price, //筹码金额,全部转换成1元模式
+                "piece": 1 * price, //投注的倍数
+                "price": price / price, //筹码金额,全部转换成1元模式
                 "amount": price * 1, //总金额price*piece    
             });
         }
@@ -183,6 +182,7 @@ function createOrder() {
 }
 //取消投注
 cancelButton.off('click').on('click', function (e) {
+    bettedFlag = {};
     $('[rel="betChip"]').each(function (index, chip) {
         if (!$(chip).hasClass('bettedChip')) {
             let priceNum = $(chip).attr('price');
@@ -209,55 +209,36 @@ pieceButtoon.off('click').on('click', function (e) {
         let chipClone = $(chip).clone();
         let value = $(chip).attr('code');
         let priceNum = +$(chip).attr('price');
-        let fromChip = $(`.chips .chip${priceNum}`);
-        let styleObj_from = {
-            'position': 'absolute',
-            'left': fromChip.offset().left,
-            'top': fromChip.offset().top,
-            'transform': fromChip.css('transform'),
-            'transition': 'all 0.2s ease',
-        };
-        let styleObj_to = {
-            'position': 'absolute',
-            'left': chipClone.css('left'),
-            'top': chipClone.css('top'),
-            'transform': chipClone.css('transform'),
-        };
-        chipClone.css(styleObj_from);
-        new Promise(function (resolve, reject) {
-            if ($(chip).hasClass('bettedChip')) {
-                if (pieceCount < 1) {
-                    pieceCount++;
-                    let elemA = $(chipClone[0].outerHTML).appendTo($('body'));
-                    let elemB = $(chipClone[0].outerHTML).appendTo($('body'));
-                    elemA.hasClass('bettedChip') && elemA.removeClass('bettedChip');
-                    elemB.hasClass('bettedChip') && elemB.removeClass('bettedChip');
-                    setTimeout(function () {
-                        elemA.css(styleObj_to);
-                        elemB.css(styleObj_to);
-                        resolve();
-                    }, 200);
-                }
-            } else if (!$(chip).hasClass('bettedChip')) {
-                let elem = chipClone.appendTo($('body'));
-                setTimeout(function () {
-                    elem.css(styleObj_to);
-                    resolve();
-                }, 200);
+
+        bettedFlag[value] = bettedFlag[value] || 0;
+        if ($(chip).hasClass('bettedChip')) {
+            bettedChips.push($(chip));
+            if (bettedFlag[value] < 1) {
+                bettedFlag[value]++;
+                letChipFly(priceNum, $(`[value=${value}][rel="selectCode"]`), Elements_forBet);
+                letChipFly(priceNum, $(`[value=${value}][rel="selectCode"]`), Elements_forBet);
             }
-        }).then(function () {
-            setTimeout(() => {
-                renderIcon(calculateIcon(getEachCodeMoneyObj()[value]), $(`[value=${value}][rel="selectCode"]`));
-                betMoneyAmount.text(calculateBetMoney(getEachCodeMoneyObj()));
-            }, 250);
-        });
+        } else {
+            letChipFly(priceNum, $(`[value=${value}][rel="selectCode"]`), Elements_forBet);
+        }
 
-    });
+        setTimeout(() => {
+            $('.bettedChip').remove();
+            renderIcon(calculateIcon(getEachCodeMoneyObj()[value]), $(`[value=${value}][rel="selectCode"]`));
+            bettedChips.forEach((bChip) => {
+                $('body').append($(bChip));
+            });
 
+        }, 250);
+
+
+    })
 });
 //确认投注
 betButton.off('click').on('click', function (e) {
-    console.log(createOrder());    
+    bettedFlag = {}; //投注过的只能翻倍一次
+    Elements_betted = Elements_forBet;
+    Elements_forBet.length = 0;
     $('[rel="betChip"]').each(function (index, chip) {
         !$(chip).hasClass('bettedChip') && $(chip).addClass('bettedChip');
     });

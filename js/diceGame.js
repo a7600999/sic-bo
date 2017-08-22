@@ -7,9 +7,9 @@ let DiceGame = {
         let _this = this;
         let diceGameContent = $('.diceGameContent');
         //屏幕自适应
-        diceGameContent.css({
+       /*  diceGameContent.css({
             'width': document.body.clientWidth,
-        });
+        }); */
         //获取桌面选号所有的value值存到数组
         $('[rel="selectCode"]').each(function (index, item) { //获取所有的value值存到数组
             if ($(item).attr('value')) {

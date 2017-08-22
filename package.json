@@ -17,8 +17,14 @@
   },
   "homepage": "https://github.com/leeseean/css3-dice#readme",
   "dependencies": {
+    "amfe-flexible": "^2.2.1",
     "jquery": "^3.2.1",
     "normalize.css": "^7.0.0",
     "zrender": "^3.5.2"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-postcss": "^7.0.0",
+    "postcss-px2rem": "^0.3.0"
   }
 }

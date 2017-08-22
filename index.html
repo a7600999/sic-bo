@@ -6,16 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="./css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="./css/dice.css">
+    <link rel="stylesheet" type="text/css" href="./dest/css/dice.css">
     <title>dice-game</title>
     <script>
         let link = document.createElement('link');
         link.rel = "stylesheet";
         link.type = "text/css";
-        link.href = `./css/diceGame.css?t=${new Date().getTime()}`; //防止缓存
+        link.href = `./dest/css/diceGame.css?t=${new Date().getTime()}`; //防止缓存
         document.head.appendChild(link);
     </script>
     <script src="./js/vender/jquery.min.js"></script>
+    <script src="./node_modules/amfe-flexible/index.min.js"></script>
 </head>
 
 <body>

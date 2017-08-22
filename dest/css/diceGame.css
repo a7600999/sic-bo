@@ -1,0 +1,1807 @@
+#canvas_fly {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  pointer-events: none;
+}
+
+#canvas_stop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+#canvas_betted {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 998;
+  pointer-events: none;
+}
+
+.diceGameContent {
+  background-image: url('../images/diceGameBg.png');
+  background-size: cover;
+  position: relative;
+  /* width: 1920px; */
+  height: 6.00395rem;
+  background-repeat: no-repeat;
+  transform-style: preserve-3d;
+  perspective-origin: center;
+  perspective: 1.316656rem;
+}
+
+.diceGameBar {
+  height: 0.414747rem;
+  line-height: 0.414747rem;
+  filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#4e4e4e', endColorStr='#242424', gradientType='0');
+  background: -webkit-linear-gradient(top, #4e4e4e, #242424);
+  background: -moz-linear-gradient(top, bottom, #4e4e4e, #242424);
+  padding: 0 16%;
+}
+
+.outerWrap {
+  width: 9.414088rem;
+  height: 4.147465rem;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  margin: auto;
+  background-image: url(../images/desktop.png);
+  background-repeat: no-repeat;
+}
+
+.wrap {
+  width: 7.478604rem;
+  height: 3.133641rem;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.diceGameContent,
+.diceGameContent div {
+  box-sizing: border-box;
+}
+
+.explain {
+  top: 1%;
+  left: 5%;
+  position: absolute;
+  width: 0.118499rem;
+  height: 0.118499rem;
+  border-radius: 50%;
+  background: #072810;
+  font-size: 0.092166rem;
+  color: #fefefe;
+  cursor: pointer;
+  text-align: center;
+}
+
+.peilv {
+  color: #e1c022;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  font-size: 0.092166rem;
+}
+
+.rowOne {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 7.472021rem;
+  height: 1.18499rem;
+}
+
+.dxds_left {
+  position: absolute;
+  width: 1.316656rem;
+  height: 1.18499rem;
+  left: 0;
+  top: 0;
+}
+
+.dxds_da {
+  position: absolute;
+  top: 0;
+  width: 1.316656rem;
+  background: #116641;
+  height: 0.757077rem;
+  border: 0.009875rem solid #bbd484;
+  border-radius: 0.131666rem 0.032916rem 0.032916rem 0.032916rem;
+}
+
+.dxds_da:hover,
+.dxds_dan:hover,
+.dxds_shuang:hover,
+.dxds_xiao:hover,
+.th2_left_item:hover,
+.th2_right_item:hover,
+.th3_dx_item:hover,
+.th3_tx:hover,
+.hz_item:hover,
+.bth2_item:hover,
+.cygh_item:hover,
+.lh3_item:hover {
+  background-color: #578956;
+}
+
+@-webkit-keyframes bgBlink {
+  100% {
+    background: #578956;
+  }
+}
+
+@-moz-keyframes bgBlink {
+  100% {
+    background: #578956;
+  }
+}
+
+@keyframes bgBlink {
+  100% {
+    background: #578956;
+  }
+}
+
+.diceBgBlink {
+  animation-duration: 1s;
+  animation-name: bgBlink;
+  animation-iteration-count: infinite;
+}
+
+.dxds_dan {
+  position: absolute;
+  bottom: 0;
+  width: 1.316656rem;
+  background: #116641;
+  height: 0.34233rem;
+  border-radius: 0.032916rem;
+  border: 0.009875rem solid #bbd484;
+}
+
+.th2_left {
+  left: 1.382488rem;
+  top: 0;
+  position: absolute;
+  height: 1.18499rem;
+  background: #145a3b;
+  width: 0.855826rem;
+  border-radius: 0.032916rem;
+  border: 0.009875rem solid #bbd484;
+  padding: 0 0.032916rem 0 0.032916rem;
+}
+
+.th2_left_top {
+  width: 100%;
+  height: 0.131666rem;
+}
+
+.th2_left_item {
+  width: 100%;
+  background: #145a3b;
+  height: 0.315997rem;
+  border: 0.009875rem solid #bbd484;
+  border-radius: 0.032916rem;
+  margin-bottom: 0.013167rem;
+  padding: 0.013167rem 0.085583rem 0.013167rem 0.085583rem;
+}
+
+.th3 {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  height: 1.18499rem;
+  width: 2.83081rem;
+}
+
+.th2_right {
+  right: 1.382488rem;
+  top: 0;
+  position: absolute;
+  height: 1.18499rem;
+  background: #135335;
+  width: 0.855826rem;
+  border-radius: 0.032916rem;
+  border: 0.009875rem solid #bbd484;
+  padding: 0 0.032916rem 0 0.032916rem;
+}
+
+.dxds_right {
+  position: absolute;
+  width: 1.316656rem;
+  height: 1.18499rem;
+  right: 0;
+  top: 0;
+}
+
+.dxds_shuang {
+  position: absolute;
+  bottom: 0;
+  width: 1.316656rem;
+  background: #116641;
+  height: 0.34233rem;
+  border-radius: 0.032916rem;
+  border: 0.009875rem solid #bbd484;
+}
+
+.dxds_xiao {
+  position: absolute;
+  top: 0;
+  width: 1.316656rem;
+  background: #116641;
+  height: 0.757077rem;
+  border: 0.009875rem solid #bbd484;
+  border-radius: 0.032916rem 0.131666rem 0.032916rem 0.032916rem;
+}
+
+.th2_right_top {
+  width: 100%;
+  height: 0.131666rem;
+}
+
+.th2_right_item {
+  width: 100%;
+  background: #15603f;
+  height: 0.315997rem;
+  border: 0.009875rem solid #bbd484;
+  border-radius: 0.032916rem;
+  margin-bottom: 0.013167rem;
+  padding: 0.013167rem 0.085583rem 0.013167rem 0.085583rem;
+}
+
+.th3_dx_top {
+  height: 0.131666rem;
+  font-size: 0.105332rem;
+}
+
+.th3_dx {
+  height: 47.5%;
+  background: #176542;
+  width: 100%;
+  border: 0.009875rem solid #bbd484;
+  text-align: center;
+  font-size: 0;
+  border-radius: 0.032916rem;
+  padding: 0 0.032916rem 0.032916rem 0.032916rem;
+}
+
+.th3_tx {
+  height: 47.5%;
+  background: #1c8a59;
+  width: 100%;
+  border: 0.009875rem solid #bbd484;
+  border-radius: 0.032916rem;
+  margin-top: 0.052666rem;
+  padding: 0 0.032916rem 0.032916rem 0.032916rem;
+  position: absolute;
+  font-size: 0;
+}
+
+.th3_tx_top {
+  height: 0.131666rem;
+  font-size: 0.092166rem;
+}
+
+.th3_dx_item {
+  width: 0.40158rem;
+  border: 0.009875rem solid #bbd484;
+  border-radius: 0.032916rem;
+  background: #186a46;
+  height: 0.40158rem;
+  display: inline-block;
+  margin: 0 0.026333rem;
+  text-align: center;
+}
+
+.th3_tx_item {
+  width: 0.40158rem;
+  border: 0.006583rem solid transparent;
+  border-radius: 0.032916rem;
+  height: 0.40158rem;
+  display: inline-block;
+  margin: 0 0.026333rem;
+  text-align: center;
+}
+
+.rowTwo.hz {
+  position: absolute;
+  left: 0;
+  top: 1.217907rem;
+  width: 7.478604rem;
+  height: 0.473996rem;
+  font-size: 0;
+  text-align: center;
+}
+
+.hz_item {
+  width: 0.473996rem;
+  background: #136a44;
+  height: 0.473996rem;
+  display: inline-block;
+  margin-right: 0.064516rem;
+  border: 0.009875rem solid #bbd484;
+  border-radius: 0.032916rem;
+  position: relative;
+  text-align: center;
+}
+
+.hz_item:last-child {
+  margin-right: 0!important;
+}
+
+.hz_item>.num {
+  height: 70%;
+  font-size: 0.197498rem;
+  line-height: 0.38183rem;
+  color: #fefefe;
+  font-weight: 500;
+}
+
+.hz_item>.peilv {
+  height: 30%;
+  font-size: 0.092166rem;
+}
+
+.rowThree.bth2 {
+  position: absolute;
+  left: 0;
+  top: 1.724819rem;
+  width: 7.478604rem;
+  height: 0.737327rem;
+  font-size: 0;
+  text-align: center;
+  border: 0.009875rem solid #bbd484;
+  border-radius: 0.032916rem;
+  padding: 0.0395rem 0.526662rem;
+  background-color: #125638;
+}
+
+.rowThree.bth2>.bth2_peilv {
+  position: absolute;
+  top: 6%;
+  left: 1%;
+  width: 0.493746rem;
+  font-size: 0.092166rem;
+}
+
+.bth2_item {
+  width: 0.36208rem;
+  background: #125638;
+  height: 0.658328rem;
+  display: inline-block;
+  margin-right: 0.065833rem;
+  border: 0.009875rem solid #bbd484;
+  border-radius: 0.032916rem;
+  padding: 0.0395rem 0.032916rem;
+}
+
+.bth2_item:last-child {
+  margin-right: 0;
+}
+
+.rowFour {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 7.478604rem;
+  height: 0.605662rem;
+  font-size: 0;
+  text-align: center;
+}
+
+.cygh {
+  width: 49%;
+  height: 0.605662rem;
+  position: absolute;
+  left: 0;
+  text-align: center;
+  font-size: 0;
+  border: 0.009875rem solid #bbd484;
+  border-radius: 0.032916rem 0.032916rem 0.032916rem 0.131666rem;
+  padding: 0.098749rem 0 0.098749rem 0.526662rem;
+  background: linear-gradient(right, #155838, #0e3b27);
+  filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#0e3b27', endColorStr='#155838', gradientType='1');
+}
+
+.cygh>.cygh_peilv {
+  position: absolute;
+  top: 0.131666rem;
+  left: 0.098749rem;
+  font-size: 0.092166rem;
+  width: 0.526662rem;
+}
+
+.cygh_item {
+  background: #125438;
+  display: inline-block;
+  width: 0.394997rem;
+  height: 0.394997rem;
+  margin-right: 0.098749rem;
+  border: 0.009875rem solid #bbd484;
+  border-radius: 0.032916rem;
+  padding: 0.0395rem;
+}
+
+.cygh_item:last-child {
+  margin-right: 0;
+}
+
+.lh3 {
+  width: 49%;
+  height: 0.605662rem;
+  position: absolute;
+  top: 0;
+  text-align: center;
+  right: 0;
+  font-size: 0;
+  border: 0.009875rem solid #bbd484;
+  border-radius: 0.032916rem 0.032916rem 0.131666rem 0.032916rem;
+  padding: 0.052666rem 0.526662rem 0.052666rem 0.526662rem;
+  background: linear-gradient(left, #155838, #0e3b27);
+  filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#155838', endColorStr='#0e3b27', gradientType='1');
+}
+
+.lh3>.lh3_peilv {
+  position: absolute;
+  top: 0.131666rem;
+  left: 0.098749rem;
+  width: 0.526662rem;
+  font-size: 0.092166rem;
+}
+
+.lh3_item {
+  width: 0.500329rem;
+  background: #166241;
+  height: 0.500329rem;
+  display: inline-block;
+  margin-right: 0.131666rem;
+  border: 0.009875rem solid #bbd484;
+  border-radius: 0.032916rem;
+}
+
+.lh3_item:last-child {
+  margin-right: 0;
+}
+
+.diceGameInfo {
+  height: 0.414747rem;
+  line-height: 0.414747rem;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.diceGameInfo .userName {
+  display: inline-block;
+  position: relative;
+}
+
+.diceGameInfo .userName .name {
+  font-size: 0.118499rem;
+  left: 0.013167rem;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  padding: 0 0.131666rem 0 0.329164rem;
+  height: 0.210665rem;
+  line-height: 0.210665rem;
+  text-align: right;
+  border: 0.006583rem solid #493f3f;
+  background-color: #0e0e0e;
+  color: #df8818;
+  border-top-right-radius: 0.065833rem;
+  border-top-left-radius: 0.065833rem;
+  border-bottom-left-radius: 0.065833rem;
+  border-bottom-right-radius: 0.065833rem;
+}
+
+.diceGameInfo .userName .nameLogo {
+  height: 0.276498rem;
+  width: 0.276498rem;
+  vertical-align: middle;
+  background-image: url('../images/nameLogo.svg');
+  background-repeat: no-repeat;
+  background-size: 0.276498rem;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.balance {
+  position: relative;
+  display: inline-block;
+}
+
+.balanceLogo {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  margin: auto;
+  left: 0.0395rem;
+  display: inline-block;
+  height: 0.144832rem;
+  width: 0.144832rem;
+  background: url('../images/balance.svg');
+  background-size: 0.144832rem;
+  z-index: 1;
+}
+
+.balanceDetail {
+  bottom: 0;
+  top: 0;
+  left: 0;
+  margin: auto;
+  height: 0.197498rem;
+  line-height: 0.197498rem;
+  font-size: 0;
+  text-align: center;
+  padding: 0 0.131666rem 0 0.263331rem;
+  border: 0.006583rem solid #493f3f;
+  background-color: #0e0e0e;
+  color: #df8818;
+  border-top-right-radius: 0.065833rem;
+  border-top-left-radius: 0.065833rem;
+  border-bottom-left-radius: 0.065833rem;
+  border-bottom-right-radius: 0.065833rem;
+}
+
+.balanceDetail .balanceLabel,
+.betMoneyDetail .betMoneyLabel {
+  font-size: 0.118499rem;
+}
+
+.betMoney {
+  position: relative;
+  display: inline-block;
+}
+
+.betMoneyLogo {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  margin: auto;
+  left: 0.026333rem;
+  display: inline-block;
+  height: 0.197498rem;
+  width: 0.184332rem;
+  background: url('../images/betMoney.png');
+  background-repeat: no-repeat;
+  background-size: 0.197498rem 0.184332rem;
+  z-index: 1;
+}
+
+.betMoneyDetail {
+  bottom: 0;
+  top: 0;
+  margin: auto;
+  font-size: 0;
+  height: 0.197498rem;
+  line-height: 0.197498rem;
+  text-align: center;
+  padding: 0 0.131666rem 0 0.263331rem;
+  border: 0.006583rem solid #493f3f;
+  background-color: #0e0e0e;
+  color: #df8818;
+  border-top-right-radius: 0.065833rem;
+  border-top-left-radius: 0.065833rem;
+  border-bottom-left-radius: 0.065833rem;
+  border-bottom-right-radius: 0.065833rem;
+}
+
+.balanceDetail .balanceAmount,
+.betMoney .betMoneyAmount {
+  color: #ffffff;
+  font-size: 0.118499rem;
+}
+
+.dxds_da>.bigNumber {
+  position: absolute;
+  right: 5%;
+  top: 5%;
+  color: #fefefe;
+  font-size: 0.092166rem;
+}
+
+.dxds_da>.explain {
+  top: 10%;
+}
+
+.dxds_da>.peilv {
+  position: absolute;
+  left: 25%;
+  text-align: left;
+  top: 50%;
+}
+
+.dxds_da>.bigChinese {
+  right: 5%;
+  position: absolute;
+  bottom: 0;
+  font-size: 0.460829rem;
+  color: #fefefe;
+  height: 0.625411rem;
+  font-weight: 500;
+}
+
+.dxds_xiao>.smallNumber {
+  position: absolute;
+  left: 5%;
+  top: 5%;
+  color: #fefefe;
+  font-size: 0.092166rem;
+}
+
+.dxds_xiao>.explain {
+  top: 10%;
+  right: 5%;
+  left: inherit;
+}
+
+.dxds_xiao>.peilv {
+  position: absolute;
+  right: 25%;
+  text-align: right;
+  top: 50%;
+}
+
+.dxds_xiao>.smallChinese {
+  left: 5%;
+  position: absolute;
+  bottom: 0;
+  font-size: 0.460829rem;
+  color: #fefefe;
+  height: 0.625411rem;
+  font-weight: 500;
+}
+
+.dxds_dan>.peilv {
+  position: absolute;
+  left: 25%;
+  text-align: left;
+  line-height: 0.34233rem;
+}
+
+.dxds_dan>.explain {
+  margin-top: 0.111916rem;
+  position: absolute;
+  right: 5%;
+}
+
+.danChinese {
+  position: absolute;
+  right: 15%;
+  color: #fefefe;
+  font-size: 0.236998rem;
+  line-height: 0.315997rem;
+}
+
+.dxds_shuang>.peilv {
+  position: absolute;
+  right: 25%;
+  text-align: right;
+  line-height: 0.34233rem;
+}
+
+.dxds_shuang>.explain {
+  margin-top: 0.111916rem;
+  position: absolute;
+  right: 5%;
+  left: inherit;
+}
+
+.shuangChinese {
+  position: absolute;
+  left: 15%;
+  color: #fefefe;
+  font-size: 0.236998rem;
+  line-height: 0.315997rem;
+}
+
+.th2_left_item>.dice_rect:nth-child(1) {
+  width: 0.263331rem;
+  height: 0.263331rem;
+  float: left;
+}
+
+.th2_left_item>.dice_rect:nth-child(2) {
+  width: 0.263331rem;
+  height: 0.263331rem;
+  float: right;
+}
+
+.th2_right_item>.dice_rect:nth-child(1) {
+  width: 0.263331rem;
+  height: 0.263331rem;
+  float: left;
+}
+
+.th2_right_item>.dice_rect:nth-child(2) {
+  width: 0.263331rem;
+  height: 0.263331rem;
+  float: right;
+}
+
+.smallDiceWrap {
+  display: inline-block;
+  padding: 0.013167rem;
+}
+
+.th3_dx_item>.smallDiceWrap:first-child,
+.th3_tx_item>.smallDiceWrap:first-child {
+  margin: 0 0.032916rem;
+}
+
+.bth2_item>.dice_rect {
+  margin: auto;
+}
+
+.bth2_item>.dice_rect:nth-child(2) {
+  margin-top: 0.0395rem;
+}
+
+.cygh_item>.dice_rect_big {
+  margin: auto;
+}
+
+.lh3_item>.small2DiceWrap {
+  display: inline-block;
+  padding: 0.01975rem;
+}
+
+.lh3_item>.small2DiceWrap:first-child {
+  margin: 0 0.065833rem;
+}
+
+.diceGameBar .betBar {
+  height: 0.414747rem;
+  line-height: 0.414747rem;
+  position: relative;
+  display: inline-block;
+}
+
+.betBar>.button {
+  position: absolute;
+  text-align: center;
+  font-weight: 500;
+}
+
+.betBar>.button.cancelButton {
+  margin: auto;
+  left: 0.987492rem;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  color: firebrick;
+  width: 0.658328rem;
+  height: 0.250165rem;
+  line-height: 0.250165rem;
+  font-size: 0.118499rem;
+  border-radius: 0.0395rem;
+  background-image: linear-gradient(to top, #f2f2f2, #ffffff);
+  box-shadow: 0 0.005267rem 0.001975rem 0 rgba(255, 255, 255, 0.5), inset 0 0.006583rem 0.006583rem 0 rgba(255, 255, 255, 0.28);
+  border: solid 0.006583rem #e0e0e0;
+  cursor: pointer;
+}
+
+.betBar>.button.pieceButtoon {
+  margin: auto;
+  left: 2.600395rem;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  color: #fcfcfc;
+  width: 0.658328rem;
+  height: 0.250165rem;
+  line-height: 0.250165rem;
+  font-size: 0.118499rem;
+  border-radius: 0.0395rem;
+  background-image: linear-gradient(to bottom, #ffbe60, #ff9500 53%, #fb8c00);
+  box-shadow: 0 0.005267rem 0.001975rem 0 rgba(255, 255, 255, 0.5), inset 0 0.006583rem 0.006583rem 0.006583rem rgba(255, 255, 255, 0.26);
+  border: solid 0.006583rem #ef6c00;
+  cursor: pointer;
+}
+
+.betBar>.button.betButton {
+  margin: auto;
+  left: 1.797235rem;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  color: #fcfcfc;
+  width: 0.658328rem;
+  height: 0.250165rem;
+  line-height: 0.250165rem;
+  border-radius: 0.0395rem;
+  background-image: linear-gradient(to bottom, #e2423b, #c63030 53%, #ac1b1b);
+  box-shadow: 0 0.005267rem 0.001975rem 0 rgba(255, 255, 255, 0.5), inset 0 0.006583rem 0.006583rem 0.006583rem rgba(255, 255, 255, 0.4);
+  border: solid 0.006583rem #972626;
+  font-size: 0.118499rem;
+  cursor: pointer;
+}
+
+.betBar>.button.cancelButton:hover {
+  background-image: linear-gradient(to top, #f2f2f2, #ffffff);
+  box-shadow: 0 0.005267rem 0.001975rem 0 rgba(255, 255, 255, 0.5), inset 0 0.006583rem 0.006583rem 0 rgba(255, 255, 255, 0.28);
+  border: solid 0.006583rem #e0e0e0;
+  transition: all 0.2s ease-in-out;
+}
+
+.betBar>.button.cancelButton:active {
+  background-image: linear-gradient(to top, #f2f2f2, #ffffff);
+  box-shadow: 0 0.005267rem 0.001975rem 0 rgba(255, 255, 255, 0.5), inset 0 0.006583rem 0.006583rem 0 rgba(255, 255, 255, 0.28);
+  border: solid 0.006583rem #e0e0e0;
+}
+
+.betBar>.button.pieceButtoon:hover {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), linear-gradient(to bottom, #ffbe60, #ff9500 53%, #fb8c00);
+  box-shadow: 0 0.005267rem 0.001975rem 0 rgba(255, 255, 255, 0.5), inset 0 0.006583rem 0.006583rem 0 rgba(255, 255, 255, 0.28);
+  border: solid 0.006583rem #f5862c;
+  transition: all 0.2s ease-in-out;
+}
+
+.betBar>.button.pieceButtoon:active {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05)), linear-gradient(to bottom, #ffbe60, #ff9500 53%, #fb8c00);
+  box-shadow: 0 0.005267rem 0.001975rem 0 rgba(255, 255, 255, 0.5), inset 0 0.006583rem 0.006583rem 0.006583rem rgba(255, 255, 255, 0.26);
+  border: solid 0.006583rem #ef6c00;
+}
+
+.betBar>.button.betButton:hover {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), linear-gradient(to bottom, #e2423b, #c63030 53%, #ac1b1b);
+  box-shadow: 0 0.005267rem 0.001975rem 0 rgba(255, 255, 255, 0.5), inset 0 0.006583rem 0.006583rem 0.006583rem rgba(255, 255, 255, 0.4);
+  border: solid 0.006583rem #972626;
+  transition: all 0.2s ease-in-out;
+}
+
+.betBar>.button.betButton:active {
+  background-image: linear-gradient(rgba(50, 50, 50, 0.15), rgba(50, 50, 50, 0.15)), linear-gradient(to bottom, #e2423b, #c63030 53%, #ac1b1b);
+  box-shadow: 0 0.005267rem 0.001975rem 0 rgba(255, 255, 255, 0.5), inset 0 0.006583rem 0.006583rem 0.006583rem rgba(255, 255, 255, 0.4);
+  border: solid 0.006583rem #972626;
+}
+
+/* 飞出去的筹码 */
+
+.flyChip1 {
+  width: 0.302831rem;
+  height: 0.276498rem;
+  line-height: 0.276498rem;
+  font-size: 0.105332rem;
+  text-align: center;
+  background-image: url('../images/chips.png');
+  background-size: 3.041475rem;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  pointer-events: none;
+}
+
+.flyChip5 {
+  width: 0.302831rem;
+  height: 0.276498rem;
+  line-height: 0.276498rem;
+  font-size: 0.105332rem;
+  text-align: center;
+  background-image: url('../images/chips.png');
+  background-size: 3.041475rem;
+  background-repeat: no-repeat;
+  background-position: -0.394997rem 0;
+  pointer-events: none;
+}
+
+.flyChip10 {
+  width: 0.302831rem;
+  height: 0.276498rem;
+  line-height: 0.276498rem;
+  font-size: 0.105332rem;
+  text-align: center;
+  background-image: url('../images/chips.png');
+  background-size: 3.041475rem;
+  background-repeat: no-repeat;
+  background-position: -0.789993rem 0;
+  pointer-events: none;
+}
+
+.flyChip20 {
+  width: 0.302831rem;
+  height: 0.276498rem;
+  line-height: 0.276498rem;
+  font-size: 0.105332rem;
+  text-align: center;
+  background-image: url('../images/chips.png');
+  background-size: 3.041475rem;
+  background-repeat: no-repeat;
+  background-position: -1.178407rem 0;
+  pointer-events: none;
+}
+
+.flyChip50 {
+  width: 0.302831rem;
+  height: 0.276498rem;
+  line-height: 0.276498rem;
+  font-size: 0.105332rem;
+  text-align: center;
+  background-image: url('../images/chips.png');
+  background-size: 3.041475rem;
+  background-repeat: no-repeat;
+  background-position: -1.56682rem 0;
+  pointer-events: none;
+}
+
+.flyChip100 {
+  width: 0.302831rem;
+  height: 0.276498rem;
+  line-height: 0.276498rem;
+  font-size: 0.105332rem;
+  text-align: center;
+  background-image: url('../images/chips.png');
+  background-size: 3.041475rem;
+  background-repeat: no-repeat;
+  background-position: -1.955234rem 0;
+  pointer-events: none;
+}
+
+.flyChip1000 {
+  width: 0.302831rem;
+  height: 0.276498rem;
+  line-height: 0.276498rem;
+  font-size: 0.105332rem;
+  text-align: center;
+  background-image: url('../images/chips.png');
+  background-size: 3.041475rem;
+  background-repeat: no-repeat;
+  background-position: -2.356814rem 0;
+  pointer-events: none;
+}
+
+.flyChip5000 {
+  width: 0.302831rem;
+  height: 0.276498rem;
+  line-height: 0.276498rem;
+  font-size: 0.105332rem;
+  text-align: center;
+  background-image: url('../images/chips.png');
+  background-size: 3.041475rem;
+  background-repeat: no-repeat;
+  background-position: -2.745227rem 0;
+  pointer-events: none;
+}
+
+/* 飞出的盘结束 */
+
+/* 投注盘子 开始*/
+
+.chips {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  font-size: 0;
+  text-align: right;
+  width: 2.797893rem;
+  height: 0.276498rem;
+  padding: 0 0.164582rem;
+}
+
+.chips .chip {
+  display: inline-block;
+  width: 0.302831rem;
+  height: 0.276498rem;
+  line-height: 0.276498rem;
+  font-size: 0.105332rem;
+  text-align: center;
+  background-image: url('../images/chips.png');
+  background-size: 3.041475rem;
+  background-repeat: no-repeat;
+  top: -0.065833rem;
+  position: relative;
+}
+
+.chips .chip.chip1 {
+  background-position: 0 -0.34233rem;
+}
+
+.chips .chip.chip1.on,
+.chips .chip.chip1:hover {
+  background-position: 0 0;
+  top: -0.138249rem;
+}
+
+.chips .chip.chip5 {
+  background-position: -0.394997rem -0.34233rem;
+}
+
+.chips .chip.chip5.on,
+.chips .chip.chip5:hover {
+  top: -0.138249rem;
+  background-position: -0.394997rem 0;
+}
+
+.chips .chip.chip10 {
+  background-position: -0.789993rem -0.34233rem;
+}
+
+.chips .chip.chip10.on,
+.chips .chip.chip10:hover {
+  top: -0.138249rem;
+  background-position: -0.789993rem 0;
+}
+
+.chips .chip.chip20 {
+  background-position: -1.178407rem -0.34233rem;
+}
+
+.chips .chip.chip20.on,
+.chips .chip.chip20:hover {
+  top: -0.138249rem;
+  background-position: -1.178407rem 0;
+}
+
+.chips .chip.chip50 {
+  background-position: -1.56682rem -0.34233rem;
+}
+
+.chips .chip.chip50.on,
+.chips .chip.chip50:hover {
+  top: -0.138249rem;
+  background-position: -1.56682rem -0;
+}
+
+.chips .chip.chip100 {
+  background-position: -1.955234rem -0.34233rem;
+}
+
+.chips .chip.chip100.on,
+.chips .chip.chip100:hover {
+  top: -0.138249rem;
+  background-position: -1.955234rem 0;
+}
+
+.chips .chip.chip1000 {
+  background-position: -2.356814rem -0.34233rem;
+}
+
+.chips .chip.chip1000.on,
+.chips .chip.chip1000:hover {
+  top: -0.138249rem;
+  background-position: -2.356814rem 0;
+}
+
+.chips .chip.chip5000 {
+  background-position: -2.745227rem -0.34233rem;
+}
+
+.chips .chip.chip5000.on,
+.chips .chip.chip5000:hover {
+  top: -0.138249rem;
+  background-position: -2.745227rem 0;
+}
+
+/* 底盘筹码结束 */
+
+.diceGameContent .diceGameTopArea {
+  width: 7.899934rem;
+  height: 0.855826rem;
+  filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#525252', endColorStr='#242424', gradientType='0');
+  background: -webkit-linear-gradient(top, #525252, #242424);
+  background: -moz-linear-gradient(top, #525252, #242424);
+  position: absolute;
+  background-repeat: no-repeat;
+  margin: auto;
+  left: 0;
+  top: -0.895326rem;
+  right: 0;
+}
+
+.diceGameTopArea .diceLogo {
+  background-image: url('../images/diceLogo.png');
+  background-repeat: no-repeat;
+  position: absolute;
+  height: 0.789993rem;
+  line-height: 0.789993rem;
+  width: 1.974984rem;
+  bottom: 0;
+  left: 0.131666rem;
+}
+
+.diceGameTopArea .diceIssue {
+  position: absolute;
+  left: 2.106649rem;
+  width: 1.369322rem;
+  height: 0.855826rem;
+}
+
+.diceIssue .diceIssueTop {
+  position: absolute;
+  top: 0.032916rem;
+  height: 0.157999rem;
+  line-height: 0.157999rem;
+}
+
+.diceIssue .diceIssueCountDown {
+  position: absolute;
+  top: 0.164582rem;
+  width: 1.369322rem;
+  height: 0.631995rem;
+  background-size: 1.369322rem 0.631995rem;
+  background-image: url(../images/diceCountDown.png);
+  background-position: -0.032916rem 0;
+  background-repeat: no-repeat;
+}
+
+.diceGameTopArea .diceResult {
+  position: absolute;
+  left: 3.686636rem;
+  width: 1.290323rem;
+  height: 0.855826rem;
+}
+
+.diceResult .diceResultTop {
+  position: absolute;
+  top: 0.032916rem;
+  height: 0.157999rem;
+  line-height: 0.157999rem;
+}
+
+.diceResult .diceResultDetail {
+  position: absolute;
+  top: 0.164582rem;
+  width: 1.237656rem;
+  height: 0.631995rem;
+  background-size: 1.290323rem 0.631995rem;
+  background-image: url(../images/diceResultDetail.png);
+  background-position: -0.032916rem 0;
+  background-repeat: no-repeat;
+}
+
+.diceResult_1 {
+  background-image: url('../images/dice.svg');
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: 0.210665rem;
+}
+
+.diceResult_2 {
+  background-image: url('../images/dice.svg');
+  background-repeat: no-repeat;
+  background-position: 0 -0.263331rem;
+  background-size: 0.210665rem;
+}
+
+.diceResult_3 {
+  background-image: url('../images/dice.svg');
+  background-repeat: no-repeat;
+  background-position: 0 -0.526662rem;
+  background-size: 0.210665rem;
+}
+
+.diceResult_4 {
+  background-image: url('../images/dice.svg');
+  background-repeat: no-repeat;
+  background-position: 0 -0.84266rem;
+  background-size: 0.210665rem;
+}
+
+.diceResult_5 {
+  background-image: url('../images/dice.svg');
+  background-repeat: no-repeat;
+  background-position: 0 -1.14549rem;
+  background-size: 0.210665rem;
+}
+
+.diceResult_6 {
+  background-image: url('../images/dice.svg');
+  background-repeat: no-repeat;
+  background-position: 0 -1.448321rem;
+  background-size: 0.210665rem;
+}
+
+.diceResult .diceResultDetail .diceResultDetailFirst {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 20%;
+  margin: auto;
+  width: 0.210665rem;
+  height: 0.210665rem;
+}
+
+.diceResult .diceResultDetail .diceResultDetailSecond {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 0.210665rem;
+  height: 0.210665rem;
+}
+
+.diceResult .diceResultDetail .diceResultDetailThird {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 20%;
+  margin: auto;
+  width: 0.210665rem;
+  height: 0.210665rem;
+}
+
+.diceGameTopArea .diceRecent {
+  position: absolute;
+  left: 5.134957rem;
+  width: 1.64582rem;
+  height: 0.855826rem;
+}
+
+.diceRecent .diceRecentTop {
+  position: absolute;
+  top: 0.032916rem;
+  height: 0.157999rem;
+  line-height: 0.157999rem;
+}
+
+.diceRecent .diceRecentDetail {
+  position: absolute;
+  top: 0.164582rem;
+  width: 1.64582rem;
+  height: 0.631995rem;
+  background-size: 1.64582rem 0.631995rem;
+  background-image: url('../images/diceResultDetail.png');
+  background-position: -0.032916rem 0;
+  background-repeat: no-repeat;
+  padding: 0.052666rem;
+  z-index: 2;
+}
+
+.diceRecent .diceRecentDetail:hover {
+  background-image: url('../images/diceResultDetail_ten.png');
+  height: 1.777485rem;
+  background-size: 1.64582rem 1.777485rem;
+}
+
+.diceRecent .diceRecentDetail:hover .scrollWrap {
+  height: 1.579987rem;
+}
+
+.diceRecent .diceRecentDetail:hover ul {
+  height: 1.777485rem;
+}
+
+.diceIssueTop,
+.diceResultTop,
+.diceRecentTop,
+.diceRecentDetail {
+  color: #bed3f1;
+  text-align: left;
+  font-size: 0.092166rem;
+}
+
+.diceRecent .diceRecentDetail ul {
+  overflow-y: scroll;
+  height: 0.487163rem;
+  position: absolute;
+  width: 1.64582rem;
+}
+
+.diceRecent .diceRecentDetail .scrollWrap {
+  overflow: hidden;
+  position: relative;
+  height: 0.487163rem;
+  width: 1.527321rem;
+}
+
+.diceRecent .diceRecentDetail ul>li {
+  height: 0.092166rem;
+  margin: 0.065833rem 0;
+  padding: 0 0.131666rem;
+}
+
+.diceRecent .diceRecentDetail ul>li .diceRD_left,
+.diceRecent .diceRecentDetail ul>li .diceRD_center,
+.diceRecent .diceRecentDetail ul>li .diceRD_right {
+  float: left;
+  height: 0.092166rem;
+  line-height: 0.092166rem;
+}
+
+.diceRecent .diceRecentDetail ul>li .diceRD_left {
+  width: 24%;
+}
+
+.diceRecent .diceRecentDetail ul>li .diceRD_center {
+  width: 32%;
+  font-size: 0;
+}
+
+.diceRecent .diceRecentDetail ul>li .diceRD_right {
+  width: 44%;
+  position: relative;
+}
+
+.diceRecent .diceRecentDetail ul>li .diceRD_right>.diceRD_xt_r {
+  position: absolute;
+  left: 0.032916rem;
+}
+
+.diceRecent .diceRecentDetail ul>li .diceRD_right>.diceRD_xt_m {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 0.092166rem;
+  height: 0.092166rem;
+}
+
+.diceRecent .diceRecentDetail ul>li .diceRD_right>.diceRD_xt_l {
+  position: absolute;
+  right: 0.032916rem;
+}
+
+.diceRecent .diceRecentDetail ul>li .diceRD_center>.diceRD {
+  background-image: url(../images/dice_small.svg);
+  background-repeat: no-repeat;
+  width: 0.092166rem;
+  height: 0.092166rem;
+  display: inline-block;
+  background-size: 0.092166rem;
+  margin-right: 0.0395rem;
+}
+
+.diceRecent .diceRecentDetail ul>li .diceRD_center>.diceRD:last-child {
+  margin-right: 0;
+}
+
+.diceRD_1 {
+  background-position: 0 0;
+}
+
+.diceRD_2 {
+  background-position: 0 -0.105332rem;
+}
+
+.diceRD_3 {
+  background-position: 0 -0.217248rem;
+}
+
+.diceRD_4 {
+  background-position: 0 -0.322581rem;
+}
+
+.diceRD_5 {
+  background-position: 0 -0.434496rem;
+}
+
+.diceRD_6 {
+  background-position: 0 -0.552995rem;
+}
+
+.diceGameTopArea .diceLight {
+  position: absolute;
+  bottom: -0.223831rem;
+  background-image: url(../images/diceLight.png);
+  background-repeat: no-repeat;
+  height: 0.276498rem;
+  width: 6.754444rem;
+  left: 0;
+  right: 0;
+  margin: auto;
+  border-radius: 0.013167rem;
+}
+
+.diceIssueCountDownNum {
+  background-image: url('../images/diceCountDownNum.png');
+  position: absolute;
+  width: 0.263331rem;
+  height: 0.658328rem;
+}
+
+.diceIssueCountDownNum:nth-child(1) {
+  left: 0.078999rem;
+}
+
+.diceIssueCountDownNum:nth-child(2) {
+  left: 0.34233rem;
+}
+
+.diceIssueCountDownNum:nth-child(3) {
+  right: 0.394997rem;
+}
+
+.diceIssueCountDownNum:nth-child(4) {
+  right: 0.131666rem;
+}
+
+.diceIssueCountDown>.diceIssueCountDown1 {
+  background-position: 0 0;
+}
+
+.diceIssueCountDown>.diceIssueCountDown2 {
+  background-position: 0 -0.645161rem;
+}
+
+.diceIssueCountDown>.diceIssueCountDown3 {
+  background-position: 0 -1.277156rem;
+}
+
+.diceIssueCountDown>.diceIssueCountDown4 {
+  background-position: 0 -1.895984rem;
+}
+
+.diceIssueCountDown>.diceIssueCountDown5 {
+  background-position: 0 -2.527979rem;
+}
+
+.diceIssueCountDown>.diceIssueCountDown6 {
+  background-position: 0 -3.159974rem;
+}
+
+.diceIssueCountDown>.diceIssueCountDown7 {
+  background-position: 0 -3.778802rem;
+}
+
+.diceIssueCountDown>.diceIssueCountDown8 {
+  background-position: 0 -4.423963rem;
+}
+
+.diceIssueCountDown>.diceIssueCountDown9 {
+  background-position: 0 -5.042791rem;
+}
+
+.diceIssueCountDown>.diceIssueCountDown0 {
+  background-position: 0 -5.674786rem;
+}
+
+.diceCup {
+  background-image: url(../images/diceCup.png);
+  position: absolute;
+  background-repeat: no-repeat;
+  width: 2.764977rem;
+  height: 2.633311rem;
+  background-size: 7.491771rem 5.088874rem;
+  background-position: -3.752469rem -1.316656rem;
+  left: 0;
+  right: 0;
+  top: -1.18499rem;
+  margin: auto;
+  z-index: 5;
+  transform: scale(0.25);
+}
+
+.diceCup_animate {
+  animation-name: diceCupBig, diceCupShake, diceCupSmall;
+  animation-delay: 0s, 2s, 13s;
+  animation-duration: 2s, 100ms, 2s;
+  animation-fill-mode: forwards, forwards, forwards;
+  animation-timing-function: linear, ease-in-out, linear;
+  animation-iteration-count: 1, 100, 1;
+}
+
+.diceCup_animate .diceInCup_left {
+  animation-name: diceShake_left;
+  animation-delay: 2s;
+  animation-duration: 200ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: step-start;
+  animation-iteration-count: 50;
+}
+
+.diceCup_animate .diceInCup_center {
+  animation-name: diceShake_center;
+  animation-delay: 2s;
+  animation-duration: 200ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: step-start;
+  animation-iteration-count: 50;
+}
+
+.diceCup_animate .diceInCup_right {
+  animation-name: diceShake_right;
+  animation-delay: 2s;
+  animation-duration: 200ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: step-start;
+  animation-iteration-count: 50;
+}
+
+@keyframes diceCupBig {
+  100% {
+    transform: scale(0.65);
+    top: 0.236998rem;
+  }
+}
+
+@keyframes diceCupShake {
+  2% {
+    transform: translate(-0.003292rem, -0.003292rem) rotate(0.5deg) scale(0.65);
+  }
+
+  4% {
+    transform: translate(0.016458rem, -0.009875rem) rotate(-0.5deg) scale(0.65);
+  }
+
+  6% {
+    transform: translate(0.016458rem, 0.003292rem) rotate(1.5deg) scale(0.65);
+  }
+
+  8% {
+    transform: translate(-0.003292rem, 0.016458rem) rotate(-0.5deg) scale(0.65);
+  }
+
+  10% {
+    transform: translate(0.009875rem, -0.003292rem) rotate(1.5deg) scale(0.65);
+  }
+
+  12% {
+    transform: translate(0.003292rem, -0.009875rem) rotate(-0.5deg) scale(0.65);
+  }
+
+  14% {
+    transform: translate(0.003292rem, -0.009875rem) rotate(0.5deg) scale(0.65);
+  }
+
+  16% {
+    transform: translate(-0.003292rem, 0.003292rem) rotate(0.5deg) scale(0.65);
+  }
+
+  18% {
+    transform: translate(-0.009875rem, 0.009875rem) rotate(0.5deg) scale(0.65);
+  }
+
+  20% {
+    transform: translate(-0.003292rem, -0.009875rem) rotate(-0.5deg) scale(0.65);
+  }
+
+  22% {
+    transform: translate(0.009875rem, 0.009875rem) rotate(0.5deg) scale(0.65);
+  }
+
+  24% {
+    transform: translate(-0.009875rem, 0.016458rem) rotate(1.5deg) scale(0.65);
+  }
+
+  26% {
+    transform: translate(-0.003292rem, 0.003292rem) rotate(0.5deg) scale(0.65);
+  }
+
+  28% {
+    transform: translate(-0.009875rem, 0.009875rem) rotate(-0.5deg) scale(0.65);
+  }
+
+  30% {
+    transform: translate(0.009875rem, 0.003292rem) rotate(0.5deg) scale(0.65);
+  }
+
+  32% {
+    transform: translate(0.009875rem, -0.003292rem) rotate(0.5deg) scale(0.65);
+  }
+
+  34% {
+    transform: translate(0.016458rem, 0.009875rem) rotate(-0.5deg) scale(0.65);
+  }
+
+  36% {
+    transform: translate(-0.009875rem, -0.003292rem) rotate(-0.5deg) scale(0.65);
+  }
+
+  38% {
+    transform: translate(0.009875rem, 0.016458rem) rotate(-0.5deg) scale(0.65);
+  }
+
+  40% {
+    transform: translate(-0.003292rem, -0.009875rem) rotate(0.5deg) scale(0.65);
+  }
+
+  42% {
+    transform: translate(0.003292rem, 0.003292rem) rotate(0.5deg) scale(0.65);
+  }
+
+  44% {
+    transform: translate(0.009875rem, 0.009875rem) rotate(-0.5deg) scale(0.65);
+  }
+
+  46% {
+    transform: translate(-0.009875rem, 0.003292rem) rotate(-0.5deg) scale(0.65);
+  }
+
+  48% {
+    transform: translate(0.009875rem, 0.009875rem) rotate(1.5deg) scale(0.65);
+  }
+
+  50% {
+    transform: translate(0.003292rem, -0.003292rem) rotate(0.5deg) scale(0.65);
+  }
+
+  52% {
+    transform: translate(-0.003292rem, 0.003292rem) rotate(1.5deg) scale(0.65);
+  }
+
+  54% {
+    transform: translate(0.009875rem, -0.009875rem) rotate(0.5deg) scale(0.65);
+  }
+
+  56% {
+    transform: translate(-0.003292rem, -0.009875rem) rotate(1.5deg) scale(0.65);
+  }
+
+  58% {
+    transform: translate(0.016458rem, 0.009875rem) rotate(0.5deg) scale(0.65);
+  }
+
+  60% {
+    transform: translate(-0.003292rem, -0.003292rem) rotate(1.5deg) scale(0.65);
+  }
+
+  62% {
+    transform: translate(0.009875rem, 0.016458rem) rotate(-0.5deg) scale(0.65);
+  }
+
+  64% {
+    transform: translate(-0.009875rem, 0.003292rem) rotate(-0.5deg) scale(0.65);
+  }
+
+  66% {
+    transform: translate(0.016458rem, 0.009875rem) rotate(-0.5deg) scale(0.65);
+  }
+
+  68% {
+    transform: translate(0.016458rem, 0.003292rem) rotate(1.5deg) scale(0.65);
+  }
+
+  70% {
+    transform: translate(-0.009875rem, -0.009875rem) rotate(0.5deg) scale(0.65);
+  }
+
+  72% {
+    transform: translate(-0.009875rem, -0.003292rem) rotate(-0.5deg) scale(0.65);
+  }
+
+  74% {
+    transform: translate(-0.003292rem, -0.009875rem) rotate(1.5deg) scale(0.65);
+  }
+
+  76% {
+    transform: translate(0.009875rem, 0.009875rem) rotate(0.5deg) scale(0.65);
+  }
+
+  78% {
+    transform: translate(0.009875rem, -0.003292rem) rotate(1.5deg) scale(0.65);
+  }
+
+  80% {
+    transform: translate(-0.003292rem, 0.009875rem) rotate(1.5deg) scale(0.65);
+  }
+
+  82% {
+    transform: translate(0.016458rem, 0.016458rem) rotate(0.5deg) scale(0.65);
+  }
+
+  84% {
+    transform: translate(-0.003292rem, 0.003292rem) rotate(1.5deg) scale(0.65);
+  }
+
+  86% {
+    transform: translate(0.009875rem, -0.003292rem) rotate(1.5deg) scale(0.65);
+  }
+
+  88% {
+    transform: translate(0.016458rem, -0.009875rem) rotate(0.5deg) scale(0.65);
+  }
+
+  90% {
+    transform: translate(0.003292rem, -0.009875rem) rotate(-0.5deg) scale(0.65);
+  }
+
+  92% {
+    transform: translate(-0.003292rem, -0.009875rem) rotate(1.5deg) scale(0.65);
+  }
+
+  94% {
+    transform: translate(0.016458rem, 0.003292rem) rotate(1.5deg) scale(0.65);
+  }
+
+  96% {
+    transform: translate(-0.003292rem, -0.009875rem) rotate(-0.5deg) scale(0.65);
+  }
+
+  98% {
+    transform: translate(-0.003292rem, -0.009875rem) rotate(0.5deg) scale(0.65);
+  }
+
+  0%, 100% {
+    transform: translate(0, 0) rotate(0) scale(0.65);
+  }
+}
+
+@keyframes diceCupSmall {
+  100% {
+    transform: scale(0.25);
+    top: -1.18499rem;
+  }
+}
+
+.diceCup>.diceInCup1 {
+  background-size: 1.303489rem 1.000658rem;
+  background-image: url(../images/saizi_1.png);
+  background-position: 0.01975rem -0.368664rem;
+}
+
+.diceCup>.diceInCup2 {
+  background-size: 1.303489rem 1.000658rem;
+  background-image: url(../images/saizi_2.png);
+  background-position: 0.01975rem -0.368664rem;
+}
+
+.diceCup>.diceInCup3 {
+  background-size: 1.303489rem 1.000658rem;
+  background-image: url(../images/saizi_3.png);
+  background-position: 0.01975rem -0.368664rem;
+}
+
+.diceCup>.diceInCup4 {
+  background-size: 1.303489rem 1.000658rem;
+  background-image: url(../images/saizi_4.png);
+  background-position: 0.01975rem -0.368664rem;
+}
+
+.diceCup>.diceInCup5 {
+  background-size: 1.303489rem 1.000658rem;
+  background-image: url(../images/saizi_5.png);
+  background-position: 0.01975rem -0.368664rem;
+}
+
+.diceCup>.diceInCup6 {
+  background-size: 1.303489rem 1.000658rem;
+  background-image: url(../images/saizi_6.png);
+  background-position: 0.01975rem -0.368664rem;
+}
+
+.diceCup .diceInCup_left {
+  top: 0;
+  bottom: 0.296248rem;
+  margin: auto;
+  left: 0.664911rem;
+  width: 0.394997rem;
+  height: 0.394997rem;
+  position: absolute;
+}
+
+.diceCup .diceInCup_center {
+  top: 0;
+  bottom: 0.296248rem;
+  margin: auto;
+  right: 0;
+  left: 0;
+  width: 0.394997rem;
+  height: 0.394997rem;
+  position: absolute;
+}
+
+.diceCup .diceInCup_right {
+  top: 0;
+  bottom: 0.296248rem;
+  margin: auto;
+  right: 0.658328rem;
+  width: 0.394997rem;
+  height: 0.394997rem;
+  position: absolute;
+}
+
+[rel="betChip"].bettedChip {
+  border: 0.013167rem solid blueviolet;
+}

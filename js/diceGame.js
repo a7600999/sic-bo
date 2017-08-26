@@ -45,7 +45,7 @@ let DiceGame = {
                         'left': to_Chip.offset().left,
                         'top': to_Chip.offset().top,
                         'transform': to_Chip.css('transform'),
-                        'transform-origin': 'center top',
+                        'transform-origin': '0 0',
                         'transition': 'all 0.2s ease',
                     };
                     $(chip).css(styleObj_to);
@@ -178,7 +178,7 @@ let DiceGame = {
         flyingChip.css({
             "left": element.offset().left + element[0].offsetWidth * scale / 2 - $('.chips>.chip').width() * scale / 2,
             "top": element.offset().top + element[0].offsetHeight * scale / 2 - $('.chips>.chip').height() * scale / 2,
-            'transform-origin': 'center top',
+            'transform-origin': '0 0',
         });
     },
     addChip(ele, count) { // 加入筹码到桌面

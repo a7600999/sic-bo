@@ -1,4 +1,5 @@
 let diceCanvas = {
+    scale: 1,
     chipsImgObj: null, //筹码图片对象
     flyState: 'flyTo', //默认飞出去
     ctxFly: null, //画筹码飞的画笔
@@ -19,31 +20,36 @@ let diceCanvas = {
         1000: [166 * 6, 0],
         5000: [166 * 7, 0],
     },
-    stopOffset: {
-        1: -8,
-        5: -6,
-        10: -4,
-        20: -2,
-        50: 0,
-        100: 2,
-        1000: 4,
-        5000: 6,
+    stopOffset() {
+        return {
+            1: -8 * this.scale,
+            5: -6 * this.scale,
+            10: -4 * this.scale,
+            20: -2 * this.scale,
+            50: 0 * this.scale,
+            100: 2 * this.scale,
+            1000: 4 * this.scale,
+            5000: 6 * this.scale,
+        };
     },
     init() {
         let _this = this;
+        _this.selfAdaption();
+        let scale = _this.scale;
         //拿到画布
         let canvas_fly = document.getElementById('canvas_fly'); //渲染飞出去的筹码
-        canvas_fly.width = document.body.clientWidth;
-        canvas_fly.height = document.body.clientHeight || 800;
+        canvas_fly.width = document.body.clientWidth * scale;
+        canvas_fly.height = document.body.clientHeight * scale || 800;
         _this.ctxFly = canvas_fly.getContext('2d');
         let canvas_stop = document.getElementById('canvas_stop'); //渲染未确认投注放桌面上的筹码
-        canvas_stop.width = document.body.clientWidth;
-        canvas_stop.height = document.body.clientHeight || 800;
+        canvas_stop.width = document.body.clientWidth * scale;
+        canvas_stop.height = document.body.clientHeight * scale || 800;
         _this.ctxStop = canvas_stop.getContext('2d');
         let canvas_betted = document.getElementById('canvas_betted'); //渲染确认投注的筹码
-        canvas_betted.width = document.body.clientWidth;
-        canvas_betted.height = document.body.clientHeight || 800;
+        canvas_betted.width = document.body.clientWidth * scale;
+        canvas_betted.height = document.body.clientHeight * scale || 800;
         _this.ctxBetted = canvas_betted.getContext('2d');
+
         //拿到chipsImgObj对象
         let img = new Image();
         img.onload = function () {
@@ -74,7 +80,7 @@ let diceCanvas = {
             } else {
                 return; //没取消完毕不准过去
             }
-        
+
             _this.flyState = 'flyTo';
             let code = $(this).attr('value');
             let method = $(this).attr('method');
@@ -83,8 +89,8 @@ let diceCanvas = {
                 y: $(`.chips .chip${_this.priceNum}`).offset().top,
             };
             let endPos = {
-                x: $(this).offset().left + $(this)[0].offsetWidth / 2 - $('.chips>.chip').width() / 2,
-                y: $(this).offset().top + $(this)[0].offsetHeight / 2 - $('.chips>.chip').height() / 2,
+                x: $(this).offset().left + $(this)[0].offsetWidth * scale / 2 - $('.chips>.chip').width() * scale / 2,
+                y: $(this).offset().top + $(this)[0].offsetHeight * scale / 2 - $('.chips>.chip').height() * scale / 2,
             };
             _this.eachBetCount[code] = _this.eachBetCount[code] || 0;
             _this.eachBetCount[code] += _this.priceNum;
@@ -189,13 +195,13 @@ let diceCanvas = {
             if ((pieceIntervalOver.betFor && pieceIntervalOver.betted) || pieceIntervalOver.pieceCount === 0) {
                 pieceIntervalOver.betFor = false;
                 pieceIntervalOver.betted = false;
-                pieceIntervalOver.pieceCount += 1;  
+                pieceIntervalOver.pieceCount += 1;
             } else {
                 return; //上次翻倍全部渲染结束才能进行下一次点击操作，没结束操作无效                
             }
-           
+
             //timechunk分时函数，防止短时间多次触发卡死浏览器
-            let i = 0; 
+            let i = 0;
             let interval_bet = setInterval(() => {
                 if (i === bettedLen) {
                     pieceIntervalOver.betted = true;
@@ -217,6 +223,23 @@ let diceCanvas = {
                 $(`[rel="selectCode"][value="${code}"]`).trigger('click'); //自动桌面选号点击
                 j++;
             }, 10);
+        });
+    },
+    selfAdaption() {
+        let _this = this;
+        //屏幕自适应
+        _this.scale = screen.width < 1500 ? screen.width / 1920 : 1;
+        let diceGameContent = $('.diceGameContent');
+       /*  diceGameContent.css({
+            'width': document.body.clientWidth * _this.scale,
+        }); */
+
+        diceGameContent.css({
+            'transform': `scale(${_this.scale})`,
+            'transform-origin': 'center top',
+        });
+        $('body').css({
+            'height': diceGameContent.outerHeight() * _this.scale,
         });
     },
     /**
@@ -257,7 +280,7 @@ let diceCanvas = {
                 return;
             }
 
-            ctxFly.drawImage(img, ..._this.pricePos[priceNum], 120, 120, X, Y, 42, 42);
+            ctxFly.drawImage(img, ..._this.pricePos[priceNum], 120, 120, X, Y, 42 * _this.scale, 42 * _this.scale);
 
             animation = requestAnimationFrame(_chipFly);
         }
@@ -282,7 +305,7 @@ let diceCanvas = {
                     return clearInterval(interval);
                 }
                 let x = endPos['x'];
-                let y = endPos['y'] + _this.stopOffset[priceNum] - i * 2;
+                let y = endPos['y'] + _this.stopOffset()[priceNum] - i * 2;
                 y = y > clickedElemOption['position']['y'] ? y : clickedElemOption['position']['y'];
                 ctxEnd.globalCompositeOperation = "destination-over";
                 if (_this.flyState === 'betted') { //确认投注过的加个描边
@@ -290,12 +313,12 @@ let diceCanvas = {
                     ctxEnd.beginPath();
                     ctxEnd.lineWidth = 1;
                     ctxEnd.strokeStyle = "purple";
-                    ctxEnd.arc(x + 21, y + 21, 22, 0, 360);
+                    ctxEnd.arc(x + 21*_this.scale, y + 21*_this.scale, 22*_this.scale, 0, 360);
                     ctxEnd.stroke();
                     ctxEnd.restore();
                 }
 
-                ctxEnd.drawImage(img, ..._this.pricePos[priceNum], 120, 120, x, y, 42, 42);
+                ctxEnd.drawImage(img, ..._this.pricePos[priceNum], 120, 120, x, y, 42 * _this.scale, 42 * _this.scale);
                 i++;
             }, 10);
         }

@@ -129,9 +129,9 @@ let DiceGame = {
         //屏幕自适应
         _this.scale = screen.width < 1500 ? screen.width / 1920 : 1;
         let diceGameContent = $('.diceGameContent');
-        diceGameContent.css({
+      /*   diceGameContent.css({
             'width': document.body.clientWidth * _this.scale,
-        });
+        }); */
 
         diceGameContent.css({
             'transform': `scale(${_this.scale})`,

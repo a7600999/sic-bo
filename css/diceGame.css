@@ -19,9 +19,12 @@
     z-index:998;
     pointer-events: none;
 }
-.diceGameContent {
+body {
     background-image: url('../images/diceGameBg.png');
     background-size: cover;
+    background-repeat: no-repeat;
+}
+.diceGameContent {
     position: relative;
     /* width: 1920px; */
     height: 912px;
@@ -32,12 +35,18 @@
 }
 
 .diceGameBar {
+    width: 1430px;
     height: 63px;
     line-height: 63px;
     filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#4e4e4e', endColorStr='#242424', gradientType='0');
     background: -webkit-linear-gradient(top, #4e4e4e, #242424);
     background: -moz-linear-gradient(top, bottom, #4e4e4e, #242424);
     padding: 0 16%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
 }
 
 .outerWrap {
@@ -908,7 +917,7 @@
     background-image: url('../images/chips.png');
     background-size: 462px;
     background-repeat: no-repeat;
-    background-position: -120px 0px;
+    background-position: -118px 0px;
     pointer-events: none
 }
 
@@ -960,7 +969,7 @@
     background-image: url('../images/chips.png');
     background-size: 462px;
     background-repeat: no-repeat;
-    background-position: -358px 0px;
+    background-position: -356 0px;
     pointer-events: none;
 }
 
@@ -1037,7 +1046,7 @@
 .chips .chip.chip10.on,
 .chips .chip.chip10:hover {
     top: -21px;
-    background-position: -120px 0px;
+    background-position: -118px 0px;
 }
 
 .chips .chip.chip20 {
@@ -1077,7 +1086,7 @@
 .chips .chip.chip1000.on,
 .chips .chip.chip1000:hover {
     top: -21px;
-    background-position: -358px 0px;
+    background-position: -356px 0px;
 }
 
 .chips .chip.chip5000 {

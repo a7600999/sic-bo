@@ -982,7 +982,7 @@ body {
     background-image: url('../images/chips.png');
     background-size: 462px;
     background-repeat: no-repeat;
-    background-position: -417px 0px;
+    background-position: -416px 0px;
     pointer-events: none;
 }
 
@@ -1096,7 +1096,7 @@ body {
 .chips .chip.chip5000.on,
 .chips .chip.chip5000:hover {
     top: -21px;
-    background-position: -417px 0px;
+    background-position: -416px 0px;
 }
 
 

@@ -108,7 +108,7 @@ let DiceGame = {
                     }
                 }).then(function () {
                     setTimeout(() => {
-                        _this.renderIcon(_this.calculateIcon(_this.getEachCodeMoneyObj()[value]), $(`[value=${value}][rel="selectCode"]`));
+                        _this.renderIcon(_this.calculateIcon(_this.getEachCodeMoneyObj()[value]), $(`[value="${value}"][rel="selectCode"]`));
                         $('.betMoneyAmount').text(_this.calculateBetMoney(_this.getEachCodeMoneyObj()));
                         i++;
                     }, 250);

@@ -54,12 +54,27 @@ let diceCanvas = {
         //确定所用筹码
         $('.chips>.chip').off('click').on('click', function (e) {
             $(this).addClass('on').siblings('.chip').removeClass('on');
-            _this.priceNum = +$(this).attr('pricenum');
+            _this.priceNum = +$(this).attr('priceNum');
         });
         $('.chips>.chip10').trigger('click'); //默认筹码10
 
+        let pieceIntervalOver = { //连续点击翻倍生不生效的flag
+            'betFor': false,
+            'betted': false,
+            'pieceCount': 0,
+        };
+        let cancelOk = {
+            ok: false,
+            count: 0,
+        }; //取消完毕，默认false
         //点击桌面选号
         $('[rel="selectCode"]').off('click').on('click', function (e) {
+            if (cancelOk.ok || cancelOk.count === 0) {
+                cancelOk.count = 0;
+            } else {
+                return; //没取消完毕不准过去
+            }
+        
             _this.flyState = 'flyTo';
             let code = $(this).attr('value');
             let method = $(this).attr('method');
@@ -97,30 +112,59 @@ let diceCanvas = {
                 endPos,
             });
 
-            _this.chipFly(_this.ctxFly, _this.ctxStop, _this.chipsImgObj, _this.priceNum, startPos, endPos, clickedElemOption, 30);
+            _this.chipFly(_this.ctxFly, _this.ctxStop, _this.chipsImgObj, _this.priceNum, startPos, endPos, clickedElemOption, 10);
             $('.betMoneyAmount').text(_this.calculateBetMoney());
         });
         //取消投注
         $('.cancelButton').off('click').on('click', function (e) {
+            if (cancelOk.ok || cancelOk.count === 0) {
+                cancelOk.ok = false;
+            } else {
+                return; //没取消完毕不准过去
+            }
+            if ((pieceIntervalOver.betFor && pieceIntervalOver.betted) || pieceIntervalOver.pieceCount === 0) {
+
+            } else {
+                return; //上次翻倍全部渲染结束才能进行下一次点击操作，没结束操作无效                
+            }
+            cancelOk.count += 1;
+
+            pieceIntervalOver.pieceCount = 0;
             if (_this.betForRecords.length === 0) {
                 return;
             }
             _this.flyState = 'flyBack';
-            _this.ctxStop.clearRect(0, 0, document.body.clientWidth, document.body.clientHeight);
-            _this.betForRecords.forEach((record) => {
-                _this.chipFly(_this.ctxFly, _this.ctxStop, _this.chipsImgObj, record.priceNum, record.endPos, record.startPos, record.elemOption, 30);
-            });
-            //betForRecords,betOrderRecords回到初始值
-            _this.betForRecords.length = 0;
-            _this.betOrderRecords = {};
-            _this.eachBetCount = {};
-            $('.betMoneyAmount').text(_this.calculateBetMoney());
+            //timechunk 分时函数
+            let i = 0;
+            let interval = setInterval(() => {
+                if (i === _this.betForRecords.length) {
+                    cancelOk.ok = true;
+                    cancelOk.count = 0; //回到0
+                    _this.betForRecords.length = 0;
+                    _this.betOrderRecords = {};
+                    _this.eachBetCount = {};
+                    _this.ctxStop.clearRect(0, 0, document.body.clientWidth, document.body.clientHeight);
+                    $('.betMoneyAmount').text(_this.calculateBetMoney());
+                    return clearInterval(interval);
+                }
+                let record = _this.betForRecords[i];
+                _this.chipFly(_this.ctxFly, _this.ctxStop, _this.chipsImgObj, record.priceNum, record.endPos, record.startPos, record.elemOption, 10);
+                i++;
+            }, 10);
         });
         //确认投注
         $('.betButton').off('click').on('click', function (e) {
             if (_this.betForRecords.length === 0) {
                 alert('请先下注！');
                 return;
+            }
+            if (cancelOk.ok || cancelOk.count === 0) {} else {
+                return; //没取消完毕不准过去
+            }
+            if ((pieceIntervalOver.betFor && pieceIntervalOver.betted) || pieceIntervalOver.pieceCount === 0) {
+
+            } else {
+                return; //上次翻倍全部渲染结束才能进行下一次点击操作，没结束操作无效                
             }
             _this.flyState = 'betted';
             _this.bettedRecords = _this.bettedRecords.concat(_this.betForRecords);
@@ -139,17 +183,40 @@ let diceCanvas = {
             if (bettedLen === 0 && betForLen === 0) {
                 return;
             }
-            for (let i = 0; i < bettedLen; i++) { //自动桌面选号点击
+            if (cancelOk.ok || cancelOk.count === 0) {} else {
+                return; //没取消完毕不准过去
+            }
+            if ((pieceIntervalOver.betFor && pieceIntervalOver.betted) || pieceIntervalOver.pieceCount === 0) {
+                pieceIntervalOver.betFor = false;
+                pieceIntervalOver.betted = false;
+                pieceIntervalOver.pieceCount += 1;  
+            } else {
+                return; //上次翻倍全部渲染结束才能进行下一次点击操作，没结束操作无效                
+            }
+           
+            //timechunk分时函数，防止短时间多次触发卡死浏览器
+            let i = 0; 
+            let interval_bet = setInterval(() => {
+                if (i === bettedLen) {
+                    pieceIntervalOver.betted = true;
+                    return clearInterval(interval_bet);
+                }
                 let code = _this.bettedRecords[i]['elemOption']['code'];
                 _this.priceNum = _this.bettedRecords[i]['priceNum'];
-                $(`[rel="selectCode"][value="${code}"]`).trigger('click');
-                $(`[rel="selectCode"][value="${code}"]`).trigger('click');
-            }
-            for (let i = 0; i < betForLen; i++) {
-                let code = _this.betForRecords[i]['elemOption']['code'];
-                _this.priceNum = _this.betForRecords[i]['priceNum'];
-                $(`[rel="selectCode"][value="${code}"]`).trigger('click');
-            }
+                $(`[rel="selectCode"][value="${code}"]`).trigger('click'); //自动桌面选号点击
+                i++;
+            }, 10);
+            let j = 0;
+            let interval_betted = setInterval(() => {
+                if (j === betForLen) {
+                    pieceIntervalOver.betFor = true;
+                    return clearInterval(interval_betted);
+                }
+                let code = _this.betForRecords[j]['elemOption']['code'];
+                _this.priceNum = _this.betForRecords[j]['priceNum'];
+                $(`[rel="selectCode"][value="${code}"]`).trigger('click'); //自动桌面选号点击
+                j++;
+            }, 10);
         });
     },
     /**
@@ -204,17 +271,21 @@ let diceCanvas = {
      * @param {object} priceCountObj 每个筹码的个数{1:2,5:10,10:1,...,5000:1}
      * @param {object} endPos 坐标
      */
-    chipEnd(ctxEnd, img, priceCountObj, endPos, clickedElemOption) {
+    chipEnd(ctxEnd, img, priceCountObj, endPos, clickedElemOption) { //最终渲染位置
         let _this = this;
         //不同面额筹码位置错开
         for (let priceNum in priceCountObj) {
-            for (let i = 0; i < priceCountObj[priceNum]; i++) {
+            //timechunk 分时处理防止卡死浏览器
+            let i = 0;
+            let interval = setInterval(() => {
+                if (i === priceCountObj[priceNum]) {
+                    return clearInterval(interval);
+                }
                 let x = endPos['x'];
                 let y = endPos['y'] + _this.stopOffset[priceNum] - i * 2;
                 y = y > clickedElemOption['position']['y'] ? y : clickedElemOption['position']['y'];
                 ctxEnd.globalCompositeOperation = "destination-over";
                 if (_this.flyState === 'betted') { //确认投注过的加个描边
-                    console.log(3233232)
                     ctxEnd.save();
                     ctxEnd.beginPath();
                     ctxEnd.lineWidth = 1;
@@ -225,7 +296,8 @@ let diceCanvas = {
                 }
 
                 ctxEnd.drawImage(img, ..._this.pricePos[priceNum], 120, 120, x, y, 42, 42);
-            }
+                i++;
+            }, 10);
         }
     },
     /* 计算筹码图标，各种面额硬币并非实体，只有1元这个计量单位。然后每次投钱或者去掉钱，自动把分换算成相应图标。 */

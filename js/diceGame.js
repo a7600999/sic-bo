@@ -1,15 +1,15 @@
 /* 面向对象重构 */
 let DiceGame = {
     priceNum: 10, //默认筹码10投注
-    pieceCount: {},//这个主要是投注过的筹码翻倍的时候只能翻倍一次，用这个做判定
+    pieceCount: {}, //这个主要是投注过的筹码翻倍的时候只能翻倍一次，用这个做判定
     allValues: [], //所有选号值集合
     init() {
         let _this = this;
         let diceGameContent = $('.diceGameContent');
         //屏幕自适应
-       /*  diceGameContent.css({
+        diceGameContent.css({
             'width': document.body.clientWidth,
-        }); */
+        });
         //获取桌面选号所有的value值存到数组
         $('[rel="selectCode"]').each(function (index, item) { //获取所有的value值存到数组
             if ($(item).attr('value')) {
@@ -61,7 +61,7 @@ let DiceGame = {
         });
         //翻倍投注 
         $('.pieceButtoon').off('click').on('click', function (e) {
-            $('[rel="betChip"]').each(function (index, chip) {
+         /*    $('[rel="betChip"]').each(function (index, chip) {
                 let chipClone = $(chip).clone();
                 let value = $(chip).attr('code');
                 let priceNum = +$(chip).attr('price');
@@ -109,12 +109,67 @@ let DiceGame = {
                     }, 250);
                 });
 
-            });
+            }); */
+            let i = 0;
+            let chips = [...document.querySelectorAll('[rel="betChip"]')];
+            let interval = setInterval(() => {
+                if (i === chips.length) {
+                    return clearInterval(interval);
+                }
+                let chip = chips[i];
+                let chipClone = $(chip).clone();
+                let value = $(chip).attr('code');
+                let priceNum = +$(chip).attr('price');
+                let fromChip = $(`.chips .chip${priceNum}`);
+                let styleObj_from = {
+                    'position': 'absolute',
+                    'left': fromChip.offset().left,
+                    'top': fromChip.offset().top,
+                    'transform': fromChip.css('transform'),
+                    'transition': 'all 0.2s ease',
+                };
+                let styleObj_to = {
+                    'position': 'absolute',
+                    'left': chipClone.css('left'),
+                    'top': chipClone.css('top'),
+                    'transform': chipClone.css('transform'),
+                };
+                chipClone.css(styleObj_from);
+                new Promise(function (resolve, reject) {
+                    if ($(chip).hasClass('bettedChip')) {
+                        _this.pieceCount[value] = _this.pieceCount[value] || 0;
+                        if (_this.pieceCount[value] < 1) {
+                            _this.pieceCount[value]++;
+                            let elemA = $(chipClone[0].outerHTML).appendTo($('body'));
+                            let elemB = $(chipClone[0].outerHTML).appendTo($('body'));
+                            elemA.hasClass('bettedChip') && elemA.removeClass('bettedChip');
+                            elemB.hasClass('bettedChip') && elemB.removeClass('bettedChip');
+                            setTimeout(function () {
+                                elemA.css(styleObj_to);
+                                elemB.css(styleObj_to);
+                                resolve();
+                            }, 200);
+                        }
+                    } else if (!$(chip).hasClass('bettedChip')) {
+                        let elem = chipClone.appendTo($('body'));
+                        setTimeout(function () {
+                            elem.css(styleObj_to);
+                            resolve();
+                        }, 200);
+                    }
+                }).then(function () {
+                    setTimeout(() => {
+                        _this.renderIcon(_this.calculateIcon(_this.getEachCodeMoneyObj()[value]), $(`[value=${value}][rel="selectCode"]`));
+                        $('.betMoneyAmount').text(_this.calculateBetMoney(_this.getEachCodeMoneyObj()));
+                        i++;                
+                    }, 250);
+                });
+            }, 200);
 
         });
         //确认投注
         $('.betButton').off('click').on('click', function (e) {
-            console.log(_this.createOrder());    
+            console.log(_this.createOrder());
             $('[rel="betChip"]').each(function (index, chip) {
                 !$(chip).hasClass('bettedChip') && $(chip).addClass('bettedChip');
             });
@@ -155,11 +210,22 @@ let DiceGame = {
         });
     },
     addChip(ele, count) { // 加入筹码到桌面
-        for (let i = 0; i < count; i++) {
+        /*  for (let i = 0; i < count; i++) {
+             $(ele).appendTo($('body')).css({
+                 "transform": `translateY(-${i === 0?(5 * Math.random()):i * 5}px)`,
+             });
+         } */
+        //改用timechunk优化性能
+        let i = 0;
+        let interval = setInterval(() => {
+            if (i === count) {
+                return clearInterval(interval);
+            }
             $(ele).appendTo($('body')).css({
                 "transform": `translateY(-${i === 0?(5 * Math.random()):i * 5}px)`,
             });
-        }
+            i++;
+        }, 50);
     },
     /* 计算筹码图标，各种面额硬币并非实体，只有1元这个计量单位。然后每次投钱或者去掉钱，自动把分换算成相应图标。 */
     calculateIcon(count) { //count 1元钱的个数,chipTypes = [1,5,10,20,50,100,1000,5000]
@@ -270,7 +336,7 @@ let DiceGame = {
             code: '',
         }]).slice(1);
     },
-    createDiceRollStyle() {//计算随机骰子随机旋转位置
+    createDiceRollStyle() { //计算随机骰子随机旋转位置
         let style = document.createElement('style');
         let styleStr_left = ``;
         let styleStr_center = ``;
@@ -287,9 +353,9 @@ let DiceGame = {
             ['transform: translate3d(30px,0px,0px)', 'transform: translate3d(-16px,0px,0px)', 'transform: translate3d(-18px,-6px,-6px)'],
             ['transform: translate3d(0px,0px,0px)', 'transform: translate3d(0px,0px,0px)', 'transform: translate3d(0px,0px,0px)'],
         ];
-    
+
         let result = results[Math.floor(Math.random() * 4)];
-    
+
         styleStr_left += `100% {${result[0]}  rotate(0deg);}`; //最后的位置可以写个数组指定几个位置随机translate3d(-4px,0px,-4px)，translate3d(4px,0px,-4px)，translate3d(-4px,0px,4px)，translate3d(4px,0px,4px)
         styleStr_center += `100% {${result[1]}  rotate(0deg);}`;
         styleStr_right += `100% {${result[2]}  rotate(0deg);}`;
@@ -306,7 +372,7 @@ let DiceGame = {
         `;
         document.head.appendChild(style);
     },
-    blinkArea(openCode) {//计算开奖后闪烁选好区域
+    blinkArea(openCode) { //计算开奖后闪烁选好区域
         let openCode_arr = openCode.split(','); //"1,2,3" => [1,2,3];
         let openCodeValue_3w = openCode_arr.join(''); //[1,2,3] => 123
         let openCodeValue_2w = choose(openCode_arr, 2).map(itemArr => String(itemArr).split(',').join('')); //[1,2,3] =>[12,13,23]

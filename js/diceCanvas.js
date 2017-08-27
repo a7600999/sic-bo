@@ -276,13 +276,14 @@ let diceCanvas = {
         /*  diceGameContent.css({
              'width': document.body.clientWidth * _this.scale,
          }); */
+        $('body').css({
+            'height': parseFloat(diceGameContent.css('height')) * _this.scale,
+        });
         diceGameContent.css({
             'transform': `scale(${_this.scale})`,
             'transform-origin': 'center top',
         });
-        $('body').css({
-            'height': parseFloat(diceGameContent.css('height')) * _this.scale,
-        });
+        
     },
     /**
      * 创建飞盘飞出的函数

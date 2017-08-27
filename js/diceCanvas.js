@@ -227,6 +227,10 @@ let diceCanvas = {
         });
     },
     loadImage() {
+        $('.loadBarContent')[0].width = 400;
+        $('.loadBarContent')[0].height = 100;
+        
+
         let imagePaths = [
             './images/diceGameBg.png', 
             './images/desktop.png',
@@ -251,12 +255,15 @@ let diceCanvas = {
             './images/saizi_6.png',
         ];
         let loadedImgs = [];
+        let loader = new lightLoader($('.loadBarContent')[0], 400, 100, loadedImgs, imagePaths);				
+        loader.init();
         imagePaths.forEach((path)=>{
             let img = new Image();
             img.onload = function() {
                 loadedImgs.push(path);
+                
                 if(loadedImgs.length === imagePaths.length) {
-                    $('.loadBar').fadeOut().remove();
+                    // $('.loadBar').fadeOut().remove();
                 }
             };
             img.src = path;

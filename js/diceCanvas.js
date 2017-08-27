@@ -281,7 +281,7 @@ let diceCanvas = {
             'transform-origin': 'center top',
         });
         $('body').css({
-            'height': diceGameContent.height() * _this.scale,
+            'height': parseFloat(diceGameContent.css('height')) * _this.scale,
         });
     },
     /**

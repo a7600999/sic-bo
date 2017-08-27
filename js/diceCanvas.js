@@ -263,7 +263,7 @@ let diceCanvas = {
                 loadedImgs.push(path);
                 
                 if(loadedImgs.length === imagePaths.length) {
-                    // $('.loadBar').fadeOut().remove();
+                    $('.loadBar').fadeOut().remove();
                 }
             };
             img.src = path;

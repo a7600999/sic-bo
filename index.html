@@ -19,6 +19,9 @@
 </head>
 
 <body>
+    <canvas id="canvas_fly"></canvas>
+    <canvas id="canvas_stop"></canvas>
+    <canvas id="canvas_betted"></canvas>
     <div class="diceGameContent">
         <div class="outerWrap">
             <div class="diceGameTopArea">
@@ -1036,14 +1039,14 @@
                 </div>
             </div>
             <div class="chips clearfix">
-                <div class="chip chip1" value="1"></div>
-                <div class="chip chip5" value="5"></div>
-                <div class="chip chip10" value="10"></div>
-                <div class="chip chip20" value="20"></div>
-                <div class="chip chip50" value="50"></div>
-                <div class="chip chip100" value="100"></div>
-                <div class="chip chip1000" value="1000"></div>
-                <div class="chip chip5000" value="5000"></div>
+                <div class="chip chip1" priceNum="1"></div>
+                <div class="chip chip5" priceNum="5"></div>
+                <div class="chip chip10" priceNum="10"></div>
+                <div class="chip chip20" priceNum="20"></div>
+                <div class="chip chip50" priceNum="50"></div>
+                <div class="chip chip100" priceNum="100"></div>
+                <div class="chip chip1000" priceNum="1000"></div>
+                <div class="chip chip5000" priceNum="5000"></div>
             </div>
         </div>
         <div class="diceGameBar">
@@ -1074,7 +1077,8 @@
             </div>
         </div>
     </div>
+    
 </body>
-<script src="./js/diceGame.js"></script>
+<script src="./js/diceCanvas.js"></script>
 
 </html>

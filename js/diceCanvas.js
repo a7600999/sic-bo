@@ -34,6 +34,7 @@ let diceCanvas = {
     },
     init() {
         let _this = this;
+        _this.loadImage();
         _this.selfAdaption();
         let scale = _this.scale;
         //拿到画布
@@ -225,14 +226,51 @@ let diceCanvas = {
             }, 10);
         });
     },
+    loadImage() {
+        let imagePaths = [
+            './images/diceGameBg.png', 
+            './images/desktop.png',
+            './images/nameLogo.svg',
+            './images/balance.svg',
+            './images/betMoney.png',
+            './images/chips.png',
+            './images/diceLogo.png',
+            './images/diceCountDown.png',
+            './images/diceCountDownNum.png',
+            './images/diceResultDetail.png',
+            './images/diceResultDetail_ten.png',
+            './images/dice.svg',
+            './images/dice_small.svg',
+            './images/diceLight.png',
+            './images/diceCup.png',
+            './images/saizi_1.png',
+            './images/saizi_2.png',
+            './images/saizi_3.png',
+            './images/saizi_4.png',
+            './images/saizi_5.png',
+            './images/saizi_6.png',
+        ];
+        let loadedImgs = [];
+        imagePaths.forEach((path)=>{
+            let img = new Image();
+            img.onload = function() {
+                loadedImgs.push(path);
+                if(loadedImgs.length === imagePaths.length) {
+                    $('.loadBar').fadeOut().remove();
+                }
+            };
+            img.src = path;
+        });
+       
+    },
     selfAdaption() {
         let _this = this;
         //屏幕自适应
         _this.scale = screen.width < 1500 ? screen.width / 1920 : 1;
         let diceGameContent = $('.diceGameContent');
-       /*  diceGameContent.css({
-            'width': document.body.clientWidth * _this.scale,
-        }); */
+        /*  diceGameContent.css({
+             'width': document.body.clientWidth * _this.scale,
+         }); */
 
         diceGameContent.css({
             'transform': `scale(${_this.scale})`,
@@ -313,7 +351,7 @@ let diceCanvas = {
                     ctxEnd.beginPath();
                     ctxEnd.lineWidth = 1;
                     ctxEnd.strokeStyle = "purple";
-                    ctxEnd.arc(x + 21*_this.scale, y + 21*_this.scale, 22*_this.scale, 0, 360);
+                    ctxEnd.arc(x + 21 * _this.scale, y + 21 * _this.scale, 22 * _this.scale, 0, 360);
                     ctxEnd.stroke();
                     ctxEnd.restore();
                 }

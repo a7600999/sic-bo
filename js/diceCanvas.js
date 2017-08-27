@@ -35,7 +35,7 @@ let diceCanvas = {
     init() {
         let _this = this;
         _this.loadImage();
-        
+        _this.scale = screen.width < 1500 ? screen.width / 1920 : 1;
         let scale = _this.scale;
         //拿到画布
         let canvas_fly = document.getElementById('canvas_fly'); //渲染飞出去的筹码
@@ -226,12 +226,13 @@ let diceCanvas = {
             }, 10);
         });
     },
-    loadImage() {//加载进度条
+    loadImage() { //加载进度条
+        let _this = this;
         $('canvas.loadBarContent')[0].width = 400;
         $('canvas.loadBarContent')[0].height = 100;
-        
+
         let imagePaths = [
-            './images/diceGameBg.png', 
+            './images/diceGameBg.png',
             './images/desktop.png',
             './images/nameLogo.svg',
             './images/balance.svg',
@@ -254,25 +255,25 @@ let diceCanvas = {
             './images/saizi_6.png',
         ];
         let loadedImgs = [];
-        let loader = new lightLoader($('canvas.loadBarContent')[0], 400, 100, loadedImgs, imagePaths);				
+        let loader = new lightLoader($('canvas.loadBarContent')[0], 400, 100, loadedImgs, imagePaths);
         loader.init();
-        imagePaths.forEach((path)=>{
+        imagePaths.forEach((path) => {
             let img = new Image();
-            img.onload = function() {
+            img.onload = function () {
                 loadedImgs.push(path);
-                if(loadedImgs.length === imagePaths.length) {
-                    _this.selfAdaption();//自适应
+                if (loadedImgs.length === imagePaths.length) {
+                    _this.selfAdaption(); //自适应
                     $('.loadBar').fadeOut().remove();
                 }
             };
             img.src = path;
         });
-       
+
     },
     selfAdaption() {
         let _this = this;
         //屏幕自适应
-        _this.scale = screen.width < 1500 ? screen.width / 1920 : 1;
+
         let diceGameContent = $('.diceGameContent');
         /*  diceGameContent.css({
              'width': document.body.clientWidth * _this.scale,
@@ -284,7 +285,7 @@ let diceCanvas = {
             'transform': `scale(${_this.scale})`,
             'transform-origin': 'center top',
         });
-        
+
     },
     /**
      * 创建飞盘飞出的函数

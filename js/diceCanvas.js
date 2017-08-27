@@ -35,7 +35,7 @@ let diceCanvas = {
     init() {
         let _this = this;
         _this.loadImage();
-        _this.selfAdaption();
+        
         let scale = _this.scale;
         //拿到画布
         let canvas_fly = document.getElementById('canvas_fly'); //渲染飞出去的筹码
@@ -261,6 +261,7 @@ let diceCanvas = {
             img.onload = function() {
                 loadedImgs.push(path);
                 if(loadedImgs.length === imagePaths.length) {
+                    _this.selfAdaption();//自适应
                     $('.loadBar').fadeOut().remove();
                 }
             };

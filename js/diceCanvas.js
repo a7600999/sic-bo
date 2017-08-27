@@ -39,19 +39,16 @@ let diceCanvas = {
         let scale = _this.scale;
         //拿到画布
         let canvas_fly = document.getElementById('canvas_fly'); //渲染飞出去的筹码
-        canvas_fly.width = document.body.clientWidth * scale;
-        console.log(document.body.clientHeight , scale)
-        canvas_fly.height = document.body.clientHeight * scale || 800;
+        canvas_fly.width = document.body.clientWidth;
+        canvas_fly.height = 912 * scale || 800;
         _this.ctxFly = canvas_fly.getContext('2d');
         let canvas_stop = document.getElementById('canvas_stop'); //渲染未确认投注放桌面上的筹码
-        canvas_stop.width = document.body.clientWidth * scale;
-        console.log(document.body.clientHeight , scale)
-        canvas_stop.height = document.body.clientHeight * scale || 800;
+        canvas_stop.width = document.body.clientWidth;
+        canvas_stop.height = 912 * scale || 800;
         _this.ctxStop = canvas_stop.getContext('2d');
         let canvas_betted = document.getElementById('canvas_betted'); //渲染确认投注的筹码
-        canvas_betted.width = document.body.clientWidth * scale;
-        console.log(document.body.clientHeight , scale)
-        canvas_betted.height = document.body.clientHeight * scale || 800;
+        canvas_betted.width = document.body.clientWidth;
+        canvas_betted.height = 912 * scale || 800;
         _this.ctxBetted = canvas_betted.getContext('2d');
 
         //拿到chipsImgObj对象
@@ -282,7 +279,7 @@ let diceCanvas = {
              'width': document.body.clientWidth * _this.scale,
          }); */
         $('body').css({
-            'height': parseFloat(diceGameContent.css('height')) * _this.scale,
+            'height': 912 * _this.scale,
         });
         diceGameContent.css({
             'transform': `scale(${_this.scale})`,

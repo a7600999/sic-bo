@@ -226,11 +226,10 @@ let diceCanvas = {
             }, 10);
         });
     },
-    loadImage() {
-        $('.loadBarContent')[0].width = 400;
-        $('.loadBarContent')[0].height = 100;
+    loadImage() {//加载进度条
+        $('canvas.loadBarContent')[0].width = 400;
+        $('canvas.loadBarContent')[0].height = 100;
         
-
         let imagePaths = [
             './images/diceGameBg.png', 
             './images/desktop.png',
@@ -255,13 +254,12 @@ let diceCanvas = {
             './images/saizi_6.png',
         ];
         let loadedImgs = [];
-        let loader = new lightLoader($('.loadBarContent')[0], 400, 100, loadedImgs, imagePaths);				
+        let loader = new lightLoader($('canvas.loadBarContent')[0], 400, 100, loadedImgs, imagePaths);				
         loader.init();
         imagePaths.forEach((path)=>{
             let img = new Image();
             img.onload = function() {
                 loadedImgs.push(path);
-                
                 if(loadedImgs.length === imagePaths.length) {
                     $('.loadBar').fadeOut().remove();
                 }
@@ -278,13 +276,12 @@ let diceCanvas = {
         /*  diceGameContent.css({
              'width': document.body.clientWidth * _this.scale,
          }); */
-
         diceGameContent.css({
             'transform': `scale(${_this.scale})`,
             'transform-origin': 'center top',
         });
         $('body').css({
-            'height': diceGameContent.outerHeight() * _this.scale,
+            'height': diceGameContent.height() * _this.scale,
         });
     },
     /**

@@ -10,7 +10,6 @@ var lightLoader = function(c, cw, ch, loadedImgs, imagePaths){
 	this.ch = ch;			
 	
 	this.loaded = 0;
-	this.loaderSpeed = .6;
 	this.loaderHeight = 10;
 	this.loaderWidth = 310;				
 	this.loader = {
@@ -44,9 +43,7 @@ var lightLoader = function(c, cw, ch, loadedImgs, imagePaths){
 	this.updateLoader = function(){
 		if(this.loaded < 100){
 			this.loaded = (loadedImgs.length/imagePaths.length)*100;
-		} else {
-			this.loaded = 0;
-		}
+		} 
 	};
 	
 	/*========================================================*/	

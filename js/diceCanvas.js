@@ -238,7 +238,6 @@ let diceCanvas = {
             './images/balance.svg',
             './images/betMoney.png',
             './images/chips.png',
-            './images/diceLogo.png',
             './images/diceCountDown.png',
             './images/diceCountDownNum.png',
             './images/diceResultDetail.png',

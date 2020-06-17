@@ -65,15 +65,19 @@ let diceCanvas = {
         });
         $('.chips>.chip10').trigger('click'); //默认筹码10
 
-        let pieceIntervalOver = { //连续点击翻倍生不生效的flag
+        const pieceIntervalOver = { //连续点击翻倍生不生效的flag
             'betFor': false,
             'betted': false,
             'pieceCount': 0,
         };
-        let cancelOk = {
+        const cancelOk = {
             ok: false,
             count: 0,
         }; //取消完毕，默认false
+        const resetOk = {
+            ok: false,
+            count: 0,// 防止重复点击
+        }
         //点击桌面选号
         $('[rel="selectCode"]').off('click').on('click', function (e) {
             if (cancelOk.ok || cancelOk.count === 0) {
@@ -159,13 +163,65 @@ let diceCanvas = {
                 i++;
             }, 10);
         });
+        //重置投注
+        $('.resetButton').off('click').on('click', function (e) {
+            if (resetOk.ok || resetOk.count === 0) {
+                resetOk.ok = false;
+            } else {
+                return; //没取消完毕不准过去
+            }
+            if ((pieceIntervalOver.betFor && pieceIntervalOver.betted) || pieceIntervalOver.pieceCount === 0) {
+
+            } else {
+                return; //上次翻倍全部渲染结束才能进行下一次点击操作，没结束操作无效                
+            }
+            resetOk.count += 1;
+
+            pieceIntervalOver.pieceCount = 0;
+            if (_this.betForRecords.length === 0 && _this.bettedRecords.length === 0) {
+                return;
+            }
+            _this.flyState = 'flyBack';
+            //timechunk 分时函数
+            let i = 0;
+            let interval = setInterval(() => {
+                if (i === _this.betForRecords.length) {
+                    _this.betForRecords.length = 0;
+                    _this.betOrderRecords = {};
+                    _this.eachBetCount = {};
+                    _this.ctxStop.clearRect(0, 0, document.body.clientWidth, document.body.clientHeight);
+                    $('.betMoneyAmount').text(_this.calculateBetMoney());
+                    clearInterval(interval);
+                    let j = 0;
+                    const _interval = setInterval(() => {
+                        if (j === _this.bettedRecords.length) {
+                            resetOk.ok = true;
+                            resetOk.count = 0; //回到0
+                            _this.bettedRecords.length = 0;
+                            _this.ctxBetted.clearRect(0, 0, document.body.clientWidth, document.body.clientHeight);
+                            $('.betMoneyAmount').text(_this.calculateBetMoney());
+                            return clearInterval(_interval);
+                        }
+                        console.log(j)
+                        const bettedRecord = _this.bettedRecords[j];
+                        _this.chipFly(_this.ctxFly, _this.ctxBetted, _this.chipsImgObj, bettedRecord.priceNum, bettedRecord.endPos, bettedRecord.startPos, bettedRecord.elemOption, 10);
+                        j++;
+                    }, 10);
+                    return;
+                }
+                const betForRecord = _this.betForRecords[i];
+                _this.chipFly(_this.ctxFly, _this.ctxStop, _this.chipsImgObj, betForRecord.priceNum, betForRecord.endPos, betForRecord.startPos, betForRecord.elemOption, 10);
+                i++;
+            }, 10);
+
+        });
         //确认投注
         $('.betButton').off('click').on('click', function (e) {
             if (_this.betForRecords.length === 0) {
                 alert('请先下注！');
                 return;
             }
-            if (cancelOk.ok || cancelOk.count === 0) {} else {
+            if (cancelOk.ok || cancelOk.count === 0) { } else {
                 return; //没取消完毕不准过去
             }
             if ((pieceIntervalOver.betFor && pieceIntervalOver.betted) || pieceIntervalOver.pieceCount === 0) {
@@ -190,7 +246,7 @@ let diceCanvas = {
             if (bettedLen === 0 && betForLen === 0) {
                 return;
             }
-            if (cancelOk.ok || cancelOk.count === 0) {} else {
+            if (cancelOk.ok || cancelOk.count === 0) { } else {
                 return; //没取消完毕不准过去
             }
             if ((pieceIntervalOver.betFor && pieceIntervalOver.betted) || pieceIntervalOver.pieceCount === 0) {

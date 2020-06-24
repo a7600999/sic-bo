@@ -468,7 +468,7 @@ let diceCanvas = {
                         $(ele).addClass('diceBgBlink');
                         setTimeout(function () {
                             $(ele).removeClass('diceBgBlink');
-                        }, 10000);
+                        }, 3000);
                     }
                 });
 

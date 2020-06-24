@@ -160,18 +160,27 @@ body {
 }
 
 @-webkit-keyframes bgBlink {
+    50% {
+        background: #125438;
+    }
     100% {
         background: #578956;
     }
 }
 
 @-moz-keyframes bgBlink {
+    50% {
+        background: #125438;
+    }
     100% {
         background: #578956;
     }
 }
 
 @keyframes bgBlink {
+    50% {
+        background: #125438;
+    }
     100% {
         background: #578956;
     }

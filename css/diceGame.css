@@ -820,7 +820,7 @@ body {
     box-shadow: 0 0.8px 0.3px 0 rgba(255, 255, 255, 0.5), inset 0 1px 1px 0 rgba(255, 255, 255, 0.28);
     border: solid 1px #e0e0e0;
     cursor: pointer;
-} 
+}
 
 .betBar>.button.resetButton {
     margin: auto;
@@ -1166,7 +1166,7 @@ body {
 }
 
 .diceGameTopArea .diceLogo {
-    background-image: url('../images/diceLogo.png');
+    /*background-image: url('../images/diceLogo.png');*/
     background-repeat: no-repeat;
     position: absolute;
     height: 120px;
@@ -1815,4 +1815,14 @@ body {
 
 [rel="betChip"].bettedChip {
     border: 2px solid blueviolet;
+}
+
+.mask {
+    position: absolute;
+    z-index: 3000;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background: transparent;
 }

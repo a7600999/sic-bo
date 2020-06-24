@@ -32,6 +32,7 @@ let diceCanvas = {
             5000: 6 * this.scale,
         };
     },
+    rollStyle: null,
     init() {
         let _this = this;
         _this.loadImage();
@@ -221,7 +222,8 @@ let diceCanvas = {
                 alert('请先下注！');
                 return;
             }
-            if (cancelOk.ok || cancelOk.count === 0) { } else {
+            if (cancelOk.ok || cancelOk.count === 0) {
+            } else {
                 return; //没取消完毕不准过去
             }
             if ((pieceIntervalOver.betFor && pieceIntervalOver.betted) || pieceIntervalOver.pieceCount === 0) {
@@ -246,7 +248,8 @@ let diceCanvas = {
             if (bettedLen === 0 && betForLen === 0) {
                 return;
             }
-            if (cancelOk.ok || cancelOk.count === 0) { } else {
+            if (cancelOk.ok || cancelOk.count === 0) {
+            } else {
                 return; //没取消完毕不准过去
             }
             if ((pieceIntervalOver.betFor && pieceIntervalOver.betted) || pieceIntervalOver.pieceCount === 0) {
@@ -318,6 +321,7 @@ let diceCanvas = {
                 loadedImgs.push(path);
                 if (loadedImgs.length === imagePaths.length) {
                     _this.selfAdaption(); //自适应
+                    _this.startDice();
                     $('.loadBar').fadeOut().remove();
                 }
             };
@@ -344,7 +348,7 @@ let diceCanvas = {
     },
     /**
      * 创建飞盘飞出的函数
-     * 
+     *
      * @param {object} ctx  canvas画笔
      * @param {object} img  画的图片对象
      * @param {object} startPos 开始坐标
@@ -384,13 +388,14 @@ let diceCanvas = {
 
             animation = requestAnimationFrame(_chipFly);
         }
+
         _chipFly();
     },
     /**
-     * 
-     * 
+     *
+     *
      * @param {object} ctxStop 画笔
-     * @param {object} img 
+     * @param {object} img
      * @param {object} priceCountObj 每个筹码的个数{1:2,5:10,10:1,...,5000:1}
      * @param {object} endPos 坐标
      */
@@ -445,9 +450,114 @@ let diceCanvas = {
         }
         return result;
     },
+    startDice() {
+
+        setInterval(() => {
+            // 加个透明遮罩挡住页面禁止点击
+            $('#mask').length === 0 && $('body').append(`<div id="mask" class="mask"></div>`);
+            this.createDiceRollStyle();
+            $('.diceCup').addClass('diceCup_animate');
+        }, 30 * 1000);
+        let count = 0;
+        $('.diceCup')[0].addEventListener('animationend', () => {
+            count += 1;
+            if (count === 6) {
+                const blinkArea = this.blinkArea('1,2,3');
+                $('[rel="selectCode"]').each((index, ele) => {
+                    if (blinkArea.indexOf($(ele).attr('value')) !== -1) {
+                        $(ele).addClass('diceBgBlink');
+                        setTimeout(function () {
+                            $(ele).removeClass('diceBgBlink');
+                        }, 10000);
+                    }
+                });
+
+                $('.diceCup').removeClass('diceCup_animate');
+                count = 0;
+                // 去除透明遮罩
+                $('#mask').remove();
+            }
+        });
+    },
+    createDiceRollStyle() { //计算随机骰子随机旋转位置
+        this.rollStyle && document.head.removeChild(this.rollStyle);
+        this.rollStyle = document.createElement('style');
+        let styleStr_left = ``;
+        let styleStr_center = ``;
+        let styleStr_right = ``;
+        for (let i = 0; i < 99; i += 2) {
+            styleStr_left += `${i}%{transform: translate3d(${Math.random() * 35}px, ${Math.random() * 16 - 8}px, ${Math.random() * 16}px) rotate(${Math.random() * 5}deg);}`;
+            styleStr_center += `${i}%{transform: translate3d(${Math.random() * 36 - 18}px, ${Math.random() * 16 - 8}px, ${Math.random() * 16}px) rotate(${Math.random() * 5}deg);}`;
+            styleStr_right += `${i}%{transform: translate3d(${Math.random() * 35 - 35}px, ${Math.random() * 16 - 8}px, ${Math.random() * 16}px) rotate(${Math.random() * 5}deg);}`;
+        }
+        let results = [
+            ['transform: translate3d(4px,0px,0px)', 'transform: translate3d(4px,-8px,0px)', 'transform: translate3d(0px,0px,0px)'],
+            ['transform: translate3d(4px,0px,0px)', 'transform: translate3d(10px,4px,0px)', 'transform: translate3d(-15px,-8px,0px)'],
+            ['transform: translate3d(30px,0px,0px)', 'transform: translate3d(-16px,0px,0px)', 'transform: translate3d(-18px,6px,-6px)'],
+            ['transform: translate3d(30px,0px,0px)', 'transform: translate3d(-16px,0px,0px)', 'transform: translate3d(-18px,-6px,-6px)'],
+            ['transform: translate3d(0px,0px,0px)', 'transform: translate3d(0px,0px,0px)', 'transform: translate3d(0px,0px,0px)'],
+        ];
+
+        let result = results[Math.floor(Math.random() * 4)];
+
+        styleStr_left += `100% {${result[0]}  rotate(0deg);}`; //最后的位置可以写个数组指定几个位置随机translate3d(-4px,0px,-4px)，translate3d(4px,0px,-4px)，translate3d(-4px,0px,4px)，translate3d(4px,0px,4px)
+        styleStr_center += `100% {${result[1]}  rotate(0deg);}`;
+        styleStr_right += `100% {${result[2]}  rotate(0deg);}`;
+        this.rollStyle.innerHTML = `
+            @keyframes diceShake_left {
+                ${styleStr_left}
+            }
+            @keyframes diceShake_center {
+                ${styleStr_center}
+            }
+            @keyframes diceShake_right {
+                ${styleStr_right}
+            }
+        `;
+        document.head.appendChild(this.rollStyle);
+    },
+    blinkArea(openCode) { //计算开奖后闪烁选好区域
+        let openCode_arr = openCode.split(','); //"1,2,3" => [1,2,3];
+        let openCodeValue_3w = openCode_arr.join(''); //[1,2,3] => 123
+        let openCodeValue_2w = choose(openCode_arr, 2).map(itemArr => String(itemArr).split(',').join('')); //[1,2,3] =>[12,13,23]
+        let openCodeValue_1w = openCode_arr;
+        return [...openCodeValue_1w, ...openCodeValue_2w, openCodeValue_3w];
+    },
 };
 diceCanvas.init();
 
 function copyJSON(json) {
     return JSON.parse(JSON.stringify(json));
+}
+
+//求数组组合的所有组合方式[1,2,3]->[1,2],[1,3],[2,3]
+function choose(arr, size) {
+    var allResult = [];
+
+    function _choose(arr, size, result) {
+        var arrLen = arr.length;
+        if (size > arrLen) {
+            return;
+        }
+        if (size == arrLen) {
+            allResult.push([].concat(result, arr))
+        } else {
+            for (var i = 0; i < arrLen; i++) {
+                var newResult = [].concat(result);
+                newResult.push(arr[i]);
+
+                if (size == 1) {
+                    allResult.push(newResult);
+                } else {
+                    var newArr = [].concat(arr);
+                    newArr.splice(0, i + 1);
+                    _choose(newArr, size - 1, newResult);
+                }
+            }
+        }
+    }
+
+    _choose(arr, size, []);
+
+    return allResult;
 }
